@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
-    class Class1
+    class Project
     {
     }
 }

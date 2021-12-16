@@ -10,7 +10,7 @@ namespace Data.Contexts
     {
         public UserContext()
         {
-            Console.WriteLine('Hej');
+           Console.WriteLine("Hej");
         }
     }
 }

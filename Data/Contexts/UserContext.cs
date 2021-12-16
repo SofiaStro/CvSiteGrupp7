@@ -8,5 +8,9 @@ namespace Data.Contexts
 {
     class UserContext
     {
+        public UserContext()
+        {
+            Console.WriteLine('Hej');
+        }
     }
 }

@@ -1,11 +1,67 @@
 ﻿@{
     ViewBag.Title = "Projekt";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Projekt namn</th>
+            <th>Projekt beskrivning</th>
+            <th>Anslutna till projektet</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Hoppa</td>
+            <td>Så här gör man när man hoppar</td>
+            <td>
+                <table>
+                    <tr>
+                        <td>Sofia</td>
+                    </tr>
+                    <tr>
+                        <td>Elin</td>
+                    </tr>
+                    <tr>
+                        <td>Moa</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>Hoppa</td>
+            <td>Så här gör man när man hoppar</td>
+            <td>
+                <table>
+                    <tr>
+                        <td>Sofia</td>
+                    </tr>
+                    <tr>
+                        <td>Elin</td>
+                    </tr>
+                    <tr>
+                        <td>Moa</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
 
-<p>Moa.</p>
-<p>Sofia</p>
-<p>Elin</p>
+        @*@foreach (var book in Model)
+                {
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(book.ImagePath))
+                {
+        <img src="@(ImageService.GetImagePathRelative(book.ImagePath))" style="max-width: 50px; max-height: 50px" />}
+            </td>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>
+                <a href="@Url.Action("Edit",new { id = book.Id })"><i class="glyphicon glyphicon-edit"></i></a>
+                <i class="glyphicon glyphicon-remove-circle deletebook" style="cursor: pointer" data-id="@book.Id" data-title="@book.Title"></i>
+            </td>
+        </tr>}*@
+    </tbody>
+</table>

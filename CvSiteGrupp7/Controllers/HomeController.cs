@@ -15,14 +15,14 @@ namespace CvSiteGrupp7.Controllers
 
         public ActionResult Project()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Här kan du se alla registrerade projekt.";
 
             return View();
         }
 
         public ActionResult Search()
         {
-            ViewBag.Message = "Your search page.";
+            ViewBag.Message = "Här kan du söka efter registerade CVn.";
 
             return View();
         }

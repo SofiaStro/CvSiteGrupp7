@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using CvSiteGrupp7.Models;
+using Data.Contexts;
 
 namespace CvSiteGrupp7
 {

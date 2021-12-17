@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using CvSiteGrupp7.Models;
+using Data.Contexts;
 
 namespace CvSiteGrupp7
 {

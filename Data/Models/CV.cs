@@ -26,6 +26,5 @@ namespace Data.Models
         public virtual ICollection<Education> Educations { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
-        public virtual ICollection<Competence> Competences { get; set; }
     }
 }

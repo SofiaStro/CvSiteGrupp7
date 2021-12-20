@@ -12,14 +12,12 @@ namespace CvSiteGrupp7.Controllers
     public class CvController : Controller
     {
         private CvDBContext db = new CvDBContext();
+        
         // GET: Cv
         public ActionResult Index()
         {
-            //using (var context = new ApplicationDbContext())
-            //{
-                var cv = db.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
-                return View(cv);
-            //}
+            var cv = db.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
+            return View(cv);
         }
 
         // GET: Cv/Details/5
@@ -30,17 +28,14 @@ namespace CvSiteGrupp7.Controllers
 
         public void Create(string userName)
         {
-            //using (var context = new ApplicationDbContext())
-            //{
-                var newCv = new CV()
-                {
-                    UserName = userName,
-                    Private = true
-                };
+            var newCv = new CV()
+            {
+                UserName = userName,
+                Private = true
+            };
 
-                db.cvs.Add(newCv);
-                db.SaveChanges();
-            //}
+            db.cvs.Add(newCv);
+            db.SaveChanges();
         }
 
         // GET: Cv/Edit/5

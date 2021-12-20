@@ -36,6 +36,8 @@ namespace Data.Contexts
         }
 
         public DbSet<Project> projects { get; set; }
+        public DbSet<Message> messages { get; set; }
+        public DbSet<CV> cvs { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -18,7 +18,7 @@ namespace CvSiteGrupp7.Controllers
             {
                 var projects = context.projects.ToList();
                 return View(projects);
-            }  
+            }
         }
 
         // GET: Project
@@ -50,7 +50,7 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                using(var context = new ApplicationDbContext())
+                using (var context = new ApplicationDbContext())
                 {
                     var newProject = new Project()
                     {
@@ -94,20 +94,38 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Project/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            using (var context = new ApplicationDbContext())
+            {
+                Project existingProject = context.projects.Find(id);
+                if (existingProject == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(existingProject);
+            }
         }
 
+
         // POST: Project/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                using (var context = new ApplicationDbContext())
+                {
+                    Project project = context.projects.Find(id);
+                    context.projects.Remove(project);
+                    context.SaveChanges();
+                }
+                return RedirectToAction("UserIndex");
             }
             catch
             {
@@ -115,4 +133,4 @@ namespace CvSiteGrupp7.Controllers
             }
         }
     }
-}
+}    

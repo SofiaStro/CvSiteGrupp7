@@ -48,8 +48,7 @@
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @*@Html.ActionLink("Ta bort", "Delete", new { id = item.Id })*@
-            <button class= "deleteMessage" data-id="@item.Id">Ta bort</button>
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
       }
@@ -58,7 +57,7 @@
 
 </table>
 
-@section scripts{
+@*@section scripts{
     <script>
         $('.deleteMessage').click(function() {
             var idForMessage = $(this).data('id');
@@ -67,6 +66,6 @@
             })
             window.location.reload();
         }
-    </script>
+    </script>*@
     
-  }
+ 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
+using Message = Data.Models.Message;
 
 namespace CvSiteGrupp7.Controllers
 {
@@ -62,42 +63,59 @@ namespace CvSiteGrupp7.Controllers
             }
         }
 
-        // GET: Message/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //// GET: Message/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: Message/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //// POST: Message/Edit/5
+        //[HttpPost]
+        //public ActionResult Edit(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: Message/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
-        }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            using (var context = new ApplicationDbContext())
+            {
+                Message existingMessage = context.messages.Find(id);
+                if (existingMessage == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(existingMessage);
 
-        // POST: Message/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, MessageDelete model)
+            }
+        }
+            // POST: Message/Delete/5
+            [HttpPost, ActionName("Delete")]
+            [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                using (var context = new ApplicationDbContext())
+                {
+                    Message message = context.messages.Find(id);
+                    context.messages.Remove(message);
+                    context.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             catch

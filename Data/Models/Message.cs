@@ -15,16 +15,16 @@ namespace Data.Models
         [Required]
         [Display(Name = "Avsändare")]
         public string Sender { get; set; }
-        [Required]
+       // [Required]
         [Display(Name = "Datum")]
         public DateTime SendDate { get; set; }
-        [Required]
+       // [Required]
         [Display(Name = "Läst")]
         public bool Read { get; set; }
         [Required]
         [Display(Name = "Meddelande")]
         public string Content { get; set; }
-        [Required]
+      //  [Required]
         public string UserName { get; set; }
 
     }

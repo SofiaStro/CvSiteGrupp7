@@ -1,4 +1,5 @@
 ﻿using Data.Contexts;
+using Data.Models;
 using Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -41,16 +42,16 @@ namespace CvSiteGrupp7.Controllers
             {
                 using (var context = new ApplicationDbContext())
                 {
-                    var newMessage = new Message()
+                    var newMessage = new Data.Models.Message()
                     {
-                        //Sender = model.Sender,
-                        //SendDate = model.SendDate,
-                        //Read = model.Read,
-                        //Content = model.Content,
-                        //UserName = User.Identity.Name
+                        Sender = model.Sender,
+                        SendDate = DateTime.Today,
+                        Read = false,
+                        Content = model.Content,
+                        UserName = User.Identity.Name
                     };
 
-                    //context.messages.Add(newMessage);
+                    context.messages.Add(newMessage);
                     context.SaveChanges();
                 }
                 return RedirectToAction("Index");

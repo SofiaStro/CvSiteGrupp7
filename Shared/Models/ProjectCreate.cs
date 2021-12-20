@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.Models
 {
-    class ProjectCreate
+    internal class ProjectCreate
     {
-        //Hejsan
-        public ProjectCreate()
-        {
-            Console.WriteLine("hej");
-        }
     }
 }

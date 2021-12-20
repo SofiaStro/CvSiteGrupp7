@@ -18,8 +18,8 @@ namespace CvSiteGrupp7.Controllers
             {
                 //if ((context.cvs.Where(row => row.UserName == User.Identity.Name)) is not null)
                 //{
-                //    var cv = context.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
-                //    return View(cv);
+                var cv = context.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
+                return View(cv);
                 //}
                 //else
                 //{

@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Data.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -33,6 +35,7 @@ namespace Data.Contexts
         {
         }
 
+        public DbSet<Project> projects { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

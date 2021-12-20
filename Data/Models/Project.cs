@@ -21,6 +21,8 @@ namespace Data.Models
         //[DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime AddedDate{ get; set; }
+        [Required]
+        public string UserName { get; set; }
 
     }
 }

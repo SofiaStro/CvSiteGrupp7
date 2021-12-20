@@ -6,19 +6,19 @@
 
 <h2>Index</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Read)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Sender)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SendDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Read)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Content)
@@ -29,29 +29,34 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+  @foreach (var item in Model) {
+        if (item.UserName == User.Identity.Name)
+    {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Sender)
+            @Html.CheckBox("IsActive", true)
+            @*@Html.DisplayFor(modelItem => item.Read)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SendDate)
+            <p>Moa</p>
+            @*@Html.DisplayFor(modelItem => item.Sender)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Read)
+            <p>2021-12-12</p>
+            @*@Html.DisplayFor(modelItem => item.SendDate)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Content)
+            "meddelandetext"
+            @*@Html.DisplayFor(modelItem => item.Content)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @*@Html.DisplayFor(modelItem => item.UserName)*@
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
         </td>
     </tr>
-}
+    }
+  }
 
 </table>

@@ -1,9 +1,11 @@
 ﻿using Data.Contexts;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace CvSiteGrupp7.Controllers
 {
@@ -33,12 +35,24 @@ namespace CvSiteGrupp7.Controllers
 
         // POST: Message/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(MessageCreate model)
         {
             try
             {
-                // TODO: Add insert logic here
+                using (var context = new ApplicationDbContext())
+                {
+                    var newMessage = new Message()
+                    {
+                        //Sender = model.Sender,
+                        //SendDate = model.SendDate,
+                        //Read = model.Read,
+                        //Content = model.Content,
+                        //UserName = User.Identity.Name
+                    };
 
+                    //context.messages.Add(newMessage);
+                    context.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             catch

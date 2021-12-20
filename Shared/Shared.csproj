@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\MessageCreate.cs" />
     <Compile Include="Models\ProjectCreate.cs" />
     <Compile Include="Models\ProjectDelete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -45,7 +45,7 @@ namespace CvSiteGrupp7.Controllers
                     var newMessage = new Data.Models.Message()
                     {
                         Sender = model.Sender,
-                        SendDate = DateTime.Today,
+                        SendDate = DateTime.Now,
                         Read = false,
                         Content = model.Content,
                         UserName = User.Identity.Name

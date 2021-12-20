@@ -10,8 +10,8 @@ namespace Shared.Models
     {
         public string Sender { get; set; }
         public string Content { get; set; } 
-        public DateTime SendDate { get; set; }
-        public bool Read { get; set; }
-        public string UserName{ get; set; }
+       // public DateTime SendDate { get; set; }
+       // public bool Read { get; set; }
+       public string UserName{ get; set; }
     }
 }

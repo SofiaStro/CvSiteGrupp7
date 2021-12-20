@@ -31,26 +31,23 @@
     {
     <tr>
         <td>
-            @Html.CheckBox("IsActive", true)
+            @Html.CheckBox("IsActive", false)
             @*@Html.DisplayFor(modelItem => item.Read)*@
         </td>
         <td>
-            <p>Moa</p>
-            @*@Html.DisplayFor(modelItem => item.Sender)*@
+            @Html.DisplayFor(modelItem => item.Sender)
         </td>
         <td>
-            <p>2021-12-12</p>
-            @*@Html.DisplayFor(modelItem => item.SendDate)*@
+            @Html.DisplayFor(modelItem => item.SendDate)
         </td>
         <td>
-            "meddelandetext"
-            @*@Html.DisplayFor(modelItem => item.Content)*@
+            @Html.DisplayFor(modelItem => item.Content)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.UserName)*@
+            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
     }

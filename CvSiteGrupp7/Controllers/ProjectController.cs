@@ -1,4 +1,6 @@
 ﻿using Data.Contexts;
+using Data.Models;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,12 @@ namespace CvSiteGrupp7.Controllers
     public class ProjectController : Controller
     {
         // GET: Project
-        public ActionResult Index()
+        public ActionResult UserIndex()
         {
             using (var context = new ApplicationDbContext())
             {
-                var project = context.projects.ToList();
-                return View();
+                var projects = context.projects.ToList();
+                return View(projects);
             }  
         }
 
@@ -24,8 +26,8 @@ namespace CvSiteGrupp7.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                var project = context.projects.ToList();
-                return View();
+                var projects = context.projects.ToList();
+                return View(projects);
             }
         }
 
@@ -44,13 +46,24 @@ namespace CvSiteGrupp7.Controllers
 
         // POST: Project/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ProjectCreate model)
         {
             try
             {
-                // TODO: Add insert logic here
+                using(var context = new ApplicationDbContext())
+                {
+                    var newProject = new Project()
+                    {
+                        Name = model.Name,
+                        Description = model.Description,
+                        AddedDate = model.AddedDate,
+                        UserName = User.Identity.Name
+                    };
 
-                return RedirectToAction("Index");
+                    context.projects.Add(newProject);
+                    context.SaveChanges();
+                }
+                return RedirectToAction("UserIndex");
             }
             catch
             {

@@ -14,29 +14,29 @@ namespace CvSiteGrupp7.Controllers
     [RoutePrefix("api/project")]
     public class BookApiController : ApiController
     {
-        public BookRepository BookRepository
-        {
-            get { return new BookRepository(Request.GetOwinContext().Get<BookContext>()); }
-        }
+        //public BookRepository BookRepository
+        //{
+        //    get { return new BookRepository(Request.GetOwinContext().Get<BookContext>()); }
+        //}
 
-        [HttpPost]   // Anropa med $.ajax eller $.post
-        [Route("delete")] // api/book/delete
-        public IHttpActionResult Delete(ProjectDelete model)
-        {
-            try
-            {
-                var OKDelete = BookRepository.DeleteProject(model.ProjectId);
-                if (OKDelete)
-                {
-                    return Ok();
-                }
+        //[HttpPost]   // Anropa med $.ajax eller $.post
+        //[Route("delete")] // api/book/delete
+        //public IHttpActionResult Delete(ProjectDelete model)
+        //{
+        //    try
+        //    {
+        //        var OKDelete = BookRepository.DeleteProject(model.ProjectId);
+        //        if (OKDelete)
+        //        {
+        //            return Ok();
+        //        }
 
-                return BadRequest();
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
+        //        return BadRequest();
+        //    }
+        //    catch
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
     }
 }

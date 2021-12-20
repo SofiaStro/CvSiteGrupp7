@@ -12,12 +12,14 @@ namespace Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [Display(Name = "CV")]
+        [Display(Name = "Namn")]
         public string Name { get; set; }
         [Required]
+        [Display(Name = "Adress")]
         public  string Address { get; set; }
         [Required]
         public bool Private { get; set; }
+        public string UserName { get; set; }
 
         public virtual ICollection<Competence> Comptetences { get; set; }
         public virtual ICollection<Education> Educations { get; set; }

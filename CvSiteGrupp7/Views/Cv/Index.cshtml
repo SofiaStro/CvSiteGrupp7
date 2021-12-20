@@ -1,0 +1,33 @@
+﻿@model Data.Models.CV
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>CV</h2>
+
+
+@*<div class="jumbotron">
+        <h1>SENASTE PROJEKTET</h1>
+        <p class="lead">Lägg till info om det senaset projektet</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">LÄS MER</a></p>
+    </div>*@
+
+<div class="row">
+    <div class="col-md-4">
+        <p>@Html.DisplayNameFor(model => model.Name): Namn</p>
+        <h4>@Html.DisplayNameFor(model => model.Address): Adress</h4>
+        <h4>@Html.DisplayNameFor(model => model.Private): Ja</h4>
+        <p>@Html.ActionLink("Add", "Create") | @Html.ActionLink("Update", "Create")</p>
+    </div>
+    <div class="col-md-4">
+        <img src="#" alt="Lägg till bild" />
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Ändra</a></p>
+    </div>
+    @*<div class="col-md-4">
+            <h2>CV nr 3</h2>
+            <p>Namn och bild på CV</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">LÄS MER</a></p>
+        </div>*@
+</div>
+

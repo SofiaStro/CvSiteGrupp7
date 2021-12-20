@@ -25,7 +25,7 @@ namespace CvSiteGrupp7.Controllers
                 //{
                 //    return View();
                 //}
-                return View();
+                //return View(cv);
 
             }
         }
@@ -48,7 +48,19 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                //using (var context = new ApplicationDbContext())
+                //{
+                //    var newProject = new Project()
+                //    {
+                //        Name = model.Name,
+                //        Description = model.Description,
+                //        AddedDate = model.AddedDate,
+                //        UserName = User.Identity.Name
+                //    };
+
+                //    context.projects.Add(newProject);
+                //    context.SaveChanges();
+                //}
 
                 return RedirectToAction("Index");
             }

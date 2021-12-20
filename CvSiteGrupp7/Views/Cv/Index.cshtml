@@ -15,9 +15,9 @@
 
 <div class="row">
     <div class="col-md-4">
-        <p>@Html.DisplayNameFor(model => model.Name): Namn</p>
-        <h4>@Html.DisplayNameFor(model => model.Address): Adress</h4>
-        <h4>@Html.DisplayNameFor(model => model.Private): Ja</h4>
+        <p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name) </p>
+        <p>@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(model => model.Address)</p>
+        <p>@Html.DisplayNameFor(model => model.Private): @Html.DisplayFor(model => model.Private)</p>
         <p>@Html.ActionLink("Add", "Create") | @Html.ActionLink("Update", "Create")</p>
     </div>
     <div class="col-md-4">

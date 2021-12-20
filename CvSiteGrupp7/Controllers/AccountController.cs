@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CvSiteGrupp7.Models;
 using Data.Contexts;
+using Data.Models;
 
 namespace CvSiteGrupp7.Controllers
 {
@@ -153,11 +154,24 @@ namespace CvSiteGrupp7.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                using (var context = new ApplicationDbContext())
+                {
+                    var newCv = new CV()
+                    {
+                        UserName = model.Email,
+                        Private = true
+                    };
+
+                    context.cvs.Add(newCv);
+                    context.SaveChanges();
+                }
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

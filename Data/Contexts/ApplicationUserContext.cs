@@ -38,6 +38,10 @@ namespace Data.Contexts
         public DbSet<Project> projects { get; set; }
         public DbSet<Message> messages { get; set; }
         public DbSet<CV> cvs { get; set; }
+        public DbSet<Competence> competences { get; set; }
+        public DbSet<Education> educations { get; set; }
+        public DbSet<Experience> experiences { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

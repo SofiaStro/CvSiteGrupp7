@@ -11,14 +11,15 @@ namespace CvSiteGrupp7.Controllers
 {
     public class CvController : Controller
     {
+        private CvDBContext db = new CvDBContext();
         // GET: Cv
         public ActionResult Index()
         {
-            using (var context = new ApplicationDbContext())
-            {
-                var cv = context.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
+            //using (var context = new ApplicationDbContext())
+            //{
+                var cv = db.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
                 return View(cv);
-            }
+            //}
         }
 
         // GET: Cv/Details/5
@@ -27,36 +28,47 @@ namespace CvSiteGrupp7.Controllers
             return View();
         }
 
-        // GET: Cv/Create
-        public ActionResult Create()
+        public void Create(string userName)
         {
-            return View();
-        }
+            //using (var context = new ApplicationDbContext())
+            //{
+                var newCv = new CV()
+                {
+                    UserName = userName,
+                    Private = true
+                };
 
-        // POST: Cv/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                db.cvs.Add(newCv);
+                db.SaveChanges();
+            //}
         }
 
         // GET: Cv/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            CV cv = db.cvs.Find(id);
+            if(cv == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cv);
         }
 
         // POST: Cv/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(CV cv)
         {
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(cv).State = EntetyState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction View("Index");
+            //}
+            //return View(cv);
             try
             {
                 // TODO: Add update logic here

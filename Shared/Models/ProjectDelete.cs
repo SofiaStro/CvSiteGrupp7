@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Shared.Models
 {
-    internal class ProjectDelete
+    public class ProjectDelete
     {
+        public int ProjectId { get; set; }
     }
 }

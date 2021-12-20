@@ -16,17 +16,8 @@ namespace CvSiteGrupp7.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                //if ((context.cvs.Where(row => row.UserName == User.Identity.Name)) is not null)
-                //{
                 var cv = context.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
                 return View(cv);
-                //}
-                //else
-                //{
-                //    return View();
-                //}
-                //return View(cv);
-
             }
         }
 
@@ -48,20 +39,6 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                //using (var context = new ApplicationDbContext())
-                //{
-                //    var newProject = new Project()
-                //    {
-                //        Name = model.Name,
-                //        Description = model.Description,
-                //        AddedDate = model.AddedDate,
-                //        UserName = User.Identity.Name
-                //    };
-
-                //    context.projects.Add(newProject);
-                //    context.SaveChanges();
-                //}
-
                 return RedirectToAction("Index");
             }
             catch

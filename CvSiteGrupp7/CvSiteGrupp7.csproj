@@ -256,7 +256,11 @@
     <Content Include="Views\Cv\Index.cshtml" />
     <Content Include="Views\Cv\Edit.cshtml" />
     <Content Include="Views\Project\Delete.cshtml" />
+<<<<<<< Updated upstream
     <Content Include="Views\Message\Delete.cshtml" />
+=======
+    <Content Include="Views\Project\Edit.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

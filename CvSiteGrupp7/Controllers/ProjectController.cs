@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace CvSiteGrupp7.Controllers
 {
@@ -16,6 +17,7 @@ namespace CvSiteGrupp7.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
+                //var projects = context.projects.Where(row => row.UserName == User.Identity.Name);
                 var projects = context.projects.ToList();
                 return View(projects);
             }
@@ -72,20 +74,41 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Project/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            using (var context = new ApplicationDbContext())
+            {
+                Project existingProject = context.projects.Find(id);
+                if (existingProject == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(existingProject);
+            }
         }
 
         // POST: Project/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Project project)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    using(var context = new ApplicationDbContext())
+                    {
+                        context.projects.Attach(project);
+                        context.Entry(project).State = EntityState.Modified;
+                        context.SaveChanges();
+                    }
+                    return View(project);
+                }
+                return RedirectToAction("UserIndex");
             }
             catch
             {

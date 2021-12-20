@@ -249,10 +249,10 @@
     <Content Include="Views\Project\UserIndex.cshtml" />
     <Content Include="Views\Project\MainIndex.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Message\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>

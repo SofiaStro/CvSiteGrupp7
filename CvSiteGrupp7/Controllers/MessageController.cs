@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Contexts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,11 @@ namespace CvSiteGrupp7.Controllers
         // GET: Message
         public ActionResult Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                var messages = context.messages.ToList();
+                return View(messages);
+            }
         }
 
         // GET: Message/Details/5

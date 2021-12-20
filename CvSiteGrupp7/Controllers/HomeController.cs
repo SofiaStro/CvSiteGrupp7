@@ -13,12 +13,12 @@ namespace CvSiteGrupp7.Controllers
             return View();
         }
 
-        public ActionResult Project()
-        {
-            ViewBag.Message = "Här kan du se alla registrerade projekt.";
+        //public ActionResult Project()
+        //{
+        //    ViewBag.Message = "Här kan du se alla registrerade projekt.";
 
-            return View();
-        }
+        //    return View();
+        //}
 
         public ActionResult Search()
         {

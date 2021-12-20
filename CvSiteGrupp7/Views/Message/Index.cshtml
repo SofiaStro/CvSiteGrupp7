@@ -26,9 +26,10 @@
         <th></th>
     </tr>
 
-  @foreach (var item in Model) {
-        if (item.UserName == User.Identity.Name)
-    {
+  @foreach (var item in Model)
+  {
+      if (item.UserName == User.Identity.Name)
+      {
     <tr>
         <td>
             @Html.CheckBox("IsActive", false)
@@ -47,10 +48,25 @@
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @*@Html.ActionLink("Ta bort", "Delete", new { id = item.Id })*@
+            <button class= "deleteMessage" data-id="@item.Id">Ta bort</button>
         </td>
     </tr>
-    }
+      }
   }
 
+
 </table>
+
+@section scripts{
+    <script>
+        $('.deleteMessage').click(function() {
+            var idForMessage = $(this).data('id');
+            $.get('api/message/delete/' + idForMessage, function () {
+                window.alert('Meddelandet har raderats ur din inkorg');
+            })
+            window.location.reload();
+        }
+    </script>
+    
+  }

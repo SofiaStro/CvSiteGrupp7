@@ -9,5 +9,9 @@ namespace Shared.Models
     class ProjectCreate
     {
         //Hejsan
+        public ProjectCreate()
+        {
+            Console.WriteLine("hej");
+        }
     }
 }

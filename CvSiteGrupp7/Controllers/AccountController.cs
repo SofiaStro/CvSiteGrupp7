@@ -155,17 +155,8 @@ namespace CvSiteGrupp7.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
-                using (var context = new ApplicationDbContext())
-                {
-                    var newCv = new CV()
-                    {
-                        UserName = model.Email,
-                        Private = true
-                    };
-
-                    context.cvs.Add(newCv);
-                    context.SaveChanges();
-                }
+                var cvController = new CvController();
+                cvController.Create(model.Email);
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

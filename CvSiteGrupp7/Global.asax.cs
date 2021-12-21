@@ -1,3 +1,4 @@
+using CvSiteGrupp7.App_Start;
 using CvSiteGrupp7.Controllers;
 using Data.Contexts;
 using System;

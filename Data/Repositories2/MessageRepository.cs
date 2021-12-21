@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories2
 {
-    internal class MessageRepository
+    public class MessageRepository
     {
+        //Ärver från context
+        //Sen Get, Delete, GetAll, Save
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.Models
 {
-    public class MessageCreate
+    public class MessageModel
     {
         public string Sender { get; set; }
         public string Content { get; set; } 

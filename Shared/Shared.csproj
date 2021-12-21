@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\CvEdit.cs" />
-    <Compile Include="Models\MessageCreate.cs" />
+    <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\ProjectCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

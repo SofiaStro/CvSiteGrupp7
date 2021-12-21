@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    internal class MessageService
+    public class MessageService
     {
+        //har fält med klassen från repository. Bara get, returnerar context
+        //CreateNewMessage ska ligga här, tar emot och returnerar typen "MessageViewModel" 
+        //som ska ligga i "Shared" i MessageModels
     }
 }

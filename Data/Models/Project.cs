@@ -25,7 +25,7 @@ namespace Data.Models
         public DateTime AddedDate{ get; set; }
         [Required]
         [Display(Name = "Ingår i projekt")]
-        public List<ApplicationUser> UserInProject { get; set; } = new List<ApplicationUser>();
+        public ICollection<User> UserInProject { get; set; }
         [Required]
         public string UserName { get; set; }
 

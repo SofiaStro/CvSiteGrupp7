@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.Contexts;
+using Data.Models;
 
 namespace Shared.Models
 {
@@ -17,6 +18,8 @@ namespace Shared.Models
         [Display(Name = "Datum")]
         public DateTime AddedDate { get; set; }
         [Display(Name = "Ingår i projekt")]
-        public List<ApplicationUser> UserInProject { get; set; } = new List<ApplicationUser>();
+        public User[] UserInProject { get; set; } 
     }
+
+
 }

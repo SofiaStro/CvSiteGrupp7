@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Windows;
 
 namespace CvSiteGrupp7.Controllers
 {
@@ -55,13 +56,16 @@ namespace CvSiteGrupp7.Controllers
                     UserName = User.Identity.Name
                  };
                 ApplicationUser CurrentUser = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-                newProject.UserInProject.Add(CurrentUser);
+                User user = new User(CurrentUser.UserName);
+                newProject.UserInProject = new List<User>();
+                newProject.UserInProject.Add(user);
                 db.projects.Add(newProject);
                 db.SaveChanges();
                 return RedirectToAction("UserIndex");
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return View();
             }
         }

@@ -14,6 +14,6 @@ namespace Data.Models
         [Required]
         [Display(Name = "Erfarenhet")]
         public string Name { get; set; }
-        public virtual ICollection<CV> CVs { get; set; }
+
     }
 }

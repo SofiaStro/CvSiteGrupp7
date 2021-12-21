@@ -19,12 +19,10 @@ namespace Data.Models
         public  string Address { get; set; }
         [Required]
         public bool Private { get; set; }
+        //public string ImagePath { get; set; }
         [Required]
         public string UserName { get; set; }
 
-        public virtual ICollection<Competence> Comptetences { get; set; }
-        public virtual ICollection<Education> Educations { get; set; }
-        public virtual ICollection<Experience> Experiences { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
     }
 }

@@ -59,38 +59,19 @@ namespace CvSiteGrupp7.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CV cv)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    db.Entry(cv).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //return View(cv);
-            //try
-            //{
-            //    // TODO: Add update logic here
-
-            //    return RedirectToAction("Index");
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
             try
             {
-                //using (var context = new ApplicationDbContext())
-                //{
-                    var currentProject = db.cvs.FirstOrDefault(x => x.Id == cv.Id);
-                    if (currentProject == null)
-                    {
-                        return HttpNotFound();
-                    }
+                var currentCv = db.cvs.FirstOrDefault(x => x.Id == cv.Id);
+                if (currentCv == null)
+                {
+                    return HttpNotFound();
+                }
 
-                    currentProject.Name = cv.Name;
-                    currentProject.Address = cv.Address;
-                    currentProject.Private = cv.Private;
-                    db.SaveChanges();
-                //}
+                currentCv.Name = cv.Name;
+                currentCv.Address = cv.Address;
+                currentCv.Private = cv.Private;
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             catch

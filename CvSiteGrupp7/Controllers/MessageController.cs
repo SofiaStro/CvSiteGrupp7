@@ -13,14 +13,15 @@ namespace CvSiteGrupp7.Controllers
 {
     public class MessageController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Message
         public ActionResult Index()
         {
-            using (var context = new ApplicationDbContext())
-            {
-                var messages = context.messages.ToList();
+            //using (var context = new ApplicationDbContext())
+            //{
+                var messages = db.messages.ToList();
                 return View(messages);
-            }
+            //}
         }
 
         // GET: Message/Details/5
@@ -41,8 +42,8 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                using (var context = new ApplicationDbContext())
-                {
+                //using (var context = new ApplicationDbContext())
+                //{
                     var newMessage = new Data.Models.Message()
                     {
                         Sender = model.Sender,
@@ -52,9 +53,9 @@ namespace CvSiteGrupp7.Controllers
                         UserName = User.Identity.Name
                     };
 
-                    context.messages.Add(newMessage);
-                    context.SaveChanges();
-                }
+                    db.messages.Add(newMessage);
+                    db.SaveChanges();
+                //}
                 return RedirectToAction("Index");
             }
             catch
@@ -92,16 +93,16 @@ namespace CvSiteGrupp7.Controllers
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            using (var context = new ApplicationDbContext())
-            {
-                Message existingMessage = context.messages.Find(id);
+            //using (var context = new ApplicationDbContext())
+            //{
+                Message existingMessage = db.messages.Find(id);
                 if (existingMessage == null)
                 {
                     return HttpNotFound();
                 }
                 return View(existingMessage);
 
-            }
+            //}
         }
             // POST: Message/Delete/5
             [HttpPost, ActionName("Delete")]
@@ -110,12 +111,12 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                using (var context = new ApplicationDbContext())
-                {
-                    Message message = context.messages.Find(id);
-                    context.messages.Remove(message);
-                    context.SaveChanges();
-                }
+                //using (var context = new ApplicationDbContext())
+                //{
+                    Message message = db.messages.Find(id);
+                    db.messages.Remove(message);
+                    db.SaveChanges();
+                //}
                 return RedirectToAction("Index");
             }
             catch

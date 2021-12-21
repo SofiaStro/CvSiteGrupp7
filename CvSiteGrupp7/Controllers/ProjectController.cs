@@ -60,6 +60,7 @@ namespace CvSiteGrupp7.Controllers
                         Description = model.Description,
                         AddedDate = model.AddedDate,
                         UserName = User.Identity.Name
+                        
                     };
 
                     context.projects.Add(newProject);

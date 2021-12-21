@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Contexts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace Data.Models
         [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime AddedDate{ get; set; }
+        [Display(Name = "Ingår i projekt")]
+        public List<ApplicationUser> UserInProject { get; set; }
         [Required]
         public string UserName { get; set; }
 

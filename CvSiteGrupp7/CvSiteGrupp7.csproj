@@ -259,9 +259,11 @@
     <Content Include="Views\Project\Delete.cshtml" />
     <Content Include="Views\Message\Delete.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Cv\EditImg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UplodedImages\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>

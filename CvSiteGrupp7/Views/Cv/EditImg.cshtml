@@ -1,0 +1,35 @@
+﻿@model Shared.Models.CvEditImg
+
+@{
+    ViewBag.Title = "EditImg";
+}
+
+<h2>EditImg</h2>
+
+
+@using (Html.BeginForm("EditImg", "Cv", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>CvEditImg</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <input type="file" name="Image" value="Välj bild" accept="image/*" />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

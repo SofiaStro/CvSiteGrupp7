@@ -80,6 +80,31 @@ namespace CvSiteGrupp7.Controllers
             }
         }
 
+        public ActionResult EditImg(int id, CvEditImg model)
+        {
+            try
+            {
+                //Shared.Models.CvEditImg
+                var currentCv = db.cvs.FirstOrDefault(x => x.Id == id);
+                if (currentCv == null)
+                {
+                    return HttpNotFound();
+                }
+
+                var filename = model.Image.FileName;
+                var filepath = Server.MapPath("~/UplodedImages");
+                model.Image.SaveAs(filepath + "/" + filename);
+                
+                currentCv.ImagePath = filename;
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         // GET: Cv/Delete/5
         public ActionResult Delete(int id)
         {

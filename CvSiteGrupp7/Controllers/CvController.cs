@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace CvSiteGrupp7.Controllers
 {
@@ -55,19 +56,41 @@ namespace CvSiteGrupp7.Controllers
 
         // POST: Cv/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(CV cv)
         {
             //if (ModelState.IsValid)
             //{
-            //    db.Entry(cv).State = EntetyState.Modified;
+            //    db.Entry(cv).State = EntityState.Modified;
             //    db.SaveChanges();
-            //    return RedirectToAction View("Index");
+            //    return RedirectToAction("Index");
             //}
             //return View(cv);
+            //try
+            //{
+            //    // TODO: Add update logic here
+
+            //    return RedirectToAction("Index");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
             try
             {
-                // TODO: Add update logic here
+                //using (var context = new ApplicationDbContext())
+                //{
+                    var currentProject = db.cvs.FirstOrDefault(x => x.Id == cv.Id);
+                    if (currentProject == null)
+                    {
+                        return HttpNotFound();
+                    }
 
+                    currentProject.Name = cv.Name;
+                    currentProject.Address = cv.Address;
+                    currentProject.Private = cv.Private;
+                    db.SaveChanges();
+                //}
                 return RedirectToAction("Index");
             }
             catch

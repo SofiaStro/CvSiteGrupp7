@@ -76,19 +76,19 @@ namespace CvSiteGrupp7.Controllers
         // GET: Project/Edit/5
         public ActionResult Edit(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             using (var context = new ApplicationDbContext())
             {
                 Project existingProject = context.projects.Find(id);
-                if (existingProject == null)
+                if(existingProject == null)
                 {
                     return HttpNotFound();
                 }
                 return View(existingProject);
-            }
+            }  
         }
 
         // POST: Project/Edit/5
@@ -98,15 +98,18 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                using(var context = new ApplicationDbContext())
                 {
-                    using(var context = new ApplicationDbContext())
+                    var currentProject = context.projects.FirstOrDefault(x => x.Id == project.Id);
+                    if(currentProject == null)
                     {
-                        context.projects.Attach(project);
-                        context.Entry(project).State = EntityState.Modified;
-                        context.SaveChanges();
+                        return HttpNotFound();
                     }
-                    return View(project);
+
+                    currentProject.Name = project.Name;
+                    currentProject.Description = project.Description;
+                    currentProject.AddedDate = project.AddedDate;
+                    context.SaveChanges();
                 }
                 return RedirectToAction("UserIndex");
             }

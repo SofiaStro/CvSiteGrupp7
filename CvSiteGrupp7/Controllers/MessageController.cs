@@ -37,7 +37,7 @@ namespace CvSiteGrupp7.Controllers
 
         // POST: Message/Create
         [HttpPost]
-        public ActionResult Create(MessageCreate model)
+        public ActionResult Create(MessageModel model)
         {
             try
             {

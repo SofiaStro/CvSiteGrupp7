@@ -19,7 +19,7 @@ namespace Data.Models
         public  string Address { get; set; }
         [Required]
         public bool Private { get; set; }
-        //public string ImagePath { get; set; }
+        public string ImagePath { get; set; }
         [Required]
         public string UserName { get; set; }
 

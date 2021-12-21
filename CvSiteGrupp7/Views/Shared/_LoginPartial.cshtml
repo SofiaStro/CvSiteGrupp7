@@ -13,10 +13,10 @@
         @Html.ActionLink("Redigera CV", "Index", "Cv", routeValues: null, htmlAttributes: new { title = "Manage" })
     </li>
     <li>
-        @Html.ActionLink("Redigera projekt", "UserIndex", "Project", routeValues: null, htmlAttributes: new { title = "Manage" })
+        @Html.ActionLink("Mina Projekt", "UserIndex", "Project", routeValues: null, htmlAttributes: new { title = "Manage" })
     </li>
     <li>
-        @Html.ActionLink("Redigera profil", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        @Html.ActionLink("Redigera Profil", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
     </li>
 
     <li><a href="javascript:document.getElementById('logoutForm').submit()">Logga ut</a></li>
@@ -26,7 +26,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registera", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Registrera", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Logga in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

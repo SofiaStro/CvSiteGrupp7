@@ -15,10 +15,11 @@ namespace Data.Models
         [Display(Name = "Projektnamn")]
         public string Name { get; set; }
         [Required]
+        [Display(Name = "Beskrivning")]
         public string Description { get; set; }
         [Required]
         [Display(Name = "Datum")]
-        //[DataType(DataType.Date)]
+        [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime AddedDate{ get; set; }
         [Required]

@@ -23,8 +23,9 @@ namespace Data.Models
         [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime AddedDate{ get; set; }
+        [Required]
         [Display(Name = "Ingår i projekt")]
-        public List<ApplicationUser> UserInProject { get; set; }
+        public List<ApplicationUser> UserInProject { get; set; } = new List<ApplicationUser>();
         [Required]
         public string UserName { get; set; }
 

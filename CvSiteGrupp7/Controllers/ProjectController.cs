@@ -12,33 +12,28 @@ namespace CvSiteGrupp7.Controllers
 {
     public class ProjectController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Project
         public ActionResult UserIndex()
         {
-            using (var context = new ApplicationDbContext())
-            {
                 //var projects = context.projects.Where(row => row.UserName == User.Identity.Name);
-                var projects = context.projects.ToList();
-                return View(projects);
-            }
+            var projects = db.projects.ToList();
+            return View(projects);
         }
 
         // GET: Project
         public ActionResult MainIndex()
         {
-            using (var context = new ApplicationDbContext())
-            {
-                var projects = context.projects.ToList();
-                return View(projects);
-            }
+            var projects = db.projects.ToList();
+            return View(projects);
         }
 
 
-        // GET: Project/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //// GET: Project/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         // GET: Project/Create
         public ActionResult Create()
@@ -52,20 +47,17 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                using (var context = new ApplicationDbContext())
+                var newProject = new Project()
                 {
-                    var newProject = new Project()
-                    {
-                        Name = model.Name,
-                        Description = model.Description,
-                        AddedDate = model.AddedDate,
-                        UserName = User.Identity.Name
-                        
-                    };
-
-                    context.projects.Add(newProject);
-                    context.SaveChanges();
-                }
+                    Name = model.Name,
+                    Description = model.Description,
+                    AddedDate = model.AddedDate,     
+                    UserName = User.Identity.Name
+                 };
+                ApplicationUser CurrentUser = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+                newProject.UserInProject.Add(CurrentUser);
+                db.projects.Add(newProject);
+                db.SaveChanges();
                 return RedirectToAction("UserIndex");
             }
             catch
@@ -81,15 +73,12 @@ namespace CvSiteGrupp7.Controllers
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            using (var context = new ApplicationDbContext())
+            Project existingProject = db.projects.Find(id);
+            if(existingProject == null)
             {
-                Project existingProject = context.projects.Find(id);
-                if(existingProject == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(existingProject);
-            }  
+                return HttpNotFound();            
+            }
+            return View(existingProject); 
         }
 
         // POST: Project/Edit/5
@@ -99,20 +88,16 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                using(var context = new ApplicationDbContext())
-                {
-                    var currentProject = context.projects.FirstOrDefault(x => x.Id == project.Id);
-                    if(currentProject == null)
-                    {
-                        return HttpNotFound();
-                    }
-
-                    currentProject.Name = project.Name;
-                    currentProject.Description = project.Description;
-                    currentProject.AddedDate = project.AddedDate;
-                    context.SaveChanges();
-                }
-                return RedirectToAction("UserIndex");
+               var currentProject = db.projects.FirstOrDefault(x => x.Id == project.Id);
+               if (currentProject == null)
+               {
+                  return HttpNotFound();
+               }
+               currentProject.Name = project.Name;
+               currentProject.Description = project.Description;
+               currentProject.AddedDate = project.AddedDate;
+               db.SaveChanges();
+               return RedirectToAction("UserIndex");
             }
             catch
             {
@@ -127,15 +112,12 @@ namespace CvSiteGrupp7.Controllers
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            using (var context = new ApplicationDbContext())
-            {
-                Project existingProject = context.projects.Find(id);
-                if (existingProject == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(existingProject);
+            Project existingProject = db.projects.Find(id);
+            if (existingProject == null)
+            {  
+                return HttpNotFound();
             }
+            return View(existingProject);
         }
 
 
@@ -146,12 +128,9 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                using (var context = new ApplicationDbContext())
-                {
-                    Project project = context.projects.Find(id);
-                    context.projects.Remove(project);
-                    context.SaveChanges();
-                }
+                Project project = db.projects.Find(id);
+                db.projects.Remove(project);
+                db.SaveChanges();
                 return RedirectToAction("UserIndex");
             }
             catch

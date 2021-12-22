@@ -39,12 +39,9 @@ namespace Data.Contexts
         }
 
         public DbSet<Project> projects { get; set; }
-<<<<<<< Updated upstream
+
         //public DbSet<Message> messages { get; set; }
 
-=======
-        public DbSet<Message> messages { get; set; }
->>>>>>> Stashed changes
         //public DbSet<CV> cvs { get; set; }
 
         public static ApplicationDbContext Create()

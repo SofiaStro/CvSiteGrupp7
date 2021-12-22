@@ -60,6 +60,8 @@ namespace CvSiteGrupp7.Controllers
                 //string user = new User(CurrentUser.UserName);
                 //newProject.UserInProject = new List<ApplicationUser>();
                 newProject.UserInProject.Add(CurrentUser);
+                //ApplicationUser aUser = db.Users.FirstOrDefault();
+                //newProject.UserInProject.Add(aUser);
                 db.projects.Add(newProject);
                 db.SaveChanges();
                 return RedirectToAction("UserIndex");

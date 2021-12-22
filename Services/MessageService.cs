@@ -1,4 +1,5 @@
 ﻿using Data.Contexts;
+using Data.Models;
 using Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,20 @@ namespace Services
         }
 
         public void SaveNewMessage(MessageModel model) {
-            using (var context = new MessageDbContext());
+            using (var context = new MessageDbContext()) {
+
+                var newMessage = new Message()
+                {
+                    Sender = model.Sender,
+                    SendDate = DateTime.Now,
+                    Read = false,
+                    Content = model.Content,
+                    UserName = "xxx"
+                };
+
+                context.messages.Add(newMessage);
+                context.SaveChanges();
+            }
 
         }
        

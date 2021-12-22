@@ -1,5 +1,6 @@
 ﻿using Data.Contexts;
 using Data.Models;
+using Services;
 using Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -38,25 +39,39 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // POST: Message/Create
+        //[HttpPost]
+        //public ActionResult Create(MessageModel model)
+        //{
+        //    try
+        //    {
+        //        //using (var context = new ApplicationDbContext())
+        //        //{
+        //            var newMessage = new Data.Models.Message()
+        //            {
+        //                Sender = model.Sender,
+        //                SendDate = DateTime.Now,
+        //                Read = false,
+        //                Content = model.Content,
+        //                UserName = User.Identity.Name
+        //            };
+
+        //            db.messages.Add(newMessage);
+        //            db.SaveChanges();
+        //        //}
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
         [HttpPost]
         public ActionResult Create(MessageModel model)
         {
             try
             {
-                //using (var context = new ApplicationDbContext())
-                //{
-                    var newMessage = new Data.Models.Message()
-                    {
-                        Sender = model.Sender,
-                        SendDate = DateTime.Now,
-                        Read = false,
-                        Content = model.Content,
-                        UserName = User.Identity.Name
-                    };
-
-                    db.messages.Add(newMessage);
-                    db.SaveChanges();
-                //}
+                var service = new MessageService(System.Web.HttpContext.Current);
+                service.SaveNewMessage(model);
                 return RedirectToAction("Index");
             }
             catch

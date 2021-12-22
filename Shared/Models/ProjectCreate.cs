@@ -18,7 +18,7 @@ namespace Shared.Models
         [Display(Name = "Datum")]
         public DateTime AddedDate { get; set; }
         [Display(Name = "Ingår i projekt")]
-        public User[] UserInProject { get; set; } 
+        public int[] UserInProject { get; set; } 
     }
 
 

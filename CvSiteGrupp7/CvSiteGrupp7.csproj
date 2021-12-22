@@ -262,6 +262,7 @@
     <Content Include="Views\Message\Delete.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Cv\EditImg.cshtml" />
+    <Content Include="Views\Shared\PartialViewUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

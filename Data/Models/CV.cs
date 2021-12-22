@@ -23,6 +23,6 @@ namespace Data.Models
         [Required]
         public string UserName { get; set; }
 
-        public virtual ICollection<Project> Projects { get; set; }
+        // public virtual ICollection<Project> Projects { get; set; }
     }
 }

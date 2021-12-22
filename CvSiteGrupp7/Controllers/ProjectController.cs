@@ -44,21 +44,22 @@ namespace CvSiteGrupp7.Controllers
 
         // POST: Project/Create
         [HttpPost]
-        public ActionResult Create(ProjectCreate model)
+        public ActionResult Create(ProjectCreate projectModel)
         {
             try
             {
                 var newProject = new Project()
                 {
-                    Name = model.Name,
-                    Description = model.Description,
-                    AddedDate = model.AddedDate,     
-                    UserName = User.Identity.Name
+                    Name = projectModel.Name,
+                    Description = projectModel.Description,
+                    AddedDate = projectModel.AddedDate,
+                    UserName = User.Identity.Name,
+                    UserInProject = new List<ApplicationUser>()
                  };
                 ApplicationUser CurrentUser = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-                User user = new User(CurrentUser.UserName);
-                newProject.UserInProject = new List<User>();
-                newProject.UserInProject.Add(user);
+                //string user = new User(CurrentUser.UserName);
+                //newProject.UserInProject = new List<ApplicationUser>();
+                newProject.UserInProject.Add(CurrentUser);
                 db.projects.Add(newProject);
                 db.SaveChanges();
                 return RedirectToAction("UserIndex");

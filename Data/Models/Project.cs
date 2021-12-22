@@ -25,7 +25,7 @@ namespace Data.Models
         public DateTime AddedDate{ get; set; }
         [Required]
         [Display(Name = "Ingår i projekt")]
-        public ICollection<User> UserInProject { get; set; }
+        public virtual ICollection<ApplicationUser> UserInProject { get; set; }
         [Required]
         public string UserName { get; set; }
 

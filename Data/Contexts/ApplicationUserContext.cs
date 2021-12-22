@@ -8,12 +8,15 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity.ModelConfiguration.Configuration;
 
 namespace Data.Contexts
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+
+        public virtual ICollection<Project> InvolvedInProject { get; set; }
         //[ForeignKey("CV")]
         //public int CVID { get; set; }
         //public virtual CV MyCV{ get; set; }
@@ -36,8 +39,12 @@ namespace Data.Contexts
         }
 
         public DbSet<Project> projects { get; set; }
+<<<<<<< Updated upstream
         //public DbSet<Message> messages { get; set; }
 
+=======
+        public DbSet<Message> messages { get; set; }
+>>>>>>> Stashed changes
         //public DbSet<CV> cvs { get; set; }
 
         public static ApplicationDbContext Create()

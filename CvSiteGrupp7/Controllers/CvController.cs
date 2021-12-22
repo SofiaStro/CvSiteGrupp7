@@ -9,12 +9,14 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using Data.Repositories;
 using Microsoft.AspNet.Identity.Owin;
+using Services;
 
 namespace CvSiteGrupp7.Controllers
 {
     public class CvController : Controller
     {
         private CvDBContext db = new CvDBContext();
+        private CvService cvService = new CvService(System.Web.HttpContext.Current);
 
         //public CvRepository CvRepository
         //{
@@ -36,12 +38,7 @@ namespace CvSiteGrupp7.Controllers
 
         public void Create(string userName)
         {
-            var newCv = new CV()
-            {
-                UserName = userName,
-                Private = true
-            };
-
+            var newCv = cvService.CreateCv(userName);
             db.cvs.Add(newCv);
             db.SaveChanges();
         }
@@ -49,22 +46,17 @@ namespace CvSiteGrupp7.Controllers
         //GET: Cv/Edit/5
         public ActionResult EditInfo(int? id)
         {
+            CV cv = db.cvs.Find(id);
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            CV cv = db.cvs.Find(id);
-            var newCvView = new CvEditInfoView
-            {
-                Id = cv.Id,
-                Name = cv.Name,
-                Address = cv.Address,
-                Private = cv.Private
-            };
             if (cv == null)
             {
                 return HttpNotFound();
             }
+            var newCvView = cvService.GetEditInfoView(cv.Id);
             return View(newCvView);
         }
 
@@ -80,12 +72,7 @@ namespace CvSiteGrupp7.Controllers
                 {
                     return HttpNotFound();
                 }
-
-                currentCv.Name = cv.Name;
-                currentCv.Address = cv.Address;
-                currentCv.Private = cv.Private;
-                db.SaveChanges();
-
+                cvService.UpdateInfo(cv);
                 return RedirectToAction("Index");
             }
             catch
@@ -95,21 +82,17 @@ namespace CvSiteGrupp7.Controllers
         }
         
         public ActionResult EditImg(int? id)
-        {
+        { 
+            CV cv = db.cvs.Find(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            CV cv = db.cvs.Find(id);
-            var newCvView = new CvEditImgView
-            {
-                Id = cv.Id,
-                CurrentPath = cv.ImagePath
-            };
             if (cv == null)
             {
                 return HttpNotFound();
             }
+            var newCvView = cvService.GetEditImgView(cv.Id);
             return View(newCvView);
         }
         [HttpPost]
@@ -123,14 +106,7 @@ namespace CvSiteGrupp7.Controllers
                 {
                     return HttpNotFound();
                 }
-
-                var filename = model.Image.FileName;
-                var filepath = Server.MapPath("~/UploadedImages");
-                model.Image.SaveAs(filepath + "/" + filename);
-
-                currentCv.ImagePath = filename;
-                db.SaveChanges();
-
+                cvService.UpdateImg(model);
                 return RedirectToAction("Index");
             }
             catch

@@ -24,6 +24,7 @@ namespace Shared.Models
         [Display(Name = "Adress")]
         public string Address { get; set; }
         [Required]
+        [Display(Name = "Privat sida")]
         public bool Private { get; set; }
     }
 }

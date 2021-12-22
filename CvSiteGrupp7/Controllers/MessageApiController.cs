@@ -1,4 +1,5 @@
 ﻿using Data.Contexts;
+using Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,24 +9,19 @@ using System.Web.Http;
 namespace CvSiteGrupp7.Controllers
 {
     public class MessageApiController : ApiController
-    {
-        //    [Route("api/message/delete/{id}")]
-        //    [HttpGet]
-        //    public IHttpActionResult DeleteMessage(int id)
-        //    {
-        //        //lägga en Delete i ett repository istället?
-        //        using (var context = new ApplicationDbContext())
-        //        {
-        //            var message = context.messages.FirstOrDefault(x => x.Id == id);
-        //            if (message == null)
-        //            {
-        //                return BadRequest();
-        //            }
+    { 
+        [Route("api/message/get/")]
+        [HttpGet]
+        public IHttpActionResult ValidateMessage()
+        {
+            var repository = new MessageRepository();
+            var list = repository.GetAllMessages();
 
-        //            context.messages.Remove(message);
-        //            context.SaveChanges();
-        //            return Ok();
-        //        }
-        //    }
+            if(list == null)
+            { return BadRequest(); }
+            return Ok(list);    
+          
+            
+        }
     }
 }

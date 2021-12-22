@@ -1,16 +1,25 @@
-﻿using System;
+﻿using Data.Contexts;
+using Data.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
     public class MessageRepository
     {
-        public MessageRepository()
+        private readonly MessageDbContext _context;
+
+        public MessageRepository(MessageDbContext context)
         {
-            Console.WriteLine("Hej!");
+            _context = context;
         }
+        public MessageRepository()
+        { }
+        public List<Message> GetAllMessages()
+        {
+            return _context.messages
+                .ToList();
+        }
+
     }
 }

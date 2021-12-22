@@ -29,6 +29,7 @@ namespace Services
                     Content = model.Content,
                     UserName = "xxx"
                 };
+           
 
                 context.messages.Add(newMessage);
                 context.SaveChanges();

@@ -7,13 +7,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Data.Repositories;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace CvSiteGrupp7.Controllers
 {
     public class CvController : Controller
     {
         private CvDBContext db = new CvDBContext();
-        
+
+        //public CvRepository CvRepository
+        //{
+        //    get { return new CvRepository(HttpContext.GetOwinContext().Get<CvDBContext>()); }
+        //}
+
         // GET: Cv
         public ActionResult Index()
         {

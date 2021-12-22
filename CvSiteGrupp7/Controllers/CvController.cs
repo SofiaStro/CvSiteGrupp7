@@ -46,15 +46,15 @@ namespace CvSiteGrupp7.Controllers
             db.SaveChanges();
         }
 
-        // GET: Cv/Edit/5
+        //GET: Cv/Edit/5
         public ActionResult Edit(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             CV cv = db.cvs.Find(id);
-            if(cv == null)
+            if (cv == null)
             {
                 return HttpNotFound();
             }
@@ -86,12 +86,32 @@ namespace CvSiteGrupp7.Controllers
                 return View();
             }
         }
-
-        public ActionResult EditImg(int id, CvEditImgView model)
+        
+        public ActionResult EditImg(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            CV cv = db.cvs.Find(id);
+            var newCvView = new CvEditImgView
+            {
+                Id = cv.Id,
+                CurrentPath = cv.ImagePath
+            };
+            if (cv == null)
+            {
+                return HttpNotFound();
+            }
+            return View(newCvView);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditImg(CvEditImgView model)
         {
             try
             {
-                var currentCv = db.cvs.FirstOrDefault(x => x.Id == id);
+                var currentCv = db.cvs.FirstOrDefault(x => x.Id == model.Id);
                 if (currentCv == null)
                 {
                     return HttpNotFound();
@@ -100,7 +120,7 @@ namespace CvSiteGrupp7.Controllers
                 var filename = model.Image.FileName;
                 var filepath = Server.MapPath("~/UplodedImages");
                 model.Image.SaveAs(filepath + "/" + filename);
-                
+
                 currentCv.ImagePath = filename;
                 db.SaveChanges();
 

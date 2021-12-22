@@ -87,11 +87,10 @@ namespace CvSiteGrupp7.Controllers
             }
         }
 
-        public ActionResult EditImg(int id, CvEditImg model)
+        public ActionResult EditImg(int id, CvEditImgView model)
         {
             try
             {
-                //Shared.Models.CvEditImg
                 var currentCv = db.cvs.FirstOrDefault(x => x.Id == id);
                 if (currentCv == null)
                 {

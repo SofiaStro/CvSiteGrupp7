@@ -26,8 +26,8 @@ namespace Data.Repositories
         public CV SaveCv(CV cv)
         {
             if (cv.Id != 0)
-            { //om har fått ett id, då finns boken redan, vi ska spara det som ändrats.
-                _context.Entry(cv).State = EntityState.Modified; // vi säger åt EF att denna boken med dess [Key] att vi vill spara om alla fält
+            {
+                _context.Entry(cv).State = EntityState.Modified;
             }
             else
             {

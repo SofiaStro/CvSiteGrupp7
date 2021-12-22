@@ -7,8 +7,10 @@ using System.Web;
 
 namespace Shared.Models
 {
-    public class CvEditImg
+    public class CvEditImgView
     {
+        public int Id { get; set; }
+        public string CurrentPath { get; set; }
         public HttpPostedFileBase Image { get; set; }
     }
 }

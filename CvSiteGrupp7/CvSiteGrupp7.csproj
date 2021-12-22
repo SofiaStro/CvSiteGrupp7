@@ -257,7 +257,7 @@
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\Create.cshtml" />
     <Content Include="Views\Cv\Index.cshtml" />
-    <Content Include="Views\Cv\Edit.cshtml" />
+    <Content Include="Views\Cv\EditInfo.cshtml" />
     <Content Include="Views\Project\Delete.cshtml" />
     <Content Include="Views\Message\Delete.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />

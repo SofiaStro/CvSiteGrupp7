@@ -47,24 +47,31 @@ namespace CvSiteGrupp7.Controllers
         }
 
         //GET: Cv/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult EditInfo(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             CV cv = db.cvs.Find(id);
+            var newCvView = new CvEditInfoView
+            {
+                Id = cv.Id,
+                Name = cv.Name,
+                Address = cv.Address,
+                Private = cv.Private
+            };
             if (cv == null)
             {
                 return HttpNotFound();
             }
-            return View(cv);
+            return View(newCvView);
         }
 
         // POST: Cv/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CV cv)
+        public ActionResult EditInfo(CvEditInfoView cv)
         {
             try
             {
@@ -118,7 +125,7 @@ namespace CvSiteGrupp7.Controllers
                 }
 
                 var filename = model.Image.FileName;
-                var filepath = Server.MapPath("~/UplodedImages");
+                var filepath = Server.MapPath("~/UploadedImages");
                 model.Image.SaveAs(filepath + "/" + filename);
 
                 currentCv.ImagePath = filename;

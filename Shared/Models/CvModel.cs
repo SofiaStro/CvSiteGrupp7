@@ -15,6 +15,18 @@ namespace Shared.Models
         public HttpPostedFileBase Image { get; set; }
     }
 
+    public class CvEditInfoView
+    {
+        public int Id { get; set; }
+        [Display(Name = "Namn")]
+        public string Name { get; set; }
+
+        [Display(Name = "Adress")]
+        public string Address { get; set; }
+        [Required]
+        public bool Private { get; set; }
+    }
+
     public class CvSearch
     {
         [Display(Name ="Namn")]

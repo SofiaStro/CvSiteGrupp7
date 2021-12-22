@@ -1,15 +1,26 @@
-﻿using System;
+﻿using Data.Contexts;
+using Shared.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Services
 {
     public class MessageService
     {
-        //har fält med klassen från repository. Bara get, returnerar context
-        //CreateNewMessage ska ligga här, tar emot och returnerar typen "MessageViewModel" 
-        //som ska ligga i "Shared" i MessageModels
+        private readonly HttpContext _httpcontext;
+
+        public MessageService(HttpContext httpContext) { 
+            _httpcontext = httpContext;
+        }
+
+        public void SaveNewMessage(MessageModel model) {
+            using (var context = new MessageDbContext());
+
+        }
+       
     }
 }

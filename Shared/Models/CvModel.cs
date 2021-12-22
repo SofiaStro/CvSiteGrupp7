@@ -26,12 +26,4 @@ namespace Shared.Models
         [Required]
         public bool Private { get; set; }
     }
-
-    public class CvSearch
-    {
-        [Display(Name ="Namn")]
-        public string UserName { get; set; }
-        //public HttpPostedFileBase Image { get; set; }
-
-    }
 }

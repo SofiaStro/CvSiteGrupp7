@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Data.Models.CV>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Alla Cvn</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @{
+            var imagePath = "/UplodedImages" + item.ImagePath; //~ framför /UplodedImages om bilden bara är en icon
+        }
+        <img src="@imagePath" style="max-width: 100px; max-height: 50px" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.ActionLink("Visa CV", "Index", new { item.Id })
+    </td>
+</tr>
+    }
+    
+</table>

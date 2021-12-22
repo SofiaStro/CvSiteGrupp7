@@ -66,9 +66,8 @@ namespace CvSiteGrupp7.Controllers
                 db.SaveChanges();
                 return RedirectToAction("UserIndex");
             }
-            catch(Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
                 return View();
             }
         }

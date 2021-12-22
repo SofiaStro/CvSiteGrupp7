@@ -263,11 +263,12 @@
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Cv\EditImg.cshtml" />
     <Content Include="Views\Shared\PartialViewUser.cshtml" />
+    <Content Include="Views\Search\NoCvs.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UplodedImages\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

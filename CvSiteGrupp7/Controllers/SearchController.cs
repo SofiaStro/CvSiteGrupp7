@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Contexts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,13 @@ namespace CvSiteGrupp7.Controllers
 {
     public class SearchController : Controller
     {
+        private CvDBContext db = new CvDBContext();
         // GET: Search
         public ActionResult Index()
         {
-            return View();
+            //var cvs = db.cvs.Where(row => row.Private == false).ToList();
+            var cvs = db.cvs.ToList();
+            return View(cvs);
         }
 
         // GET: Search/Details/5

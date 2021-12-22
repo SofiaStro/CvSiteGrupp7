@@ -19,8 +19,10 @@ namespace Data.Models
         public  string Address { get; set; }
         [Required]
         public bool Private { get; set; }
+        [Display(Name = "Personlig bild")]
         public string ImagePath { get; set; }
         [Required]
+        [Display(Name = "Email")]
         public string UserName { get; set; }
 
         // public virtual ICollection<Project> Projects { get; set; }

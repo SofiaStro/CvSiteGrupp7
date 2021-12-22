@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Contexts\ApplicationUserContext.cs" />
     <Compile Include="Contexts\CvDBContext.cs" />
+    <Compile Include="Contexts\MessageDbContext.cs" />
     <Compile Include="Models\Competence.cs" />
     <Compile Include="Models\CV.cs" />
     <Compile Include="Models\Education.cs" />

@@ -13,7 +13,8 @@ namespace CvSiteGrupp7.Controllers
 {
     public class MessageController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
+        private MessageDbContext db = new MessageDbContext();
         // GET: Message
         public ActionResult Index()
         {

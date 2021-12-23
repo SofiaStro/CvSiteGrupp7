@@ -270,7 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="UplodedImages\" />
+    <Folder Include="UploadedImages\" />
     <Folder Include="Views\Experience\" />
   </ItemGroup>
   <ItemGroup>

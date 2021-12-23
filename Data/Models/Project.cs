@@ -23,9 +23,8 @@ namespace Data.Models
         [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime AddedDate{ get; set; }
-        [Required]
-        [Display(Name = "Ingår i projekt")]
-        public virtual ICollection<ApplicationUser> UserInProject { get; set; }
+        //[Display(Name = "Ingår i projekt")]
+        //public virtual ICollection<ApplicationUser> UserInProject { get; set; }
         [Required]
         public string UserName { get; set; }
 

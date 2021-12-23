@@ -65,10 +65,10 @@ namespace CvSiteGrupp7.Controllers
         //}
 
         // GET: Search/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
 
         // POST: Search/Edit/5
         //[HttpPost]

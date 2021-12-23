@@ -13,11 +13,12 @@ namespace CvSiteGrupp7.Controllers
 {
     public class ProjectController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
+        private ProjectDbContext db = new ProjectDbContext();
         // GET: Project
         public ActionResult UserIndex()
         {
-                //var projects = context.projects.Where(row => row.UserName == User.Identity.Name);
+            //var projects = context.projects.Where(row => row.UserName == User.Identity.Name);
             var projects = db.projects.ToList();
             return View(projects);
         }
@@ -56,13 +57,13 @@ namespace CvSiteGrupp7.Controllers
                     Name = projectModel.Name,
                     Description = projectModel.Description,
                     AddedDate = projectModel.AddedDate,
-                    UserName = User.Identity.Name,
-                    UserInProject = new List<ApplicationUser>()
+                    UserName = User.Identity.Name
+                    //UserInProject = new List<ApplicationUser>()
                  };
-                ApplicationUser CurrentUser = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+                //ApplicationUser CurrentUser = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
                 //string user = new User(CurrentUser.UserName);
                 //newProject.UserInProject = new List<ApplicationUser>();
-                newProject.UserInProject.Add(CurrentUser);
+                //newProject.UserInProject.Add(CurrentUser);
                 //ApplicationUser aUser = db.Users.FirstOrDefault();
                 //newProject.UserInProject.Add(aUser);
                 db.projects.Add(newProject);

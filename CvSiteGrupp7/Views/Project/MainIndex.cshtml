@@ -26,9 +26,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.AddedDate)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.UserInProject)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
@@ -47,7 +47,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.AddedDate)
                 </td>
-                <td>
+                @*<td>
                     @foreach (var user in item.UserInProject)
                     {
                         <table>
@@ -58,7 +58,7 @@
                             <tr />
                         </table>
                     }
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>

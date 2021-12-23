@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Data.Contexts
 {
-    public class ProjectDbContext : ApplicationDbContext
+    public class ProjectDbContext : DbContext
     {
-        public ProjectDbContext() : base() { }
+        public ProjectDbContext() : base("DefaultConnection") { }
         public DbSet<Project> projects { get; set; }
     }
 }

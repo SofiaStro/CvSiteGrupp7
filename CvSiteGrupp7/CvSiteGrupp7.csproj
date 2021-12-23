@@ -181,6 +181,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CvController.cs" />
+    <Compile Include="Controllers\ExperienceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
@@ -265,10 +266,12 @@
     <Content Include="Views\Shared\PartialViewUser.cshtml" />
     <Content Include="Views\Search\NoCvs.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Cv\_ListExperience.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UplodedImages\" />
+    <Folder Include="Views\Experience\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

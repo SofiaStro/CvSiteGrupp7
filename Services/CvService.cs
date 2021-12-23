@@ -1,5 +1,6 @@
 ﻿using Data.Contexts;
 using Data.Models;
+using Data.Repositories;
 using Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Services
     public class CvService
     {
         private CvDBContext db = new CvDBContext();
+        private ExperienceRepository experienceRepository = new ExperienceRepository();
         private readonly HttpContext _httpcontext;
 
         public CvService(HttpContext httpcontext)
@@ -72,5 +74,22 @@ namespace Services
             currentCv.ImagePath = filename;
             db.SaveChanges();
         }
+
+        public CvIndexView GetCvIndexVeiw(int id)
+        {
+            CV cv = db.cvs.Find(id);
+            var newCvView = new CvIndexView
+            {
+                Id = cv.Id,
+                Name = cv.Name,
+                Address = cv.Address,
+                Private = cv.Private,
+                ImagePath = cv.ImagePath,
+                UserName = cv.UserName,
+                listOfExperience = experienceRepository.GetListOfExperience()
+            };
+            return newCvView;
+        }
+
     }
 }

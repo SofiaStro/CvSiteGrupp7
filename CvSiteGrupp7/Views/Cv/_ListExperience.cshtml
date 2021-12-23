@@ -1,0 +1,82 @@
+﻿@model Shared.Models.CvIndexView
+
+
+<table class="table">
+    <tr>
+        <th>
+            C1
+        </th>
+        <th>
+            c2
+        </th>
+        <th>
+            c3
+        </th>
+        <th>
+            c4
+        </th>
+        <th>
+            c5
+        </th>
+        <th></th>
+    </tr>
+
+
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserInProject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+        </tr>*@
+
+    @*@foreach (var item in Model)
+        {
+            if (item.UserName == User.Identity.Name)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddedDate)
+                    </td>
+                    <td>
+                        @foreach (var user in item.UserInProject)
+                        {
+                            <table>
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(user.UserName, "Index", "Cv", new { id = item.Id })
+                                    </td>
+                                <tr />
+                            </table>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ändra", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        }*@
+
+</table>

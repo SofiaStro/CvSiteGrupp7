@@ -24,10 +24,17 @@ namespace CvSiteGrupp7.Controllers
         //}
 
         // GET: Cv
+        //public ActionResult Index()
+        //{
+        //    var cv = db.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
+        //    return View(cv);
+        //}
+
         public ActionResult Index()
         {
             var cv = db.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
-            return View(cv);
+            var showCv = cvService.GetCvIndexVeiw(cv.Id);
+            return View(showCv);
         }
 
         // GET: Cv/Details/5

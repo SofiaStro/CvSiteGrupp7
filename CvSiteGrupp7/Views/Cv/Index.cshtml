@@ -1,4 +1,4 @@
-﻿@model Data.Models.CV
+﻿@model Shared.Models.CvIndexView
 
 @{
     ViewBag.Title = "Index";
@@ -18,16 +18,35 @@
         <p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name) </p>
         <p>@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(model => model.Address)</p>
         <p>@Html.DisplayNameFor(model => model.Private): @Html.DisplayFor(model => model.Private)</p>
-        <p>@Html.ActionLink("Ändra", "EditInfo", new {@Model.Id})</p>
+        <p>@Html.ActionLink("Ändra", "EditInfo", new { @Model.Id })</p>
     </div>
+
+
     <div class="col-md-4">
         @{ var imagepath = "/UploadedImages/" + @Model.ImagePath; }
-        <img src="@imagepath" alt="Lägg till bild" style="width: 100px; height: 130px;"/>
+        <img src="@imagepath" alt="Lägg till bild" style="width: 100px; height: 130px;" />
         <p>@Html.ActionLink("Ändra", "EditImg", new { @Model.Id })</p>
     </div>
+
     <div class="col-md-4">
-            <h2>Skicka meddelande</h2>
-            <p>@Html.ActionLink("Skicka", "Create", "Message")</p>
-        </div>
+        <h2>Skicka meddelande</h2>
+        <p>@Html.ActionLink("Skicka", "Create", "Message")</p>
+    </div>
 </div>
+
+<h2>Mina projekt</h2>
+
+<p>
+    @Html.ActionLink("Skapa nytt projekt", "Create", "Project")
+</p>
+<div>
+    @Html.Partial("_ListExperience");
+</div>
+
+<h2>Mina Experience</h2>
+
+<p>
+    @Html.ActionLink("Skapa nytt projekt", "Create", "Project")
+</p>
+
 

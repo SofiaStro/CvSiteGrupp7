@@ -13,13 +13,15 @@ namespace CvSiteGrupp7.Controllers
         // GET: Search
         public ActionResult Index(string searchString)
         {
-            //var cvs = db.cvs.Where(row => row.Private == false).ToList();
             var cvs = from c in db.cvs select c;
             if (!String.IsNullOrEmpty(searchString))
             {
-                cvs = cvs.Where(s => s.Name.Contains(searchString));
+                cvs = cvs.Where(row => row.Name.Contains(searchString) && row.Private == false);
             }
-            //var cvs = db.cvs.ToList();
+            else
+            {
+                cvs = cvs.Where(row => row.Private == false);
+            }
             return View(cvs);
         }
 

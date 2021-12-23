@@ -6,13 +6,6 @@
 
 <h2>CV</h2>
 
-
-@*<div class="jumbotron">
-        <h1>SENASTE PROJEKTET</h1>
-        <p class="lead">Lägg till info om det senaset projektet</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">LÄS MER</a></p>
-    </div>*@
-
 <div class="row">
     <div class="col-md-4">
         <p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name) </p>
@@ -20,7 +13,6 @@
         <p>@Html.DisplayNameFor(model => model.Private): @Html.DisplayFor(model => model.Private)</p>
         <p>@Html.ActionLink("Ändra", "EditInfo", new { @Model.Id })</p>
     </div>
-
 
     <div class="col-md-4">
         @{ var imagepath = "/UploadedImages/" + @Model.ImagePath; }
@@ -37,16 +29,35 @@
 <h2>Mina projekt</h2>
 
 <p>
-    @Html.ActionLink("Skapa nytt projekt", "Create", "Project")
+    @Html.ActionLink("Lägg till projekt", "Create", "Project")
+</p>
+<div>
+    @Html.Partial("_ListProject");
+</div>
+
+<h2>Mina erfarenheten</h2>
+
+<p>
+    @Html.ActionLink("Lägg till tidigare yrken", "Create", "Experience")
 </p>
 <div>
     @Html.Partial("_ListExperience");
 </div>
 
-<h2>Mina Experience</h2>
+<h2>Mina utbildningar</h2>
 
 <p>
-    @Html.ActionLink("Skapa nytt projekt", "Create", "Experience")
+    @Html.ActionLink("Lägg till utbildning", "Create", "Experience")
 </p>
+<div>
+    @Html.Partial("_ListEducation");
+</div>
 
+<h2>Mina övriga kompetenser</h2>
 
+<p>
+    @Html.ActionLink("Lägg till kompetens", "Create", "Experience")
+</p>
+<div>
+    @Html.Partial("_ListCompetence");
+</div>

@@ -86,7 +86,7 @@ namespace Services
                 Private = cv.Private,
                 ImagePath = cv.ImagePath,
                 UserName = cv.UserName,
-                listOfExperience = experienceRepository.GetListOfExperience()
+                listOfExperience = experienceRepository.GetListOfExperience(cv.Id)
             };
             return newCvView;
         }

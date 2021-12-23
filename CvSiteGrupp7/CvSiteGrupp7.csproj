@@ -267,6 +267,9 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Cv\_ListExperience.cshtml" />
     <Content Include="Views\Experience\Create.cshtml" />
+    <Content Include="Views\Cv\_ListProject.cshtml" />
+    <Content Include="Views\Cv\_ListCompetence.cshtml" />
+    <Content Include="Views\Cv\_ListEducation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

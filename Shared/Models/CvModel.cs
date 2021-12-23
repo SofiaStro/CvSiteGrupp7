@@ -48,6 +48,7 @@ namespace Shared.Models
         //public List<Projects> ListOfProjects { get; set; }
         //public List<Education> ListOfEducation { get; set; }
         //public List<Competence> ListOfCompetence { get; set; }
+        [Display(Name = "Erfarenheter")]
         public List<Experience> listOfExperience { get; set; }
     }
 

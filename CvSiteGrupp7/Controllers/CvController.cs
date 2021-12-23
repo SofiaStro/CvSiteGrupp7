@@ -51,19 +51,19 @@ namespace CvSiteGrupp7.Controllers
         }
 
         //GET: Cv/Edit/5
-        public ActionResult EditInfo(int? id)
+        public ActionResult EditInfo(int id)
         {
-            CV cv = db.cvs.Find(id);
+            //CV cv = db.cvs.Find(id);
             
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            }
-            if (cv == null)
-            {
-                return HttpNotFound();
-            }
-            var newCvView = cvService.GetEditInfoView(cv.Id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            //}
+            //if (cv == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            var newCvView = cvService.GetEditInfoView(id);
             return View(newCvView);
         }
 
@@ -74,11 +74,11 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                var currentCv = db.cvs.FirstOrDefault(x => x.Id == cv.Id);
-                if (currentCv == null)
-                {
-                    return HttpNotFound();
-                }
+                //var currentCv = db.cvs.FirstOrDefault(x => x.Id == cv.Id);
+                //if (currentCv == null)
+                //{
+                //    return HttpNotFound();
+                //}
                 cvService.UpdateInfo(cv);
                 return RedirectToAction("Index");
             }
@@ -88,18 +88,18 @@ namespace CvSiteGrupp7.Controllers
             }
         }
         
-        public ActionResult EditImg(int? id)
+        public ActionResult EditImg(int id)
         { 
-            CV cv = db.cvs.Find(id);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            }
-            if (cv == null)
-            {
-                return HttpNotFound();
-            }
-            var newCvView = cvService.GetEditImgView(cv.Id);
+            //CV cv = db.cvs.Find(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            //}
+            //if (cv == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            var newCvView = cvService.GetEditImgView(id);
             return View(newCvView);
         }
         [HttpPost]
@@ -108,11 +108,11 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                var currentCv = db.cvs.FirstOrDefault(x => x.Id == model.Id);
-                if (currentCv == null)
-                {
-                    return HttpNotFound();
-                }
+                //var currentCv = db.cvs.FirstOrDefault(x => x.Id == model.Id);
+                //if (currentCv == null)
+                //{
+                //    return HttpNotFound();
+                //}
                 cvService.UpdateImg(model);
                 return RedirectToAction("Index");
             }
@@ -122,25 +122,25 @@ namespace CvSiteGrupp7.Controllers
             }
         }
         // GET: Cv/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: Cv/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+        //// POST: Cv/Delete/5
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

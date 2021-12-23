@@ -39,6 +39,7 @@ namespace Shared.Models
         [Display(Name = "Adress")]
         public string Address { get; set; }
         [Required]
+        [Display(Name = "Privat sida")]
         public bool Private { get; set; }
         [Display(Name = "Personlig bild")]
         public string ImagePath { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Data.Contexts;
 using Data.Models;
+using Services;
 using Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace CvSiteGrupp7.Controllers
 {
     public class ExperienceController : Controller
     {
+        private ExperienceService experienceService = new ExperienceService(System.Web.HttpContext.Current);
+
         private CvDBContext db = new CvDBContext();
         // GET: Experience
         public ActionResult Index()
@@ -37,13 +40,8 @@ namespace CvSiteGrupp7.Controllers
             try
             {
                 var cv = db.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
-                var newExperience = new Experience()
-                {
-                    Name = model.Name,
-                    CvId = cv.Id
-                };
-                db.experiences.Add(newExperience);
-                db.SaveChanges();
+                experienceService.CreateExperience(model, cv.Id);
+
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index", "Cv");

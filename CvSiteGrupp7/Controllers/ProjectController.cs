@@ -8,13 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using System.Windows;
+using Services;
 
 namespace CvSiteGrupp7.Controllers
 {
     public class ProjectController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
         private ProjectDbContext db = new ProjectDbContext();
+        private ProjectService ProjectService = new ProjectService(System.Web.HttpContext.Current);
+
         // GET: Project
         public ActionResult UserIndex()
         {
@@ -48,23 +50,11 @@ namespace CvSiteGrupp7.Controllers
 
         // POST: Project/Create
         [HttpPost]
-        public ActionResult Create(ProjectCreate projectModel)
+        public ActionResult Create(ProjectCreateModel projectModel)
         {
             try
             {
-                var newProject = new Project()
-                {
-                    Name = projectModel.Name,
-                    Description = projectModel.Description,
-                    AddedDate = projectModel.AddedDate,
-                    UserName = User.Identity.Name
-                    //UserInProject = new List<ApplicationUser>()
-                 };
-                //ApplicationUser CurrentUser = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-                //string user = new User(CurrentUser.UserName);
-                //newProject.UserInProject = new List<ApplicationUser>();
-                //newProject.UserInProject.Add(CurrentUser);
-                //ApplicationUser aUser = db.Users.FirstOrDefault();
+                var newProject = ProjectService.CreateProject(projectModel, User.Identity.Name);
                 //newProject.UserInProject.Add(aUser);
                 db.projects.Add(newProject);
                 db.SaveChanges();
@@ -103,6 +93,7 @@ namespace CvSiteGrupp7.Controllers
                {
                   return HttpNotFound();
                }
+
                currentProject.Name = project.Name;
                currentProject.Description = project.Description;
                currentProject.AddedDate = project.AddedDate;

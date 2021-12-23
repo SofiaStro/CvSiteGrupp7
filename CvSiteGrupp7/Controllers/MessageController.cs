@@ -14,16 +14,14 @@ namespace CvSiteGrupp7.Controllers
 {
     public class MessageController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
         private MessageDbContext db = new MessageDbContext();
-        // GET: Message
+
+        // GET: Message/Index
         public ActionResult Index()
         {
-            //using (var context = new ApplicationDbContext())
-            //{
-                var messages = db.messages.ToList();
-                return View(messages);
-            //}
+             var messages = db.messages.ToList();
+             return View(messages);
+           
         }
 
         // GET: Message/Details/5
@@ -65,6 +63,7 @@ namespace CvSiteGrupp7.Controllers
         //        return View();
         //    }
         //}
+
         [HttpPost]
         public ActionResult Create(MessageModel model)
         {
@@ -109,31 +108,26 @@ namespace CvSiteGrupp7.Controllers
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            //using (var context = new ApplicationDbContext())
-            //{
                 Message existingMessage = db.messages.Find(id);
                 if (existingMessage == null)
                 {
                     return HttpNotFound();
                 }
                 return View(existingMessage);
-
-            //}
         }
-            // POST: Message/Delete/5
-            [HttpPost, ActionName("Delete")]
-            [ValidateAntiForgeryToken]
+
+        // POST: Message/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             try
             {
-                //using (var context = new ApplicationDbContext())
-                //{
                     Message message = db.messages.Find(id);
                     db.messages.Remove(message);
                     db.SaveChanges();
-                //}
-                return RedirectToAction("Index");
+
+                    return RedirectToAction("Index");
             }
             catch
             {

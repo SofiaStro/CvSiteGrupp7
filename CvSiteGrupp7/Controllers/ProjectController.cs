@@ -23,12 +23,18 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Project
-        public ActionResult MainIndex()
+        public ActionResult MainIndex(string searchString)
         {
-            var projects = db.projects.ToList();
+            //var projects = db.projects.ToList();
+            //return View(projects);
+            var projects = from p in db.projects select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                projects = projects.Where(row => row.Name.Contains(searchString));
+                //projects.ToList();
+            }
             return View(projects);
         }
-
 
         //// GET: Project/Details/5
         //public ActionResult Details(int id)

@@ -14,6 +14,8 @@ namespace Data.Models
         [Required]
         [Display(Name = "Erfarenhet")]
         public string Name { get; set; }
+        [Required]
+        public int CvId { get; set; }
 
     }
 }

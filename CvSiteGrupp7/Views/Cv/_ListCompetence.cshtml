@@ -9,7 +9,7 @@
     </tr>
 
     @foreach (var item in Model.listOfExperience)
-     {
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -19,5 +19,5 @@
                 @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
             </td>
         </tr>
-     }
+    }
 </table>

@@ -12,9 +12,13 @@ namespace Data.Repositories
     {
         private CvDBContext db = new CvDBContext();
 
-        public List<Experience> GetListOfExperience()
+        //public List<Experience> GetListOfExperience()
+        //{
+        //    return db.experiences.ToList();
+        //}
+        public List<Experience> GetListOfExperience(int cvId)
         {
-            return db.experiences.ToList();
+            return db.experiences.Where(x => x.CvId == cvId).ToList();
         }
     }
 }

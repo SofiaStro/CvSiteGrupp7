@@ -25,13 +25,10 @@ namespace CvSiteGrupp7.Controllers
         // GET: Project
         public ActionResult MainIndex(string searchString)
         {
-            //var projects = db.projects.ToList();
-            //return View(projects);
             var projects = from p in db.projects select p;
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString) && User.Identity.IsAuthenticated)
             {
                 projects = projects.Where(row => row.Name.Contains(searchString));
-                //projects.ToList();
             }
             return View(projects);
         }

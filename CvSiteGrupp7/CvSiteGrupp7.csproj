@@ -271,6 +271,7 @@
     <Content Include="Views\Cv\_ListCompetence.cshtml" />
     <Content Include="Views\Cv\_ListEducation.cshtml" />
     <Content Include="Views\Experience\Edit.cshtml" />
+    <Content Include="Views\Experience\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

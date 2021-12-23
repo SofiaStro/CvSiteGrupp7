@@ -12,20 +12,9 @@ namespace CvSiteGrupp7.Controllers
 {
     public class ExperienceController : Controller
     {
-        private ExperienceService experienceService = new ExperienceService(System.Web.HttpContext.Current);
+        private ExperienceService experienceService = new ExperienceService();
 
         private CvDBContext db = new CvDBContext();
-        // GET: Experience
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Experience/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Experience/Create
         public ActionResult Create()
@@ -42,8 +31,6 @@ namespace CvSiteGrupp7.Controllers
                 var cv = db.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
                 experienceService.CreateExperience(model, cv.Id);
 
-                // TODO: Add insert logic here
-
                 return RedirectToAction("Index", "Cv");
             }
             catch
@@ -53,33 +40,19 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Experience/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            Experience experience = db.experiences.Find(id);
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            }
-            if (experience == null)
-            {
-                return HttpNotFound();
-            }
-            var newExperienceView = experienceService.GetEditExperienceView(experience.Id);
-            return View(newExperienceView);
+            Experience existingExperience = db.experiences.Find(id);
+            return View(existingExperience);
         }
 
-        // POST: Experience/Edit/5
+        // POST: Project/Edit/5
         [HttpPost]
-        public ActionResult Edit(EditExperienceView model)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Experience model)
         {
             try
             {
-                var currentExperience = db.experiences.FirstOrDefault(x => x.Id == model.Id);
-                if (currentExperience == null)
-                {
-                    return HttpNotFound();
-                }
                 experienceService.UpdateExperience(model);
                 return RedirectToAction("Index", "Cv");
             }
@@ -92,18 +65,20 @@ namespace CvSiteGrupp7.Controllers
         // GET: Experience/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Experience existingExperience = db.experiences.Find(id);
+            return View(existingExperience);
         }
 
         // POST: Experience/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Experience model)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Experience experience = db.experiences.Find(id);
+                db.experiences.Remove(experience);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Cv");
             }
             catch
             {

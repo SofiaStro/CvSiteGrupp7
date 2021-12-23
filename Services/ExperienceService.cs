@@ -12,13 +12,7 @@ namespace Services
 {
     public class ExperienceService 
     {
-        private readonly HttpContext _httpcontext;
         private CvDBContext db = new CvDBContext();
-
-        public ExperienceService(HttpContext httpcontext)
-        {
-            _httpcontext = httpcontext;
-        }
 
         public void CreateExperience(CreateExperienceView model, int cvId)
         {
@@ -31,22 +25,11 @@ namespace Services
             db.SaveChanges();
         }
 
-        public EditExperienceView GetEditExperienceView(int id)
+        public void UpdateExperience(Experience model)
         {
-            Experience experience = db.experiences.Find(id);
-            var newExperienceView = new EditExperienceView
-            {
-                Id = experience.Id,
-                Name = experience.Name,
-            };
-            return newExperienceView;
-        }
+            var dbExperience = db.experiences.FirstOrDefault(x => x.Id == model.Id);
+            dbExperience.Name = model.Name;
 
-        public void UpdateExperience(EditExperienceView newValue)
-        {
-            var dbExperience = db.experiences.FirstOrDefault(x => x.Id == newValue.Id);
-            dbExperience.Name = newValue.Name;
-            
             db.SaveChanges();
         }
     }

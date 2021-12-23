@@ -53,20 +53,35 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Experience/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            Experience experience = db.experiences.Find(id);
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            if (experience == null)
+            {
+                return HttpNotFound();
+            }
+            var newExperienceView = experienceService.GetEditExperienceView(experience.Id);
+            return View(newExperienceView);
         }
 
         // POST: Experience/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(EditExperienceView model)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                var currentExperience = db.experiences.FirstOrDefault(x => x.Id == model.Id);
+                if (currentExperience == null)
+                {
+                    return HttpNotFound();
+                }
+                experienceService.UpdateExperience(model);
+                return RedirectToAction("Index", "Cv");
             }
             catch
             {

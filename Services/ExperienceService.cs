@@ -30,5 +30,24 @@ namespace Services
             db.experiences.Add(newExperience);
             db.SaveChanges();
         }
+
+        public EditExperienceView GetEditExperienceView(int id)
+        {
+            Experience experience = db.experiences.Find(id);
+            var newExperienceView = new EditExperienceView
+            {
+                Id = experience.Id,
+                Name = experience.Name,
+            };
+            return newExperienceView;
+        }
+
+        public void UpdateExperience(EditExperienceView newValue)
+        {
+            var dbExperience = db.experiences.FirstOrDefault(x => x.Id == newValue.Id);
+            dbExperience.Name = newValue.Name;
+            
+            db.SaveChanges();
+        }
     }
 }

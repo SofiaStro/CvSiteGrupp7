@@ -16,4 +16,11 @@ namespace Shared.Models
         [Required]
         public int CvId { get; set; }
     }
+    public class EditExperienceView
+    {
+        public int Id { get; set; }
+        [Required]
+        [Display(Name = "Erfarenhet")]
+        public string Name { get; set; }
+    }
 }

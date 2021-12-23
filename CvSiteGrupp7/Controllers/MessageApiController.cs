@@ -12,13 +12,16 @@ namespace CvSiteGrupp7.Controllers
     [RoutePrefix("api/message")]
     public class MessageApiController : ApiController
     {
-        //Använda för att sätta siffran till notiser??
+        MessageRepository messageRepository = new MessageRepository();
 
+        //Använda för att sätta siffran till notiser??
         [HttpGet]
-        public List<Message> messages() {
-            using (var context = new MessageDbContext()) {
-                return context.messages.Where(x => x.Read == false).ToList();
-            }
+        public int CountUnreadMessages() {
+            //using (var context = new MessageDbContext()) {
+            //    return context.messages.Where(x => x.Read == false).ToList();
+            //}
+            int count = messageRepository.UnreadMessages();  
+            return count;
         }
         //[Route("api/message/get/")]
         //[HttpGet]

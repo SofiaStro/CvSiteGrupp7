@@ -21,5 +21,12 @@ namespace Data.Repositories
                 .ToList();
         }
 
+        public int UnreadMessages()
+        {
+            var list = _context.messages.Where(x => x.Read == false).ToList();
+            return list.Count;
+        }
+
+
     }
 }

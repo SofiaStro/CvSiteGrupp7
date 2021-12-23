@@ -25,7 +25,7 @@ namespace Services
                 {
                     Sender = model.Sender,
                     SendDate = DateTime.Now,
-                    Read = false,
+                    Read = model.Read,
                     Content = model.Content,
                     UserName = "xxx"
                 };

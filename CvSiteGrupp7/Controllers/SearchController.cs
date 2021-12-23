@@ -11,10 +11,15 @@ namespace CvSiteGrupp7.Controllers
     {
         private CvDBContext db = new CvDBContext();
         // GET: Search
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             //var cvs = db.cvs.Where(row => row.Private == false).ToList();
-            var cvs = db.cvs.ToList();
+            var cvs = from c in db.cvs select c;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                cvs = cvs.Where(s => s.Name.Contains(searchString));
+            }
+            //var cvs = db.cvs.ToList();
             return View(cvs);
         }
 

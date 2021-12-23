@@ -264,7 +264,6 @@
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Cv\EditImg.cshtml" />
     <Content Include="Views\Shared\PartialViewUser.cshtml" />
-    <Content Include="Views\Search\NoCvs.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Cv\_ListExperience.cshtml" />
   </ItemGroup>

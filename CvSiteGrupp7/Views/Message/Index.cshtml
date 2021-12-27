@@ -31,7 +31,9 @@
             <tr>
                 <td>
                     @*@Html.CheckBox("IsActive", false)*@
-                    @Html.CheckBoxFor(modelitem => item.Read, new { @checked = "checked" })
+                    @*@Html.CheckBoxFor(modelitem => item.Read, new { @checked = "checked" })*@
+                    <input type="checkbox">
+
                     @*@Html.DisplayFor(modelItem => item.Read)*@
                 </td>
                 <td>
@@ -51,17 +53,24 @@
                 </td>
             </tr>
         }
+        <div id="result" style="background: yellow;"></div>
     }
 
 
 </table>
 
-@*@section scripts{
-        <script>
-            $(".checkbox").change(function() {
-        if(this.checked) {
-            //do this
-        }
-    })
-        </script>
-        }*@
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('input[type="checkbox"]').click(function () {
+                if ($(this).is(":checked")) {
+                    $("#result").html("Checkbox is checked.");
+                }
+                else if ($(this).is(":not(:checked)")) {
+                    $("#result").html("Checkbox is unchecked.");
+                }
+            });
+        });
+    </script>
+
+}

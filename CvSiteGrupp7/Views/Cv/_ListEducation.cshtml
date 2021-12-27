@@ -4,19 +4,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.listOfExperience)
+            @Html.DisplayNameFor(model => model.ListOfEducation)
         </th>
     </tr>
 
-    @foreach (var item in Model.listOfExperience)
+    @foreach (var item in Model.ListOfEducation)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Ändra", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
+                @Html.ActionLink("Ändra", "Edit", "Education", new { id = item.Id }, null) |
+                @Html.ActionLink("Ta bort", "Delete", "Education", new { id = item.Id }, null)
             </td>
         </tr>
     }

@@ -180,6 +180,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompetenceController.cs" />
     <Compile Include="Controllers\CvController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\ExperienceController.cs" />
@@ -276,6 +277,9 @@
     <Content Include="Views\Education\Create.cshtml" />
     <Content Include="Views\Education\Edit.cshtml" />
     <Content Include="Views\Education\Delete.cshtml" />
+    <Content Include="Views\Competence\Create.cshtml" />
+    <Content Include="Views\Competence\Edit.cshtml" />
+    <Content Include="Views\Competence\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,6 +16,7 @@ namespace Services
         private CvDBContext db = new CvDBContext();
         private ExperienceRepository experienceRepository = new ExperienceRepository();
         private EducationRepository educationRepository = new EducationRepository();
+        private CompetenceRepository competenceRepository = new CompetenceRepository();
         private readonly HttpContext _httpcontext;
 
         public CvService(HttpContext httpcontext)
@@ -88,7 +89,8 @@ namespace Services
                 ImagePath = cv.ImagePath,
                 UserName = cv.UserName,
                 ListOfExperience = experienceRepository.GetListOfExperience(cv.Id),
-                ListOfEducation = educationRepository.GetListOfEducation(cv.Id)
+                ListOfEducation = educationRepository.GetListOfEducation(cv.Id),
+                ListOfCompetence = competenceRepository.GetListOfCompetence(cv.Id)
             };
             return newCvView;
         }

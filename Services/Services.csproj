@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompetenceService.cs" />
     <Compile Include="CvService.cs" />
     <Compile Include="EducationService.cs" />
     <Compile Include="ExperienceService.cs" />

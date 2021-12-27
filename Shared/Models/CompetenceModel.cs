@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Models
+namespace Shared.Models
 {
-    public class Competence
+    public class CreateCompetenceView
     {
-        [Key]
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Kompetens")]
+        [Display(Name = "Erfarenhet")]
         public string Name { get; set; }
         [Required]
         public int CvId { get; set; }

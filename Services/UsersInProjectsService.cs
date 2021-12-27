@@ -31,6 +31,28 @@ namespace Services
             db.SaveChanges();
         }
 
+        // Raderar de rader i tabellen "UsersInProjects" som har ett specifikt projektId
+        public void DeleteUsersInProject(int projectId)
+        {
+            var UsersInProjects = db.usersInProjects.Where(row => row.ProjectId == projectId);
+            foreach(var row in UsersInProjects)
+            {
+                db.usersInProjects.Remove(row);
+            }
+            db.SaveChanges();
+        }
+
+        // Raderar de rader i tabellen "UsersInProjects" som har ett specifikt userId
+        public void DeleteUserInProjects(int userId)
+        {
+            var UsersInProjects = db.usersInProjects.Where(row => row.UserId.Equals(userId));
+            foreach (var row in UsersInProjects)
+            {
+                db.usersInProjects.Remove(row);
+            }
+            db.SaveChanges();
+        }
+
         //public GetAllUserInProject(int projectId)
         //{
         //    List<string> UsersInProjects = new List();

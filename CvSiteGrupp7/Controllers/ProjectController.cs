@@ -113,9 +113,8 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                Project project = db.projects.Find(id);
-                db.projects.Remove(project);
-                db.SaveChanges();
+                ProjectService.DeleteProject(id);
+                UsersInProjectsService.DeleteUsersInProject(id);
                 return RedirectToAction("UserIndex");
             }
             catch

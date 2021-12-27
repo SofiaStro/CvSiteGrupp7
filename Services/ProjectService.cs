@@ -41,5 +41,12 @@ namespace Services
             dbProject.AddedDate = projectModel.AddedDate;
             db.SaveChanges();
         }
+
+        public void DeleteProject(int id)
+        {
+            Project project = db.projects.Find(id);
+            db.projects.Remove(project);
+            db.SaveChanges();
+        }
     }
 }

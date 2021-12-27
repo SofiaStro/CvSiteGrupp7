@@ -10,29 +10,39 @@ using System.Web;
 
 namespace Services
 {
-    public class MessageService
-    {
-        private readonly HttpContext _httpcontext;
-        private MessageDbContext db = new MessageDbContext();
-        public MessageService(HttpContext httpContext) { 
-            _httpcontext = httpContext;
-        }
+      
+        public class MessageService
+        {
+            private readonly HttpContext _httpcontext;
+             private MessageDbContext db = new MessageDbContext();
+            public MessageService(HttpContext httpContext)
+            {
+                _httpcontext = httpContext;
+            }
 
-        public void SaveNewMessage(MessageModel model) {
-            using (var context = new MessageDbContext()) {
-
-                var newMessage = new Message()
+            public int SaveNewMessage(MessageModel model, string sender)
+        {
+            try {
+                using (var context = new MessageDbContext())
                 {
-                    Sender = model.Sender,
-                    SendDate = DateTime.Now,
-                    Read = model.Read,
-                    Content = model.Content,
-                    UserName = "xxx"
-                };
-           
 
-                context.messages.Add(newMessage);
-                context.SaveChanges();
+                    var newMessage = new Message()
+                    {
+                        Sender = sender,
+                        SendDate = DateTime.Now,
+                        Read = model.Read,
+                        Content = model.Content,
+                        UserName = "xxx"
+                    };
+
+
+                    context.messages.Add(newMessage);
+                    context.SaveChanges();
+                    return 1;
+                }
+                }
+                catch {
+                    return 0;
             }
 
         }
@@ -40,7 +50,8 @@ namespace Services
         //Message message = db.messages.Find(id);
         //db.messages.Remove(message);
         //db.SaveChanges();
-        public void SetRead(int id) {
+        public void SetRead(int id)
+        {
             var dbMessage = db.messages.FirstOrDefault(x => x.Id == id);
             dbMessage.Read = true;
             db.SaveChanges();

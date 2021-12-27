@@ -1,6 +1,8 @@
 ﻿using Data.Contexts;
 using Data.Models;
 using Data.Repositories;
+using Services;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,30 +15,37 @@ namespace CvSiteGrupp7.Controllers
     public class MessageApiController : ApiController
     {
         MessageRepository messageRepository = new MessageRepository();
+        //MessageService messageService = new MessageService();
 
-        //Använda för att sätta siffran till notiser??
-        [HttpGet]
-        public int CountUnreadMessages() {
-            //using (var context = new MessageDbContext()) {
-            //    return context.messages.Where(x => x.Read == false).ToList();
-            //}
-            int count = messageRepository.UnreadMessages();  
-            return count;
-        }
-        //[Route("api/message/get/")]
+        ////Använda för att sätta siffran till notiser??
         //[HttpGet]
-        //public IHttpActionResult ValidateMessage()
-        //{
-        //    var repository = new MessageRepository();
-        //    var list = repository.GetAllMessages();
-
-        //    if(list == null)
-        //    { return BadRequest(); }
-        //    return Ok(list);    
-          
-            
+        //public int CountUnreadMessages() {
+        //    //using (var context = new MessageDbContext()) {
+        //    //    return context.messages.Where(x => x.Read == false).ToList();
+        //    //}
+        //    int count = messageRepository.UnreadMessages();  
+        //    return count;
         //}
-        
-        
+        //[Route("api/message/get/")]
+
+        //[HttpPost]
+        //[Route("create")]
+        //public IHttpActionResult CreateMessage(MessageModel model)
+        //{
+        //    var succeded = messageService.SaveNewMessage(model);
+
+        //    if (succeded == 0)
+        //    { 
+        //        return BadRequest(); 
+        //    }
+        //    else
+        //    {
+        //        return Ok();
+        //    }
+
+
+        //}
+
+
     }
 }

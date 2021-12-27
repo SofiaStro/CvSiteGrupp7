@@ -31,24 +31,6 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.SendDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SendDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SendDate, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Read, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.Read)
-                        @Html.ValidationMessageFor(model => model.Read, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>*@
-
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -59,8 +41,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                @*<input type="submit" value="Create" class="btn btn-default" />*@
-                <button class="createMessage"> Skicka</button>
+                <input type="submit" value="Create" data-item= "model"  class = "createMessage" />
+                @*<button class="createMessage" data-item= > Skicka </button>*@
             </div>
         </div>
     </div>
@@ -68,14 +50,23 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
-</div>    @*@Scripts.Render("~/bundles/jqueryval")*@
+</div> 
+   @Scripts.Render("~/bundles/jqueryval")
 
 @*@section Scripts {
     <script>
-        $('createMessage.').click(function () {
-            $.get('/api/mesage/get',function () {
-                window.alert('Meddelandet har skickats');
-            })
-        })
-    </script>
-}*@
+        $('.createMessage').click(function () {
+            $.ajax({
+                url: 'api/message/create',
+                method: 'POST',
+                data: { model },
+                success: function () {
+                    window.alert('Meddelandet har skickats');
+                    windows.location.reload();
+
+                },
+                error: function () {
+                    window.alert('Vänligen försök igen senare');
+                }
+    </script>*@
+}

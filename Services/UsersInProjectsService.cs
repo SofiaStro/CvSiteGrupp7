@@ -32,7 +32,7 @@ namespace Services
         }
 
         // Raderar de rader i tabellen "UsersInProjects" som har ett specifikt projektId
-        public void DeleteUsersInProject(int projectId)
+        public void DeleteUsersInProjects(int projectId)
         {
             var UsersInProjects = db.usersInProjects.Where(row => row.ProjectId == projectId);
             foreach(var row in UsersInProjects)
@@ -43,7 +43,7 @@ namespace Services
         }
 
         // Raderar de rader i tabellen "UsersInProjects" som har ett specifikt userId
-        public void DeleteUserInProjects(int userId)
+        public void DeleteUsersInProjects(string userId)
         {
             var UsersInProjects = db.usersInProjects.Where(row => row.UserId.Equals(userId));
             foreach (var row in UsersInProjects)

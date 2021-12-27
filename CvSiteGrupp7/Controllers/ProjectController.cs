@@ -91,7 +91,7 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Project/Delete/5
-        public ActionResult Delete(int/*?*/ id)
+        public ActionResult Delete(int? id)
         {
             //if (id == null)
             //{
@@ -109,7 +109,7 @@ namespace CvSiteGrupp7.Controllers
         // POST: Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Project projectModel)
+        public ActionResult Delete(int id)
         {
             try
             {

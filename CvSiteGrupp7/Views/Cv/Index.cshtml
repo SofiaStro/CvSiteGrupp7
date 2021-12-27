@@ -4,20 +4,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2>CV</h2>
+<h2>Mitt CV</h2>
 
 <div class="row">
     <div class="col-md-4">
         <p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name) </p>
         <p>@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(model => model.Address)</p>
         <p>@Html.DisplayNameFor(model => model.Private): @Html.DisplayFor(model => model.Private)</p>
-        <p>@Html.ActionLink("Ändra", "EditInfo", new { @Model.Id })</p>
+        <p>@Html.ActionLink("Uppdatera information", "EditInfo", new { @Model.Id })</p>
     </div>
 
     <div class="col-md-4">
         @{ var imagepath = "/UploadedImages/" + @Model.ImagePath; }
         <img src="@imagepath" alt="Lägg till bild" style="width: 100px; height: 130px;" />
-        <p>@Html.ActionLink("Ändra", "EditImg", new { @Model.Id })</p>
+        <p>@Html.ActionLink("Uppdatera bild", "EditImg", new { @Model.Id })</p>
     </div>
 
     <div class="col-md-4">
@@ -26,14 +26,18 @@
     </div>
 </div>
 
+<br />
+
 <h2>Mina projekt</h2>
 
 <p>
     @Html.ActionLink("Lägg till projekt", "Create", "Project")
 </p>
 <div>
-    @Html.Partial("_ListProject");
+    @Html.Partial("_ListProject")
 </div>
+
+<br />
 
 <h2>Mina erfarenheten</h2>
 
@@ -41,8 +45,10 @@
     @Html.ActionLink("Lägg till tidigare yrken", "Create", "Experience")
 </p>
 <div>
-    @Html.Partial("_ListExperience");
+    @Html.Partial("_ListExperience")
 </div>
+
+<br />
 
 <h2>Mina utbildningar</h2>
 
@@ -50,8 +56,10 @@
     @Html.ActionLink("Lägg till utbildning", "Create", "Education")
 </p>
 <div>
-    @Html.Partial("_ListEducation");
+    @Html.Partial("_ListEducation")
 </div>
+
+<br />
 
 <h2>Mina övriga kompetenser</h2>
 
@@ -59,5 +67,5 @@
     @Html.ActionLink("Lägg till kompetens", "Create", "Competence")
 </p>
 <div>
-    @Html.Partial("_ListCompetence");
+    @Html.Partial("_ListCompetence")
 </div>

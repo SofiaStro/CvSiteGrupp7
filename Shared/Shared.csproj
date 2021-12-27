@@ -49,6 +49,7 @@
     <Compile Include="Models\ExperienceModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
+    <Compile Include="Models\UsersInProjectsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -20,9 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.AddedDate)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.UserInProject)
-        </th>*@
+        <th>
+            Ingår i projekt
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
@@ -41,6 +41,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.AddedDate)
+    </td>
+    <td>
+        @Html.Partial("~/Views/UsersInProjects/Index.cshtml", new List<Data.Models.UsersInProjects>())
     </td>
     @*<td>*@
         @*@foreach (var user in item.UserInProject)

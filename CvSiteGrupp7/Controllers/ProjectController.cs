@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using System.Windows;
 using Services;
+using Microsoft.AspNet.Identity;
 
 namespace CvSiteGrupp7.Controllers
 {
@@ -16,6 +17,12 @@ namespace CvSiteGrupp7.Controllers
     {
         private ProjectDbContext db = new ProjectDbContext();
         private ProjectService ProjectService = new ProjectService(System.Web.HttpContext.Current);
+        private UsersInProjectsService UsersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
+
+        //public ActionResult GetUsersInProjectPartialView()
+        //{
+        //    return PartialView("~/Views/UsersInProjects/Index.cshtml");
+        //}
 
         // GET: Project
         public ActionResult UserIndex()
@@ -58,10 +65,12 @@ namespace CvSiteGrupp7.Controllers
                 //newProject.UserInProject.Add(aUser);
                 db.projects.Add(newProject);
                 db.SaveChanges();
+                UsersInProjectsService.CreateUserInProject(newProject.Id, User.Identity.GetUserId() ,User.Identity.Name);
                 return RedirectToAction("UserIndex");
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return View();
             }
         }

@@ -37,12 +37,6 @@ namespace CvSiteGrupp7.Controllers
             return View(projects);
         }
 
-        //// GET: Project/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
         // GET: Project/Create
         public ActionResult Create()
         {
@@ -55,32 +49,28 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                var newProject = ProjectService.CreateProject(projectModel, User.Identity.Name);
-                //newProject.UserInProject.Add(aUser);
-                db.projects.Add(newProject);
-                db.SaveChanges();
-                UsersInProjectsService.CreateUserInProject(newProject.Id, User.Identity.GetUserId() ,User.Identity.Name);
+                Project newProject = ProjectService.CreateProject(projectModel, User.Identity.Name);
+                UsersInProjectsService.CreateUserInProject(newProject.Id, User.Identity.GetUserId(), User.Identity.Name); 
                 return RedirectToAction("UserIndex");
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+            catch
+            { 
                 return View();
             }
         }
 
         // GET: Project/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int Id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            }
-            Project existingProject = db.projects.Find(id);
-            if(existingProject == null)
-            {
-                return HttpNotFound();            
-            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            //}
+            Project existingProject = db.projects.Find(Id);
+            //if(existingProject == null)
+            //{
+            //    return HttpNotFound();            
+            //}
             return View(existingProject); 
         }
 
@@ -91,17 +81,8 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-               var currentProject = db.projects.FirstOrDefault(x => x.Id == project.Id);
-               if (currentProject == null)
-               {
-                  return HttpNotFound();
-               }
-
-               currentProject.Name = project.Name;
-               currentProject.Description = project.Description;
-               currentProject.AddedDate = project.AddedDate;
-               db.SaveChanges();
-               return RedirectToAction("UserIndex");
+                ProjectService.EditProject(project);
+                return RedirectToAction("UserIndex");
             }
             catch
             {
@@ -110,17 +91,17 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Project/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int/*?*/ id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            //}
             Project existingProject = db.projects.Find(id);
-            if (existingProject == null)
-            {  
-                return HttpNotFound();
-            }
+            //if (existingProject == null)
+            //{  
+            //    return HttpNotFound();
+            //}
             return View(existingProject);
         }
 
@@ -128,7 +109,7 @@ namespace CvSiteGrupp7.Controllers
         // POST: Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, Project projectModel)
         {
             try
             {

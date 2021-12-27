@@ -27,14 +27,19 @@ namespace Services
                 Description = projectModel.Description,
                 AddedDate = projectModel.AddedDate,
                 UserName = userName
-                //UserInProject = new List<ApplicationUser>()
             };
-            //ApplicationUser CurrentUser = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-            //string user = new User(CurrentUser.UserName);
-            //newProject.UserInProject = new List<ApplicationUser>();
-            //newProject.UserInProject.Add(CurrentUser);
-            //ApplicationUser aUser = db.Users.FirstOrDefault();
+            db.projects.Add(newProject);
+            db.SaveChanges();
             return newProject;
+        }
+
+        public void EditProject(Project projectModel)
+        {
+            var dbProject = db.projects.FirstOrDefault(x => x.Id == projectModel.Id);
+            dbProject.Name = projectModel.Name;
+            dbProject.Description = projectModel.Description;
+            dbProject.AddedDate = projectModel.AddedDate;
+            db.SaveChanges();
         }
     }
 }

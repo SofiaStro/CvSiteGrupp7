@@ -1,4 +1,6 @@
 ﻿using Data.Contexts;
+using Services;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace CvSiteGrupp7.Controllers
     public class UsersInProjectsController : Controller
     {
         private UsersInProjectsDbContext db = new UsersInProjectsDbContext();
+        private UsersInProjectsService usersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
 
         // GET: UsersInProjects
         public ActionResult Index(int projectId)
@@ -17,7 +20,6 @@ namespace CvSiteGrupp7.Controllers
             var UsersInProjects = db.usersInProjects.Where(row => row.ProjectId == projectId);
             return View(UsersInProjects);
         }
-
 
         // GET: UsersInProjects/Details/5
         public ActionResult Details(int id)
@@ -28,16 +30,22 @@ namespace CvSiteGrupp7.Controllers
         // GET: UsersInProjects/Create
         public ActionResult Create()
         {
+            ProjectDbContext projectDb = new ProjectDbContext();
+            ViewBag.Projects = new SelectList(projectDb.projects, "Id", "Name");
             return View();
         }
 
         // POST: UsersInProjects/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(UsersInProjectsModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                CvDBContext cvDb = new CvDBContext();
+                var cv = cvDb.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
+                //educationService.CreateEducation(model, cv.Id);
+                //usersInProjectsService.CreateUserInProject()
+
 
                 return RedirectToAction("Index");
             }

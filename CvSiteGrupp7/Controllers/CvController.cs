@@ -37,6 +37,32 @@ namespace CvSiteGrupp7.Controllers
             return View(showCv);
         }
 
+        public ActionResult SearchIndex(string searchString)
+        {
+
+            var cvs = from c in db.cvs select c;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    cvs = cvs.Where(row => row.Name.Contains(searchString));
+                }
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    cvs = cvs.Where(row => row.Name.Contains(searchString) && row.Private == false);
+                }
+                else
+                {
+                    cvs = cvs.Where(row => row.Private == false);
+                }
+            }
+            return View(cvs);
+        }
+
         // GET: Cv/Details/5
         public ActionResult Details(int id)
         {

@@ -8,11 +8,12 @@
 <p>
     @using (Html.BeginForm())
     {
-        <p> Namn: @Html.TextBox("searchString") <br />
-            <input type="submit" value="Sök" />
-        </p>    
-    }
-<p />
+    <p>
+        Namn: @Html.TextBox("searchString") <br />
+        <input type="submit" value="Sök" />
+    </p>
+}
+    <p />
 
     <table class="table">
         <tr>
@@ -37,8 +38,6 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @*@{ var imagepath = "/UploadedImages/" + @Model.ImagePath; }
-                    <img src="@imagepath" alt="Lägg till bild" style="width: 100px; height: 130px;" />*@
                     @{ var imagePath = "/UploadedImages/" + item.ImagePath; }
                     <img src="@imagePath" style="max-width: 100px; max-height: 130px" />
                 </td>

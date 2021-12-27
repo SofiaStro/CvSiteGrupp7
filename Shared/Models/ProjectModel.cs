@@ -21,6 +21,4 @@ namespace Shared.Models
         //[Display(Name = "Ingår i projekt")]
         //public int[] UserInProject { get; set; }
     }
-
-
 }

@@ -19,16 +19,10 @@ namespace CvSiteGrupp7.Controllers
         private ProjectService ProjectService = new ProjectService(System.Web.HttpContext.Current);
         private UsersInProjectsService UsersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
 
-        //public ActionResult GetUsersInProjectPartialView()
-        //{
-        //    return PartialView("~/Views/UsersInProjects/Index.cshtml");
-        //}
-
         // GET: Project
         public ActionResult UserIndex()
         {
-            //var projects = context.projects.Where(row => row.UserName == User.Identity.Name);
-            var projects = db.projects.ToList();
+            var projects = db.projects.Where(row => row.UserName == User.Identity.Name);
             return View(projects);
         }
 

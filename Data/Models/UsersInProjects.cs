@@ -20,6 +20,7 @@ namespace Data.Models
         [Required]
         public string UserId { get; set; }
         [Required]
+        [Display(Name = "Användare")]
         public string UserName { get; set; }
     }
 }

@@ -26,12 +26,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.AddedDate)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.UserInProject)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
             <th></th>
         </tr>
 
@@ -47,20 +41,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.AddedDate)
                 </td>
-                @*<td>
-                    @foreach (var user in item.UserInProject)
-                    {
-                        <table>
-                            <tr>
-                                <td>
-                                    @Html.ActionLink(user.UserName, "Index", "Cv", new { id = item.Id })
-                                </td>
-                            <tr />
-                        </table>
-                    }
-                </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
+                    @Html.ActionLink("Se vilka som är involverade i projektet", "Index", "UsersInProjects", new { projectId = item.Id }, null)
                 </td>
             </tr>
         }

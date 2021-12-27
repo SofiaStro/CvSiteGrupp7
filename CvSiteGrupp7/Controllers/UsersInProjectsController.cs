@@ -15,8 +15,12 @@ namespace CvSiteGrupp7.Controllers
         private UsersInProjectsService usersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
 
         // GET: UsersInProjects
-        public ActionResult Index(int projectId)
+        public ActionResult Index(int? projectId)
         {
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
             var UsersInProjects = db.usersInProjects.Where(row => row.ProjectId == projectId);
             return View(UsersInProjects);
         }

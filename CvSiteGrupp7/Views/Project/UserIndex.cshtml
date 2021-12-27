@@ -20,52 +20,27 @@
         <th>
             @Html.DisplayNameFor(model => model.AddedDate)
         </th>
-        <th>
-            Ingår i projekt
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    if (item.UserName == User.Identity.Name)
+    @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.AddedDate)
-    </td>
-    <td>
-        @Html.Partial("~/Views/UsersInProjects/Index.cshtml", new List<Data.Models.UsersInProjects>())
-    </td>
-    @*<td>*@
-        @*@foreach (var user in item.UserInProject)
-        {
-            <table>
-                <tr>
-                    <td>
-                        @Html.ActionLink(user.UserName, "Index", "Cv", new { id = item.Id })
-                    </td>
-                <tr />
-            </table>
-        }*@
-    @*</td>*@
-    <td>
-        @Html.DisplayFor(modelItem => item.UserName)
-    </td>
-    <td>
-        @Html.ActionLink("Ändra", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedDate)
+            </td>
+            <td>
+                @Html.ActionLink("Se vilka som är involverade i projektet", "Index", "UsersInProjects", new { projectId = item.Id }, null) |
+                @Html.ActionLink("Ändra", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
+            </td>
+        </tr>
     }
-}
 
 </table>

@@ -1,0 +1,30 @@
+﻿@model Shared.Models.HomeViewModel
+
+
+@{
+    var random = new Random();
+    int i1 = random.Next(Model.ListOfCvs.Count);
+    int i2 = random.Next(Model.ListOfCvs.Count);
+    int i3 = random.Next(Model.ListOfCvs.Count);
+    var CV1 = Model.ListOfCvs[i1];
+    var CV2 = Model.ListOfCvs[i2];
+    var CV3 = Model.ListOfCvs[i3];
+}
+<div>
+    <div class="col-md-4">
+        <h2>@Html.DisplayFor(modelItem => CV1.Name)</h2>
+        <p> @Html.DisplayFor(modelItem => CV1.UserName)</p>
+        <p>@Html.ActionLink("VISA CV", "Index", "CV", new { userName = CV1.UserName }, null) </p>
+    </div>
+    <div class="col-md-4">
+        <h2>@Html.DisplayFor(modelItem => CV2.Name)</h2>
+        <p> @Html.DisplayFor(modelItem => CV2.UserName)</p>
+        <p>@Html.ActionLink("VISA CV", "Index", "CV", new { userName = CV2.UserName }, null) </p>
+    </div>
+    <div class="col-md-4">
+        <h2>@Html.DisplayFor(modelItem => CV3.Name)</h2>
+        <p> @Html.DisplayFor(modelItem => CV3.UserName)</p>
+        <p>@Html.ActionLink("VISA CV", "Index", "CV", new { userName = CV3.UserName }, null) </p>
+    </div>
+</div>
+

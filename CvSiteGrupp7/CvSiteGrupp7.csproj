@@ -284,6 +284,8 @@
     <Content Include="Views\UsersInProjects\Index.cshtml" />
     <Content Include="Views\UsersInProjects\Create.cshtml" />
     <Content Include="Views\Cv\SearchIndex.cshtml" />
+    <Content Include="Views\Home\_NewestProject.cshtml" />
+    <Content Include="Views\Home\_CV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

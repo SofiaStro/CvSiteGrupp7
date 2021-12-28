@@ -30,7 +30,7 @@ namespace CvSiteGrupp7.Controllers
         public ActionResult MainIndex(string searchString)
         {
             var projects = from p in db.projects select p;
-            if (!String.IsNullOrEmpty(searchString) && User.Identity.IsAuthenticated)
+            if (!String.IsNullOrEmpty(searchString))
             {
                 projects = projects.Where(row => row.Name.Contains(searchString));
             }

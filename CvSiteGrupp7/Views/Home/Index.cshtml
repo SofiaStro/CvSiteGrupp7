@@ -1,31 +1,27 @@
-﻿@{
+﻿@model Shared.Models.HomeViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>SENASTE PROJEKTET</h1>
-    <p class="lead">Lägg till info om det senaset projektet</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">LÄS MER</a></p>
-</div>
-
+@{ if (Model.ProjectName != null)
+   {
+        <div>
+            @Html.Partial("_NewestProject")
+        </div>
+   }
+   else
+   {
+        <div class="jumbotron">
+            <h1>INGA PROJEKT FINNS</h1>
+        </div>
+   }
+}
 <div class="row">
-    <div class="col-md-4">
-        <h2>CV nr 1</h2>
-        <p>
-            Namn och bild på CV
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">LÄS MER</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>CV nr 2</h2>
-        <p>Namn och bild på CV</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">LÄS MER</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>CV nr 3</h2>
-        <p>Namn och bild på CV</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">LÄS MER</a></p>
-    </div>
+    @if (Model.ListOfCvs.Count > 0)
+    {
+        @Html.Partial("_CV")
+    }
     <div class="col-md-4">
         <h2>Skicka meddelande</h2>
         <p>@Html.ActionLink("Skicka", "Create", "Message")</p>

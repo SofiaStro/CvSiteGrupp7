@@ -75,6 +75,7 @@
     <Compile Include="Repositories\EducationRepository.cs" />
     <Compile Include="Repositories\ExperienceRepository.cs" />
     <Compile Include="Repositories\MessageRepository.cs" />
+    <Compile Include="Repositories\ProjectRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

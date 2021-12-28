@@ -11,6 +11,19 @@ namespace Data.Repositories
 {
     public class CvRepository
     {
+        private CvDBContext db = new CvDBContext();
+        public List<CV> GetListOfCvs(bool loggedIn)
+        {
+            if(loggedIn == true)
+            {
+                return db.cvs.ToList();
+            }
+            else
+            {
+                return db.cvs.Where(row => row.Private == false).ToList();
+            }
+        }
+
         //private readonly CvDBContext _context;
 
         //public CvRepository(CvDBContext context)

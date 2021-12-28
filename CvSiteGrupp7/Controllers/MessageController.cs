@@ -43,17 +43,17 @@ namespace CvSiteGrupp7.Controllers
 
            try
             {
-                var sender = "";
-                if (User.Identity.IsAuthenticated)
-                {
-                   sender = User.Identity.Name;
-                }
-                else {
-                   sender = "Anonym";
-                }
+                //var sender = "";
+                //if (User.Identity.IsAuthenticated)
+                //{
+                //   sender = User.Identity.Name;
+                //}
+                //else {
+                //   sender = "Anonym";
+                //}
                 var service = new MessageService(System.Web.HttpContext.Current);
-                service.SaveNewMessage(model, sender);
-                return RedirectToAction("Index");
+                service.SaveNewMessage(model);
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

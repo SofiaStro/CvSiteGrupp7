@@ -13,6 +13,7 @@ namespace Shared.Models
         [Display(Name = "Avsändare")]
         public string Sender { get; set; }
         [Display(Name = "Meddelande")]
+        [Required]
         public string Content { get; set; }
         public bool Read { get; set; }
         public string UserName{ get; set; }

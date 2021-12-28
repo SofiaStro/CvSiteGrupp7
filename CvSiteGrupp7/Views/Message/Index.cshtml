@@ -5,7 +5,7 @@
 }
 <h2>Index</h2>
 
-<div id="resultCount" style="background: yellow;"></div>
+@*<div id="resultCount" style="background: yellow;"></div>*@
 <table class="table">
     <tr>
         <th>
@@ -91,11 +91,11 @@
                 var count;
                 $.get('/api/message/countmessages/', function (result) {
                     count = result;
-                    $("#resultCount").html("Du har så här många olästa meddelanden : " + count);
+                    $("#resultCount").html("(Olästa:" + count + ")");
                 })
             }, 3000);
         })
-        </script>
+    </script>
 
 
 

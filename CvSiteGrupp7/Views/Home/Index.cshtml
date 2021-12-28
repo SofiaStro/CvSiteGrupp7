@@ -31,3 +31,16 @@
         <p>@Html.ActionLink("Skicka", "Create", "Message")</p>
     </div>
 </div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            setInterval(function () {
+                var count;
+                $.get('/api/message/countmessages/', function (result) {
+                    count = result;
+                    $("#resultCount").html("(Olästa:" + count + ")");
+                })
+            }, 3000);
+        })
+    </script>
+}

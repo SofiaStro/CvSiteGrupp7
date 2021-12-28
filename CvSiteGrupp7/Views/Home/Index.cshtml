@@ -17,11 +17,8 @@
         </div>
    }
 }
-<div class="row">
-    @if (Model.ListOfCvs.Count > 0)
-    {
-        @Html.Partial("_CV")
-    }
+<div class="row">@
+    @Html.Partial("_CV")
     <div class="col-md-4">
         <h2>Skicka meddelande</h2>
         <p>@Html.ActionLink("Skicka", "Create", "Message")</p>

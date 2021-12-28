@@ -14,13 +14,53 @@ namespace Data.Repositories
         private CvDBContext db = new CvDBContext();
         public List<CV> GetListOfCvs(bool loggedIn)
         {
+            List<CV> listOfThreeRandomCV = new List<CV>();
+            var random = new Random();
             if(loggedIn == true)
             {
-                return db.cvs.ToList();
+                List<CV> listOfAllCv = db.cvs.Where(row => row.Name != null).ToList();
+                if (listOfAllCv.Count() < 3)
+                {
+                    return listOfAllCv;
+                }
+                else
+                {
+                    int i1 = random.Next(listOfAllCv.Count);
+                    int i2;
+                    int i3;
+                    do
+                    {
+                        i2 = random.Next(listOfAllCv.Count);
+                        i3 = random.Next(listOfAllCv.Count);
+                    } while (i2 == i1 || i2 == i3 || i3 == i1);
+                    listOfThreeRandomCV.Add(listOfAllCv[i1]);
+                    listOfThreeRandomCV.Add(listOfAllCv[i2]);
+                    listOfThreeRandomCV.Add(listOfAllCv[i3]);
+                    return listOfThreeRandomCV;
+                }
             }
             else
             {
-                return db.cvs.Where(row => row.Private == false).ToList();
+                List<CV> listOfAllPublicCv = db.cvs.Where(row => row.Private == false && row.Name != null).ToList();
+                if(listOfAllPublicCv.Count < 3)
+                {
+                    return listOfAllPublicCv;
+                }
+                else
+                {
+                    int i1 = random.Next(listOfAllPublicCv.Count);
+                    int i2;
+                    int i3;
+                    do
+                    {
+                        i2 = random.Next(listOfAllPublicCv.Count);
+                        i3 = random.Next(listOfAllPublicCv.Count);
+                    } while (i2 == i1 || i2 == i3 || i3 == i1);
+                    listOfThreeRandomCV.Add(listOfAllPublicCv[i1]);
+                    listOfThreeRandomCV.Add(listOfAllPublicCv[i2]);
+                    listOfThreeRandomCV.Add(listOfAllPublicCv[i3]);
+                    return listOfThreeRandomCV;
+                }
             }
         }
 

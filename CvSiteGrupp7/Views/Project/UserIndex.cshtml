@@ -36,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.AddedDate)
             </td>
             <td>
-                @Html.ActionLink("Se vilka som är involverade i projektet", "Index", "UsersInProjects", new { projectId = item.Id }, null) |
+                @Html.ActionLink("Se användare som är involverade i projektet", "Index", "UsersInProjects", new { projectId = item.Id }, null) |
                 @Html.ActionLink("Ändra", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
             </td>

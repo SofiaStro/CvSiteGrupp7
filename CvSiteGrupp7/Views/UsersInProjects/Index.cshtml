@@ -1,18 +1,17 @@
 ﻿@model IEnumerable<Data.Models.UsersInProjects>
 
 @{
-    ViewBag.Title = "UsersInProjectIndex";
+    ViewBag.Title = "InProjectIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Dessa användare är involverade i projektet: </h2>
+<h2>Användare involverade i projektet</h2>
 
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -22,12 +21,13 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.ActionLink("Visa CV", "Index", new { id = item.UserId })
+                @Html.ActionLink("Visa CV", "Index", new { userName = item.UserName })
             </td>
         </tr>
     }
-
+    
 </table>
-<div class="form-actions no-color">
-    @Html.ActionLink("Tillbaka till Mina Projekt", "UserIndex", "Project")
+
+<div>
+    @Html.ActionLink("Tillbaka till projekt", null, null, null, new { href = Request.UrlReferrer })
 </div>

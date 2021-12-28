@@ -66,15 +66,16 @@ namespace CvSiteGrupp7.Controllers
         }
 
 
-        ////Använda för att sätta siffran till notiser??
-        //[HttpGet]
-        //public int CountUnreadMessages() {
-        //    //using (var context = new MessageDbContext()) {
-        //    //    return context.messages.Where(x => x.Read == false).ToList();
-        //    //}
-        //    int count = messageRepository.UnreadMessages();  
-        //    return count;
-        //}
+        //Använda för att sätta siffran till notiser??
+        [HttpGet]
+        [Route("api/message/countmessages")]
+        public int CountUnreadMessages()
+        {
+            int count = messageRepository.UnreadMessages();
+            return count;
+        }
+
+
         //[Route("api/message/get/")]
 
         //[HttpPost]

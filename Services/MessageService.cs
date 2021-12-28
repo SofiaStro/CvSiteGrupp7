@@ -44,29 +44,7 @@ namespace Services
                 catch {
                     return 0;
             }
-
         }
-
-        //Message message = db.messages.Find(id);
-        //db.messages.Remove(message);
-        //db.SaveChanges();
-        //public bool SetRead(int id)
-        //{
-        //    var message = db.messages.FirstOrDefault(x => x.Id == id);
-        //    if (message == null) return false;
-        //    message.Read = true;
-        //    db.SaveChanges();
-        //    return true;
-        //}
-
-        //public bool SetUnRead(int id)
-        //{
-        //    var message = db.messages.FirstOrDefault(x => x.Id == id);
-        //    if (message == null) return false;
-        //    message.Read = false;
-        //    db.SaveChanges();
-        //    return true;
-        //}
 
     }
 }

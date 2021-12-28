@@ -5,6 +5,7 @@
 }
 <h2>Index</h2>
 
+<div id="resultCount" style="background: yellow;"></div>
 <table class="table">
     <tr>
         <th>
@@ -32,7 +33,7 @@
                 <td>
                     @*@Html.CheckBox("IsActive", false)*@
                     @*@Html.CheckBoxFor(modelitem => item.Read, new { @checked = "checked" })*@
-                    <input type="checkbox" data-id="@item.Id" @Html.CheckBoxFor(modelitem => item.Read) 
+                    <input type="checkbox" data-id="@item.Id" @Html.CheckBoxFor(modelitem => item.Read)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Sender)
@@ -65,14 +66,37 @@
                 var messageId = $(this).data('id');
                 if ($(this).is(":checked")) {
                     $("#result").html("Checkbox is checked." + messageId);
-                    $.get('/api/message/read/' + messageId )
+                    $.get('/api/message/read/' + messageId)
                 }
                 else if ($(this).is(":not(:checked)")) {
                     $("#result").html("Checkbox is unchecked.");
-                    $.get('/api/message/unread/' + messageId )
+                    $.get('/api/message/unread/' + messageId)
                 }
             });
         });
     </script>
+    @*<script>
+            $(document).ready(function () {
+                var count;
+                $.get('/api/message/countmessages/', function (result) {
+                    count = result;
+                    $("#resultCount").html("Du har så här många olästa meddelanden : " + count);
+                })
+
+            });
+        </script>*@
+    <script>
+        $(document).ready(function () {
+            setInterval(function () {
+                var count;
+                $.get('/api/message/countmessages/', function (result) {
+                    count = result;
+                    $("#resultCount").html("Du har så här många olästa meddelanden : " + count);
+                })
+            }, 3000);
+        })
+        </script>
+
+
 
 }

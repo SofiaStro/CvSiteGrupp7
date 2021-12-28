@@ -36,34 +36,7 @@ namespace CvSiteGrupp7.Controllers
             return View();
         }
 
-        // POST: Message/Create
-        //[HttpPost]
-        //public ActionResult Create(MessageModel model)
-        //{
-        //    try
-        //    {
-        //        //using (var context = new ApplicationDbContext())
-        //        //{
-        //            var newMessage = new Data.Models.Message()
-        //            {
-        //                Sender = model.Sender,
-        //                SendDate = DateTime.Now,
-        //                Read = false,
-        //                Content = model.Content,
-        //                UserName = User.Identity.Name
-        //            };
-
-        //            db.messages.Add(newMessage);
-        //            db.SaveChanges();
-        //        //}
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
+    
         [HttpPost]
         public ActionResult Create(MessageModel model)
         {

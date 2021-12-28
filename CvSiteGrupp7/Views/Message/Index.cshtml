@@ -32,8 +32,7 @@
                 <td>
                     @*@Html.CheckBox("IsActive", false)*@
                     @*@Html.CheckBoxFor(modelitem => item.Read, new { @checked = "checked" })*@
-                    <input type="checkbox">
-
+                    <input type="checkbox"  data-id="@item.Id">
                     @*@Html.DisplayFor(modelItem => item.Read)*@
                 </td>
                 <td>
@@ -64,11 +63,14 @@
     <script>
         $(document).ready(function () {
             $('input[type="checkbox"]').click(function () {
+                var messageId = $(this).data('id');
                 if ($(this).is(":checked")) {
-                    $("#result").html("Checkbox is checked.");
+                    $("#result").html("Checkbox is checked." + messageId);
+                    $.get('/api/message/read/' + messageId )
                 }
                 else if ($(this).is(":not(:checked)")) {
                     $("#result").html("Checkbox is unchecked.");
+                    $.get('/api/message/unread/' + messageId )
                 }
             });
         });

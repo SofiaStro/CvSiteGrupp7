@@ -50,19 +50,23 @@ namespace Services
         //Message message = db.messages.Find(id);
         //db.messages.Remove(message);
         //db.SaveChanges();
-        public void SetRead(int id)
-        {
-            var dbMessage = db.messages.FirstOrDefault(x => x.Id == id);
-            dbMessage.Read = true;
-            db.SaveChanges();
-        }
+        //public bool SetRead(int id)
+        //{
+        //    var message = db.messages.FirstOrDefault(x => x.Id == id);
+        //    if (message == null) return false;
+        //    message.Read = true;
+        //    db.SaveChanges();
+        //    return true;
+        //}
 
-        public void SetUnRead(int id)
-        {
-            var dbMessage = db.messages.FirstOrDefault(x => x.Id == id);
-            dbMessage.Read = false;
-            db.SaveChanges();
-        }
+        //public bool SetUnRead(int id)
+        //{
+        //    var message = db.messages.FirstOrDefault(x => x.Id == id);
+        //    if (message == null) return false;
+        //    message.Read = false;
+        //    db.SaveChanges();
+        //    return true;
+        //}
 
     }
 }

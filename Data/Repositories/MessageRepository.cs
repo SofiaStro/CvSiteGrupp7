@@ -20,6 +20,23 @@ namespace Data.Repositories
             return _context.messages
                 .ToList();
         }
+        public bool SetRead(int id)
+        {
+            var message = _context.messages.FirstOrDefault(x => x.Id == id);
+            if (message == null) return false;
+            message.Read = true;
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool SetUnRead(int id)
+        {
+            var message = _context.messages.FirstOrDefault(x => x.Id == id);
+            if (message == null) return false;
+            message.Read = false;
+            _context.SaveChanges();
+            return true;
+        }
 
         public int UnreadMessages()
         {

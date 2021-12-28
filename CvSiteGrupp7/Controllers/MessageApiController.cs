@@ -13,15 +13,58 @@ using System.Web.Http;
 
 namespace CvSiteGrupp7.Controllers
 {
-    [RoutePrefix("api/message")]
+    //[RoutePrefix("api/message")]
     public class MessageApiController : ApiController
     {
         //MessageRepository messageRepository = new MessageRepository();
         public MessageRepository messageRepository
         {
             get { return new MessageRepository(Request.GetOwinContext().Get<MessageDbContext>()); }
-        }
+        }    
         //MessageService messageService = new MessageService();
+
+        [HttpGet]
+        //[Route("read")]
+
+        [Route("api/message/read/{id}")]
+        public IHttpActionResult setRead(int id) {
+            try
+            {
+                var messageOk = messageRepository.SetRead(id);
+
+                if (messageOk) {
+                     return Ok();
+                }
+                
+                return BadRequest();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/message/unread/{id}")]
+        public IHttpActionResult setUnRead(int id)
+        {
+            try
+            {
+                var messageOk = messageRepository.SetUnRead(id);
+
+                if (messageOk)
+                {
+                    return Ok();
+                }
+
+                return BadRequest();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
 
         ////Använda för att sätta siffran till notiser??
         //[HttpGet]

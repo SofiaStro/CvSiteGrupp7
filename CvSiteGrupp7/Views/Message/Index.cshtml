@@ -32,8 +32,7 @@
                 <td>
                     @*@Html.CheckBox("IsActive", false)*@
                     @*@Html.CheckBoxFor(modelitem => item.Read, new { @checked = "checked" })*@
-                    <input type="checkbox"  data-id="@item.Id">
-                    @*@Html.DisplayFor(modelItem => item.Read)*@
+                    <input type="checkbox" data-id="@item.Id" @Html.CheckBoxFor(modelitem => item.Read) 
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Sender)

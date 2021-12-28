@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<Data.Models.Message>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Inkorg";
 }
-<h2>Index</h2>
+<h2>Inkorg</h2>
 
 @*<div id="resultCount" style="background: yellow;"></div>*@
 <table class="table">
@@ -48,7 +48,7 @@
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }

@@ -20,7 +20,7 @@ namespace Services
                 _httpcontext = httpContext;
             }
 
-            public int SaveNewMessage(MessageModel model)
+            public int SaveNewMessage(MessageModel model, string sender)
         {
             try {
                 using (var context = new MessageDbContext())
@@ -28,7 +28,7 @@ namespace Services
 
                     var newMessage = new Message()
                     {
-                        Sender = model.Sender,
+                        Sender = sender,
                         SendDate = DateTime.Now,
                         Read = model.Read,
                         Content = model.Content,

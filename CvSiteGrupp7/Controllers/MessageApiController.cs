@@ -16,12 +16,11 @@ namespace CvSiteGrupp7.Controllers
     //[RoutePrefix("api/message")]
     public class MessageApiController : ApiController
     {
-        //MessageRepository messageRepository = new MessageRepository();
         public MessageRepository messageRepository
         {
             get { return new MessageRepository(Request.GetOwinContext().Get<MessageDbContext>()); }
-        }    
-        //MessageService messageService = new MessageService();
+        }
+        MessageService messageService = new MessageService(System.Web.HttpContext.Current);
 
         [HttpGet]
         //[Route("read")]
@@ -76,17 +75,15 @@ namespace CvSiteGrupp7.Controllers
         }
 
 
-        //[Route("api/message/get/")]
-
-        //[HttpPost]
-        //[Route("create")]
+        //[HttpGet]
+        //[Route("api/message/create")]
         //public IHttpActionResult CreateMessage(MessageModel model)
         //{
         //    var succeded = messageService.SaveNewMessage(model);
 
         //    if (succeded == 0)
-        //    { 
-        //        return BadRequest(); 
+        //    {
+        //        return BadRequest();
         //    }
         //    else
         //    {

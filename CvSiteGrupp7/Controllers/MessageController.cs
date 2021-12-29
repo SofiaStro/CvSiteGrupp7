@@ -41,18 +41,19 @@ namespace CvSiteGrupp7.Controllers
         public ActionResult Create(MessageModel model)
         {
 
-           try
+            try
             {
-                //var sender = "";
-                //if (User.Identity.IsAuthenticated)
-                //{
-                //   sender = User.Identity.Name;
-                //}
-                //else {
-                //   sender = "Anonym";
-                //}
+                var sender = "";
+                if (User.Identity.IsAuthenticated)
+                {
+                    sender = User.Identity.Name;
+                }
+                else
+                {
+                    sender = model.Sender;
+                }
                 var service = new MessageService(System.Web.HttpContext.Current);
-                service.SaveNewMessage(model);
+                service.SaveNewMessage(model, sender);
                 return RedirectToAction("Index", "Home");
             }
             catch

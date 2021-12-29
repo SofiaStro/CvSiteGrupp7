@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Sender, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(user => User.Identity.Name) 
+                @Html.DisplayFor(user => User.Identity.Name)
             </div>
         </div>
     }
@@ -52,29 +52,29 @@
     </div>
 
     <div class="form-group">
+        <p id="messageText"></p>
+    </div>
+
+
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Skicka" data-item="model" class="createMessage" />
-            @*<button class="createMessage" data-item= > Skicka </button>*@
+            <input type="submit" value="Skicka" @*data-item="model"*@ id="createMessage" />
         </div>
     </div>
 </div>
 }
-   @*@Scripts.Render("~/bundles/jqueryval")
+   @Scripts.Render("~/bundles/jqueryval")
 
 @section Scripts {
     <script>
-        $('.createMessage').click(function () {
-            $.ajax({
-                url: 'api/message/create',
-                method: 'POST',
-                data: { model },
-                success: function () {
-                    window.alert('Meddelandet har skickats');
-                    windows.location.reload();
+        //$(document).ready(function () {
+        //    $('#createMessage').click(function () {
+        //        var message = $(this).model;
+        //        $.get('api/message/create/' + message, function () {
+        //            $("#messageText").html("Meddelandet har skickats");
 
-                },
-                error: function () {
-                    window.alert('Vänligen försök igen senare');
-                }
+        //        })
+        //    })
+        //})
     </script>
-}*@
+}

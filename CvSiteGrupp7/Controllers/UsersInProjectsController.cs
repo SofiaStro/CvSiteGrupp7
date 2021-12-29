@@ -13,12 +13,19 @@ namespace CvSiteGrupp7.Controllers
     {
         private UsersInProjectsDbContext db = new UsersInProjectsDbContext();
         private UsersInProjectsService usersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
+        private CvService cvService = new CvService(System.Web.HttpContext.Current);
 
         // GET: UsersInProjects
         public ActionResult Index(int projectId)
         {
-            var allUserNamesInProject = from u in db.usersInProjects where u.ProjectId == projectId select u;
-            return View(allUserNamesInProject);
+            bool loggedIn = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                loggedIn = true;
+            }
+            var allUserNamesInProject = usersInProjectsService.GetUserNamesInProject(projectId);
+            var allCvsInProject = cvService.GetCvWithUserName(allUserNamesInProject, loggedIn);
+            return View(allCvsInProject);
         }
 
         // GET: UsersInProjects/Details/5

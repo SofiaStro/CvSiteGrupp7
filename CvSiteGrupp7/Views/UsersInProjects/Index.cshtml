@@ -1,16 +1,26 @@
-﻿@model IEnumerable<Data.Models.UsersInProjects>
+﻿@model IEnumerable<Data.Models.CV>
 
 @{
     ViewBag.Title = "InProjectIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Användare involverade i projektet</h2>
+<h2>Användare involverade i projektet: </h2>
+
 
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
         </th>
     </tr>
 
@@ -18,14 +28,24 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @{ var imagePath = "/UploadedImages/" + item.ImagePath; }
+                <img src="@imagePath" style="max-width: 100px; max-height: 130px" />
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.ActionLink("Visa CV", "Index", new { userName = item.UserName })
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.ActionLink("Visa CV", "Index", new { item.Id })
             </td>
         </tr>
     }
-    
+
 </table>
 
 <div>

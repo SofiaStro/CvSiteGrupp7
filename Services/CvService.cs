@@ -95,5 +95,29 @@ namespace Services
             return newCvView;
         }
 
+        public IQueryable<CV> GetCvWithUserName (IQueryable<string> userNames, bool loggedIn)
+        {
+            List<CV> listOfCvs = new List<CV>(); 
+            if(loggedIn == true)
+            {
+                listOfCvs = db.cvs.ToList();
+            }
+            else
+            {
+                listOfCvs = db.cvs.Where(row => row.Private == false).ToList();
+            }
+            List<CV> listOfCvWithUserName = new List<CV>();
+            foreach(var userName in userNames)
+            {
+                foreach(var Cv in listOfCvs)
+                {
+                    if (Cv.UserName.Equals(userName))
+                    {
+                        listOfCvWithUserName.Add(Cv);
+                    }
+                }
+            }
+            return listOfCvWithUserName.AsQueryable();
+        }
     }
 }

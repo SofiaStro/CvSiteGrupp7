@@ -53,6 +53,12 @@ namespace Services
             db.SaveChanges();
         }
 
+        public IQueryable<string> GetUserNamesInProject (int projectId)
+        {
+            var userNamesInProject = from u in db.usersInProjects where u.ProjectId == projectId select u.UserName;
+            return userNamesInProject;
+        }
+
         //public GetAllUserInProject(int projectId)
         //{
         //    List<string> UsersInProjects = new List();

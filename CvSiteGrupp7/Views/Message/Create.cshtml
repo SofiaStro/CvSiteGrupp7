@@ -6,7 +6,7 @@
 
 <h2>Skicka meddelande</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, new { @id = string.Empty }, FormMethod.Post, new { @id = "MessageForm" }))
 {
     @Html.AntiForgeryToken()
 
@@ -57,7 +57,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Skicka" @*data-item="model"*@ id="createMessage" />
+            <input type="button" value="Skicka"  id="createMessage" />
         </div>
     </div>
 </div>
@@ -66,14 +66,21 @@
 
 @section Scripts {
     <script>
-        //$(document).ready(function () {
-        //    $('#createMessage').click(function () {
-        //        var message = $(this).model;
-        //        $.get('/api/message/create/' + message, function () {
-        //            $("#messageText").html("Meddelandet har skickats");
+        $('#createMessage').click(function () {
+            var data = $('#MessageForm').serialize();
+            if (!window.confirm('Vill du skicka ett meddelande ?' + data)) return;
+            $.ajax({
+                url: '/api/message/create',
+                method: 'POST',
+                data: data,
+                success: function () {
+                    window.location.reload();
+                },
+                error: function () {
+                    window.alert('Kunde inte skicka meddelandet' + data);
+                }
+            });
+        })
 
-        //        })
-        //    })
-        //})
     </script>
 }

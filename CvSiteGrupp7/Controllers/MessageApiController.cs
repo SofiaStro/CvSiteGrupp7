@@ -72,23 +72,32 @@ namespace CvSiteGrupp7.Controllers
         }
 
 
-        //[HttpGet]
-        //[Route("api/message/create")]
-        //public IHttpActionResult CreateMessage(MessageModel model)
-        //{
-        //    var succeded = messageService.SaveNewMessage(model);
+        [HttpPost]
+        [Route("api/message/create")]
+        public IHttpActionResult CreateMessage(MessageModel model)
+        {
+            var sender = "";
+            if (User.Identity.IsAuthenticated)
+            {
+                sender = User.Identity.Name;
+            }
+            else
+            {
+                sender = model.Sender;
+            }
+            var succeded = messageService.SaveNewMessage(model, sender);
 
-        //    if (succeded == 0)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    else
-        //    {
-        //        return Ok();
-        //    }
+            if (succeded == 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok();
+            }
 
 
-        //}
+        }
 
 
     }

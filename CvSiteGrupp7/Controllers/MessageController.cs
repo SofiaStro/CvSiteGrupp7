@@ -40,26 +40,26 @@ namespace CvSiteGrupp7.Controllers
         [HttpPost]
         public ActionResult Create(MessageModel model)
         {
-
-            try
-            {
-                var sender = "";
-                if (User.Identity.IsAuthenticated)
-                {
-                    sender = User.Identity.Name;
-                }
-                else
-                {
-                    sender = model.Sender;
-                }
-                var service = new MessageService(System.Web.HttpContext.Current);
-                service.SaveNewMessage(model, sender);
-                return RedirectToAction("Index", "Home");
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
+            //try
+            //{
+            //    var sender = "";
+            //    if (User.Identity.IsAuthenticated)
+            //    {
+            //        sender = User.Identity.Name;
+            //    }
+            //    else
+            //    {
+            //        sender = model.Sender;
+            //    }
+            //    var service = new MessageService(System.Web.HttpContext.Current);
+            //    service.SaveNewMessage(model, sender);
+            //    return RedirectToAction("Index", "Home");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
 
         //// GET: Message/Edit/5

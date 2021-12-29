@@ -1,10 +1,5 @@
-﻿using Data.Contexts;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Models
 {
@@ -21,10 +16,7 @@ namespace Data.Models
         [Required]
         [Display(Name = "Datum")]
         [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime AddedDate{ get; set; }
-        //[Display(Name = "Ingår i projekt")]
-        //public virtual ICollection<ApplicationUser> UserInProject { get; set; }
         [Required]
         public string UserName { get; set; }
 

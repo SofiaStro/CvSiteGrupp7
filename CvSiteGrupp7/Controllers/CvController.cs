@@ -38,10 +38,8 @@ namespace CvSiteGrupp7.Controllers
         }
 
         public ActionResult SearchIndex(string searchString)
-        {
-
+        { 
             var cvs = from c in db.cvs select c;
-
             if (User.Identity.IsAuthenticated)
             {
                 if (!String.IsNullOrEmpty(searchString))

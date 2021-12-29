@@ -2,12 +2,8 @@
 using Data.Models;
 using Shared.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
-using System.Windows;
 using Services;
 using Microsoft.AspNet.Identity;
 
@@ -60,17 +56,17 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Project/Edit/5
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            //}
-            Project existingProject = db.projects.Find(Id);
-            //if(existingProject == null)
-            //{
-            //    return HttpNotFound();            
-            //}
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            Project existingProject = db.projects.Find(id);
+            if (existingProject == null)
+            {
+                return HttpNotFound();
+            }
             return View(existingProject); 
         }
 
@@ -93,15 +89,15 @@ namespace CvSiteGrupp7.Controllers
         // GET: Project/Delete/5
         public ActionResult Delete(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            //}
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
             Project existingProject = db.projects.Find(id);
-            //if (existingProject == null)
-            //{  
-            //    return HttpNotFound();
-            //}
+            if (existingProject == null)
+            {
+                return HttpNotFound();
+            }
             return View(existingProject);
         }
 

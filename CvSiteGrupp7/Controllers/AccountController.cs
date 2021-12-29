@@ -88,7 +88,7 @@ namespace CvSiteGrupp7.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Ogiltigt inloggningsförsök.");
                     return View(model);
             }
         }
@@ -445,8 +445,14 @@ namespace CvSiteGrupp7.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                string errorMessage = error;
+                if(error.EndsWith("is already taken."))
+                {
+                    errorMessage = "E-postadress finns redan.";
+                }
+                ModelState.AddModelError("", errorMessage);
             }
+
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

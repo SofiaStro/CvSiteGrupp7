@@ -55,10 +55,10 @@ namespace CvSiteGrupp7.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Ditt lösenord har ändrats."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.Error ? "Ett fel har uppstått."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
@@ -349,7 +349,12 @@ namespace CvSiteGrupp7.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                string errorMessage = error;
+                if (error.EndsWith("password."))
+                {
+                    errorMessage = "Fel nuvarande lösenord";
+                }
+                ModelState.AddModelError("", errorMessage);
             }
         }
 

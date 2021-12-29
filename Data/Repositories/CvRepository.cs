@@ -14,8 +14,6 @@ namespace Data.Repositories
         private CvDBContext db = new CvDBContext();
         public List<CV> GetListOfCvs(bool loggedIn)
         {
-            List<CV> listOfThreeRandomCV = new List<CV>();
-            var random = new Random();
             if(loggedIn == true)
             {
                 List<CV> listOfAllCv = db.cvs.Where(row => row.Name != null).ToList();
@@ -25,18 +23,7 @@ namespace Data.Repositories
                 }
                 else
                 {
-                    int i1 = random.Next(listOfAllCv.Count);
-                    int i2;
-                    int i3;
-                    do
-                    {
-                        i2 = random.Next(listOfAllCv.Count);
-                        i3 = random.Next(listOfAllCv.Count);
-                    } while (i2 == i1 || i2 == i3 || i3 == i1);
-                    listOfThreeRandomCV.Add(listOfAllCv[i1]);
-                    listOfThreeRandomCV.Add(listOfAllCv[i2]);
-                    listOfThreeRandomCV.Add(listOfAllCv[i3]);
-                    return listOfThreeRandomCV;
+                    return insertRandomCvs(listOfAllCv);
                 }
             }
             else
@@ -48,20 +35,27 @@ namespace Data.Repositories
                 }
                 else
                 {
-                    int i1 = random.Next(listOfAllPublicCv.Count);
-                    int i2;
-                    int i3;
-                    do
-                    {
-                        i2 = random.Next(listOfAllPublicCv.Count);
-                        i3 = random.Next(listOfAllPublicCv.Count);
-                    } while (i2 == i1 || i2 == i3 || i3 == i1);
-                    listOfThreeRandomCV.Add(listOfAllPublicCv[i1]);
-                    listOfThreeRandomCV.Add(listOfAllPublicCv[i2]);
-                    listOfThreeRandomCV.Add(listOfAllPublicCv[i3]);
-                    return listOfThreeRandomCV;
+                    return insertRandomCvs(listOfAllPublicCv);
                 }
             }
+        }
+
+        public List<CV> insertRandomCvs(List<CV> listOfCv)
+        {
+            var random = new Random();
+            List<CV> listOfThreeRandomCV = new List<CV>();
+            int i1 = random.Next(listOfCv.Count);
+            int i2;
+            int i3;
+            do
+            {
+                i2 = random.Next(listOfCv.Count);
+                i3 = random.Next(listOfCv.Count);
+            } while (i2 == i1 || i2 == i3 || i3 == i1);
+            listOfThreeRandomCV.Add(listOfCv[i1]);
+            listOfThreeRandomCV.Add(listOfCv[i2]);
+            listOfThreeRandomCV.Add(listOfCv[i3]);
+            return listOfThreeRandomCV;
         }
 
         //private readonly CvDBContext _context;

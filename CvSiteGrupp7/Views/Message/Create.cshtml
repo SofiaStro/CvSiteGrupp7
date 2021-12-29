@@ -6,7 +6,6 @@
 
 <h2>Skicka meddelande</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -70,7 +69,7 @@
         //$(document).ready(function () {
         //    $('#createMessage').click(function () {
         //        var message = $(this).model;
-        //        $.get('api/message/create/' + message, function () {
+        //        $.get('/api/message/create/' + message, function () {
         //            $("#messageText").html("Meddelandet har skickats");
 
         //        })

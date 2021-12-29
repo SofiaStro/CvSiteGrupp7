@@ -13,7 +13,6 @@ using System.Web.Http;
 
 namespace CvSiteGrupp7.Controllers
 {
-    //[RoutePrefix("api/message")]
     public class MessageApiController : ApiController
     {
         public MessageRepository messageRepository
@@ -23,8 +22,6 @@ namespace CvSiteGrupp7.Controllers
         MessageService messageService = new MessageService(System.Web.HttpContext.Current);
 
         [HttpGet]
-        //[Route("read")]
-
         [Route("api/message/read/{id}")]
         public IHttpActionResult setRead(int id) {
             try

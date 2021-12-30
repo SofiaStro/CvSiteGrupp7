@@ -2,14 +2,32 @@
 
 
 <table class="table">
-    @foreach (var item in Model.ListOfExperience)
+
+    <tr>
+        <th>
+            Namn
+        </th>
+        <th>
+            Beskrivning
+        </th>
+        <th>
+            Tillagt datum
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListOfProjects)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Ändra", "Edit", new { id = item.Id }) |
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedDate)
+            </td>
+            <td>
                 @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
             </td>
         </tr>

@@ -16,9 +16,10 @@ namespace Data.Repositories
         //{
         //    return db.educations.ToList();
         //}
-        public List<Education> GetListOfEducation(int cvId)
+        public List<Education> GetListOfEducations(int cvId)
         {
             return db.educations.Where(x => x.CvId == cvId).ToList();
         }
+
     }
 }

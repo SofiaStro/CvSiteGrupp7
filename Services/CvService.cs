@@ -14,6 +14,7 @@ namespace Services
     public class CvService
     {
         private CvDBContext db = new CvDBContext();
+        private ProjectRepository projectRepository = new ProjectRepository();
         private ExperienceRepository experienceRepository = new ExperienceRepository();
         private EducationRepository educationRepository = new EducationRepository();
         private CompetenceRepository competenceRepository = new CompetenceRepository();
@@ -89,9 +90,10 @@ namespace Services
                 Private = cv.Private,
                 ImagePath = cv.ImagePath,
                 UserName = cv.UserName,
-                ListOfExperience = experienceRepository.GetListOfExperience(cv.Id),
-                ListOfEducation = educationRepository.GetListOfEducation(cv.Id),
-                ListOfCompetence = competenceRepository.GetListOfCompetence(cv.Id)
+                ListOfProjects = projectRepository.GetListOfProjects(cv.UserName),
+                ListOfExperiences = experienceRepository.GetListOfExperiences(cv.Id),
+                ListOfEducations = educationRepository.GetListOfEducations(cv.Id),
+                ListOfCompetences = competenceRepository.GetListOfCompetence(cv.Id)
             };
             return newCvView;
         }

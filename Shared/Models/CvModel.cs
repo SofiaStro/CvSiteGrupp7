@@ -46,11 +46,11 @@ namespace Shared.Models
         [Required]
         [Display(Name = "Email")]
         public string UserName { get; set; }
-        //public List<Projects> ListOfProjects { get; set; }
-        public List<Education> ListOfEducation { get; set; }
-        public List<Competence> ListOfCompetence { get; set; }
+        public List<Project> ListOfProjects { get; set; }
+        public List<Education> ListOfEducations { get; set; }
+        public List<Competence> ListOfCompetences { get; set; }
         [Display(Name = "Erfarenheter")]
-        public List<Experience> ListOfExperience { get; set; }
+        public List<Experience> ListOfExperiences { get; set; }
     }
 
     //public class ListOfExperience

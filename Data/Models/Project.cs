@@ -9,7 +9,7 @@ namespace Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Projektnamn")]      
+        [Display(Name = "Projektnamn")]
         public string Name { get; set; }
         [Required]
         [Display(Name = "Beskrivning")]

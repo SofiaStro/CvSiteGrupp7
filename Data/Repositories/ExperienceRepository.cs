@@ -16,7 +16,7 @@ namespace Data.Repositories
         //{
         //    return db.experiences.ToList();
         //}
-        public List<Experience> GetListOfExperience(int cvId)
+        public List<Experience> GetListOfExperiences(int cvId)
         {
             return db.experiences.Where(x => x.CvId == cvId).ToList();
         }

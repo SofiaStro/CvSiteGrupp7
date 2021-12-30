@@ -31,8 +31,11 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @{ var imagePath = "/UploadedImages/" + item.ImagePath; }
-                <img src="@imagePath" style="max-width: 100px; max-height: 130px" />
+                @if (item.ImagePath != null)
+                {
+                    var imagePath = "/UploadedImages/" + item.ImagePath;
+                    <img src="@imagePath" style="max-width: 100px; max-height: 130px" />
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)

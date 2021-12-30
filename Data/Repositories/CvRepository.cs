@@ -16,8 +16,8 @@ namespace Data.Repositories
         {
             if(loggedIn == true)
             {
-                List<CV> listOfAllCv = db.cvs.Where(row => row.Name != null).ToList();
-                if (listOfAllCv.Count() < 3)
+                List<CV> listOfAllCv = db.cvs.ToList();
+                if (listOfAllCv.Count < 3)
                 {
                     return listOfAllCv;
                 }
@@ -28,7 +28,7 @@ namespace Data.Repositories
             }
             else
             {
-                List<CV> listOfAllPublicCv = db.cvs.Where(row => row.Private == false && row.Name != null).ToList();
+                List<CV> listOfAllPublicCv = db.cvs.Where(row => row.Private == false).ToList();
                 if(listOfAllPublicCv.Count < 3)
                 {
                     return listOfAllPublicCv;

@@ -19,10 +19,10 @@ namespace Services
         {
             var newProject = new Project()
             {
-                Name = projectModel.Name,
-                Description = projectModel.Description,
-                AddedDate = projectModel.AddedDate,
-                UserName = userName
+              Name = projectModel.Name,
+              Description = projectModel.Description,
+              AddedDate = projectModel.AddedDate,
+              UserName = userName
             };
             db.projects.Add(newProject);
             db.SaveChanges();
@@ -43,6 +43,20 @@ namespace Services
             Project project = db.projects.Find(id);
             db.projects.Remove(project);
             db.SaveChanges();
+        }
+
+        public bool ProjectNameExists(ProjectCreateModel projectModel)
+        {
+            var allProjectNames = db.projects.Select(row => row.Name).ToList();
+            bool doesNameExists = false;
+            foreach (var name in allProjectNames)
+            {
+                if (projectModel.Name.Equals(name))
+                {
+                    doesNameExists = true;
+                }
+            }
+            return doesNameExists;
         }
     }
 }

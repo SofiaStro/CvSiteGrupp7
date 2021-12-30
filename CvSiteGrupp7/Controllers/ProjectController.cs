@@ -45,9 +45,17 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                Project newProject = ProjectService.CreateProject(projectModel, User.Identity.Name);
-                UsersInProjectsService.CreateUserInProject(newProject.Id, User.Identity.GetUserId(), User.Identity.Name); 
-                return RedirectToAction("UserIndex");
+                if(ProjectService.ProjectNameExists(projectModel) == false)
+                {
+                    Project newProject = ProjectService.CreateProject(projectModel, User.Identity.Name);
+                    UsersInProjectsService.CreateUserInProject(newProject.Id, User.Identity.GetUserId(), User.Identity.Name);
+                    return RedirectToAction("UserIndex");
+                }
+                else
+                {
+                    ViewBag.Error = "Ett projekt med detta namn finns redan! Ange ett nytt.";
+                    return View();
+                }
             }
             catch
             { 

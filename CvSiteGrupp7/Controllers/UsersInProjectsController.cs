@@ -1,4 +1,6 @@
 ﻿using Data.Contexts;
+using Data.Models;
+using Microsoft.AspNet.Identity;
 using Services;
 using Shared.Models;
 using System;
@@ -38,23 +40,32 @@ namespace CvSiteGrupp7.Controllers
         public ActionResult Create()
         {
             ProjectDbContext projectDb = new ProjectDbContext();
-            ViewBag.Projects = new SelectList(projectDb.projects, "Id", "Name");
+            var projectsName = projectDb.projects.Select(m => m.Name).ToList();
+            ViewBag.Projects = new SelectList(projectsName);
             return View();
         }
 
-        // POST: UsersInProjects/Create
+        // POST: UsersInProjects/CreateS
         [HttpPost]
-        public ActionResult Create(UsersInProjectsModel model)
+        public ActionResult Create(string SelectedProjectName)
         {
             try
             {
-                CvDBContext cvDb = new CvDBContext();
-                var cv = cvDb.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
+                ProjectDbContext projectDb = new ProjectDbContext();
+
+                var userID = User.Identity.GetUserId();
+                var userName = User.Identity.Name;
+                var existingProject = projectDb.projects.Where(m => m.Name.Equals(SelectedProjectName)).FirstOrDefault();
+                //from p in projectDb.projects where p.Name.Equals(SelectedProjectName) select p.Id;
+                //
+                usersInProjectsService.CreateUserInProject(existingProject.Id, userID, userName);
+                //CvDBContext cvDb = new CvDBContext();
+                //var cv = cvDb.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
                 //educationService.CreateEducation(model, cv.Id);
                 //usersInProjectsService.CreateUserInProject()
 
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Cv");
             }
             catch
             {

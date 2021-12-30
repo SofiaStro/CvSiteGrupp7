@@ -1,4 +1,4 @@
-﻿@model Shared.Models.UsersInProjectsModel
+﻿@model Data.Models.Project
 
 @{
     ViewBag.Title = "Create";
@@ -40,11 +40,11 @@
     </div>*@
 
     <div class="form-group">
-        @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("Projects", "Välj projekt")
-            @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            @Html.DropDownList("SelectedProjectName", (SelectList)ViewBag.Projects, "Välj projekt")
+            @*@Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })*@
         </div>
     </div>
 

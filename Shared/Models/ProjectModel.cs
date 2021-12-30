@@ -5,6 +5,7 @@ namespace Shared.Models
 {
     public class ProjectCreateModel
     {
+        [Key]
         [Required]
         [Display(Name = "Projektnamn")]
         public string Name { get; set; }

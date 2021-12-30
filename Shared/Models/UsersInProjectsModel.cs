@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,4 +15,11 @@ namespace Shared.Models
         public int ProjectId { get; set; }
         public string UserId { get; set; }
     }
+
+    //public class CreateUsresInProjectsView
+    //{
+    //    [Key]
+    //    [Required]
+    //    public string ProjectName { get; set; }
+    //}
 }

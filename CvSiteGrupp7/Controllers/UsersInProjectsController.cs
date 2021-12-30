@@ -40,30 +40,35 @@ namespace CvSiteGrupp7.Controllers
         public ActionResult Create()
         {
             ProjectDbContext projectDb = new ProjectDbContext();
-            var projectsName = projectDb.projects.Select(m => m.Name).ToList();
-            ViewBag.Projects = new SelectList(projectsName);
+            
+            var allProjects = projectDb.projects.ToList();
+            var allInvolvedProjects = db.usersInProjects.Where(m => m.UserName.Equals(User.Identity.Name)).ToList();
+
+            var allProjectsID = allProjects.Select(m => m.Id).ToList();
+            var allInvolvedProjectsID = allInvolvedProjects.Select(m => m.ProjectId).ToList();
+
+            var allExcepts = allProjectsID.Except(allInvolvedProjectsID).ToList();
+
+            List<Project> listOfNotInvolvedProjects = new List<Project>();
+
+            foreach (var id in allExcepts)
+            {
+                var project = allProjects.Where(m => m.Id == id).FirstOrDefault();
+                listOfNotInvolvedProjects.Add(project);
+            }
+
+            ViewBag.Projects = new SelectList(listOfNotInvolvedProjects, "Id", "Name");
+
             return View();
         }
 
         // POST: UsersInProjects/CreateS
         [HttpPost]
-        public ActionResult Create(string SelectedProjectName)
+        public ActionResult Create(string SelectedProjectId)
         {
             try
-            {
-                ProjectDbContext projectDb = new ProjectDbContext();
-
-                var userID = User.Identity.GetUserId();
-                var userName = User.Identity.Name;
-                var existingProject = projectDb.projects.Where(m => m.Name.Equals(SelectedProjectName)).FirstOrDefault();
-                //from p in projectDb.projects where p.Name.Equals(SelectedProjectName) select p.Id;
-                //
-                usersInProjectsService.CreateUserInProject(existingProject.Id, userID, userName);
-                //CvDBContext cvDb = new CvDBContext();
-                //var cv = cvDb.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
-                //educationService.CreateEducation(model, cv.Id);
-                //usersInProjectsService.CreateUserInProject()
-
+            { 
+                usersInProjectsService.CreateUserInProject(Int32.Parse(SelectedProjectId), User.Identity.GetUserId(), User.Identity.Name);
 
                 return RedirectToAction("Index", "Cv");
             }

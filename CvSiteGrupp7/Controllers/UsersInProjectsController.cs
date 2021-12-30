@@ -78,43 +78,44 @@ namespace CvSiteGrupp7.Controllers
             }
         }
 
-        // GET: UsersInProjects/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //// GET: UsersInProjects/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: UsersInProjects/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //// POST: UsersInProjects/Edit/5
+        //[HttpPost]
+        //public ActionResult Edit(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: UsersInProjects/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var newView = usersInProjectsService.GetDelecteUsersInProjectsView(id);
+            return View(newView);
         }
 
         // POST: UsersInProjects/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Project model)
         {
             try
             {
-                // TODO: Add delete logic here
+                usersInProjectsService.DeleteUsersInProjects(model.Id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Cv");
             }
             catch
             {

@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.AddedDate)
             </td>
             <td>
-                @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
+                @Html.ActionLink("Ta bort", "Delete", "UsersInProjects", new { id = item.Id }, null)
             </td>
         </tr>
     }

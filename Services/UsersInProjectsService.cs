@@ -1,5 +1,6 @@
 ﻿using Data.Contexts;
 using Data.Models;
+using Shared.Models;
 using System.Linq;
 using System.Web;
 
@@ -63,5 +64,19 @@ namespace Services
         //    }
 
         //}
+
+        public DelecteUsersInProjectsView GetDelecteUsersInProjectsView(int id)
+        {
+            ProjectDbContext projectDbContext = new ProjectDbContext();
+            var project = projectDbContext.projects.Find(id);
+            var newView = new DelecteUsersInProjectsView
+            {
+                Id = project.Id,
+                Name = project.Name,
+                Description = project.Description,
+                AddedDate = project.AddedDate
+            };
+            return newView;
+        }
     }
 }

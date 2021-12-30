@@ -16,10 +16,16 @@ namespace Shared.Models
         public string UserId { get; set; }
     }
 
-    //public class CreateUsresInProjectsView
-    //{
-    //    [Key]
-    //    [Required]
-    //    public string ProjectName { get; set; }
-    //}
+    public class DelecteUsersInProjectsView
+    {
+        [Key]
+        public int Id { get; set; }
+        [Display(Name = "Projektnamn")]
+        public string Name { get; set; }
+        [Display(Name = "Beskrivning")]
+        public string Description { get; set; }
+        [Display(Name = "Datum")]
+        [DataType(DataType.Date)]
+        public DateTime AddedDate { get; set; }
+    }
 }

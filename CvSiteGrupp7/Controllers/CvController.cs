@@ -37,6 +37,13 @@ namespace CvSiteGrupp7.Controllers
             return View(showCv);
         }
 
+        public ActionResult ShowCvIndex(int id)
+        {
+            var cv = db.cvs.Find(id);
+            var showCv = cvService.GetCvIndexVeiw(cv.Id);
+            return View(showCv);
+        }
+
         public ActionResult SearchIndex(string searchString)
         { 
             var cvs = from c in db.cvs select c;

@@ -1,0 +1,105 @@
+﻿@model Shared.Models.CvIndexView
+
+@{
+    ViewBag.Title = "ShowCvIndex";
+}
+
+<h2>ShowCvIndex</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name) </p>
+        <p>@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(model => model.Address)</p>
+    </div>
+
+    <div class="col-md-4">
+        @{ var imagepath = "/UploadedImages/" + @Model.ImagePath; }
+        <img src="@imagepath" alt="Lägg till bild" style="width: 100px; height: 130px;" />
+    </div>
+
+    <div class="col-md-4">
+        <h2>Skicka meddelande</h2>
+        <p>@Html.ActionLink("Skicka", "Create", "Message")</p>
+    </div>
+</div>
+
+<br />
+
+<h2>Mina projekt</h2>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>Namn</th>
+            <th>Beskrivning</th>
+            <th>Tillagt datum</th>
+        </tr>
+
+        @foreach (var item in Model.ListOfProjects)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedDate)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<br />
+
+<h2>Mina erfarenheten</h2>
+
+<div>
+    <table class="table">
+        @foreach (var item in Model.ListOfExperiences)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<br />
+
+<h2>Mina utbildningar</h2>
+
+<div>
+    <table class="table">
+        @foreach (var item in Model.ListOfEducations)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<br />
+
+<h2>Mina övriga kompetenser</h2>
+
+<div>
+    <table class="table">
+        @foreach (var item in Model.ListOfCompetences)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

@@ -19,13 +19,13 @@
 }
 <div class="row">
     @Html.Partial("_CV")
-    <div class="col-md-4">
+    @*<div class="col-md-4">
         <h2>Skicka meddelande</h2>
         <p>@Html.ActionLink("Skicka", "Create", "Message")</p>
-    </div>
+    </div>*@
 </div>
 @section scripts{
-    <script>
+    @*<script>
         $(document).ready(function () {
             setInterval(function () {
                 var count;
@@ -35,5 +35,5 @@
                 })
             }, 3000);
         })
-    </script>
+    </script>*@
 }

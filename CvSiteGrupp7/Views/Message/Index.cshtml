@@ -97,22 +97,17 @@
             {
                 $.get('/api/message/countmessages/', function (result) {
                     count = result;
-                    console.log('hej');
                     $("#resultCount").html("(Olästa:" + count + ")");
                 })
             }
 
             $(document).ready(function startSetInterval() {
                 setInterval(function unreadmessages() {
-                    console.log('hej det fungerar');
                     unreadMessages();
                     return unreadMessages;
                 }(), 2000);
             })
 
-        </script>
-
-
-
+     </script>
 
 }

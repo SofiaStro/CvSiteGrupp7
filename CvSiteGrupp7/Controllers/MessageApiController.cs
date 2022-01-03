@@ -63,7 +63,6 @@ namespace CvSiteGrupp7.Controllers
         }
 
 
-        //Använda för att sätta siffran till notiser??
         [HttpGet]
         [Route("countmessages")]
         public int CountUnreadMessages()

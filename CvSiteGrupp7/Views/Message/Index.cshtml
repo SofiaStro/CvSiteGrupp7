@@ -31,10 +31,13 @@
         {
             <tr>
                 <td>
-                    @if(item.Read == true){
-                    <input type="checkbox" data-id="@item.Id" checked />
-                           } else {
-                    <input type="checkbox" data-id="@item.Id" />
+                    @if (item.Read == true)
+                    {
+                        <input type="checkbox" data-id="@item.Id" checked />
+                    }
+                    else
+                    {
+                        <input type="checkbox" data-id="@item.Id" />
                     }
                 </td>
                 <td>
@@ -77,17 +80,38 @@
             });
         });
     </script>
+    @*<script>
+            $(document).ready(function () {
+                setInterval(function () {
+                    var count;
+                    $.get('/api/message/countmessages/', function (result) {
+                        count = result;
+                        console.log('hej')
+                        $("#resultCount").html("(Olästa:" + count + ")");
+                    })
+                }, 1000);
+            })
+        </script>*@
     <script>
-        $(document).ready(function () {
-            setInterval(function () {
-                var count;
+            function unreadMessages()
+            {
                 $.get('/api/message/countmessages/', function (result) {
                     count = result;
+                    console.log('hej');
                     $("#resultCount").html("(Olästa:" + count + ")");
                 })
-            }, 3000);
-        })
-    </script>
+            }
+
+            $(document).ready(function startSetInterval() {
+                setInterval(function unreadmessages() {
+                    console.log('hej det fungerar');
+                    unreadMessages();
+                    return unreadMessages;
+                }(), 2000);
+            })
+
+        </script>
+
 
 
 

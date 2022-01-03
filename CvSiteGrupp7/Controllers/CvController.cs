@@ -30,6 +30,7 @@ namespace CvSiteGrupp7.Controllers
         //    return View(cv);
         //}
 
+        [Authorize]
         public ActionResult Index()
         {
             var cv = db.cvs.Where(row => row.UserName == User.Identity.Name).FirstOrDefault();
@@ -68,11 +69,11 @@ namespace CvSiteGrupp7.Controllers
             return View(cvs);
         }
 
-        // GET: Cv/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //// GET: Cv/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         public void Create(string userName)
         {
@@ -82,6 +83,7 @@ namespace CvSiteGrupp7.Controllers
         }
 
         //GET: Cv/Edit/5
+        [Authorize]
         public ActionResult EditInfo(int id)
         {
             //CV cv = db.cvs.Find(id);
@@ -100,6 +102,7 @@ namespace CvSiteGrupp7.Controllers
 
         // POST: Cv/Edit/5
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult EditInfo(CvEditInfoView cv)
         {
@@ -118,7 +121,8 @@ namespace CvSiteGrupp7.Controllers
                 return View();
             }
         }
-        
+
+        [Authorize]
         public ActionResult EditImg(int id)
         { 
             //CV cv = db.cvs.Find(id);
@@ -133,7 +137,9 @@ namespace CvSiteGrupp7.Controllers
             var newCvView = cvService.GetEditImgView(id);
             return View(newCvView);
         }
+
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult EditImg(CvEditImgView model)
         {

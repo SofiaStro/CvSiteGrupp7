@@ -13,6 +13,7 @@ using System.Web.Http;
 
 namespace CvSiteGrupp7.Controllers
 {
+    [RoutePrefix("api/message")]
     public class MessageApiController : ApiController
     {
         public MessageRepository messageRepository
@@ -22,7 +23,7 @@ namespace CvSiteGrupp7.Controllers
         MessageService messageService = new MessageService(System.Web.HttpContext.Current);
 
         [HttpGet]
-        [Route("api/message/read/{id}")]
+        [Route("read/{id}")]
         public IHttpActionResult setRead(int id) {
             try
             {
@@ -41,7 +42,7 @@ namespace CvSiteGrupp7.Controllers
         }
 
         [HttpGet]
-        [Route("api/message/unread/{id}")]
+        [Route("unread/{id}")]
         public IHttpActionResult setUnRead(int id)
         {
             try
@@ -64,7 +65,7 @@ namespace CvSiteGrupp7.Controllers
 
         //Använda för att sätta siffran till notiser??
         [HttpGet]
-        [Route("api/message/countmessages")]
+        [Route("countmessages")]
         public int CountUnreadMessages()
         {
             int count = messageRepository.UnreadMessages();
@@ -73,7 +74,7 @@ namespace CvSiteGrupp7.Controllers
 
 
         [HttpPost]
-        [Route("api/message/create")]
+        [Route("create")]
         public IHttpActionResult CreateMessage(MessageModel model)
         {
             var sender = "";

@@ -13,10 +13,12 @@ namespace Services
       
         public class MessageService
         {
+        //Används inte just nu
             private readonly HttpContext _httpcontext;
              private MessageDbContext db = new MessageDbContext();
             public MessageService(HttpContext httpContext)
             {
+            //Används inte heller?
                 _httpcontext = httpContext;
             }
 

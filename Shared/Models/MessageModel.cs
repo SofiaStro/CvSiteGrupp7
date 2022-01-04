@@ -16,6 +16,7 @@ namespace Shared.Models
         [Required]
         public string Content { get; set; }
         public bool Read { get; set; }
+        [Display(Name = "Mottagare")]
         public string UserName{ get; set; }
     }
 }

@@ -38,9 +38,9 @@ namespace Data.Repositories
             return true;
         }
 
-        public int UnreadMessages()
+        public int UnreadMessages(string UserName)
         {
-            var list = _context.messages.Where(x => x.Read == false).ToList();
+            var list = _context.messages.Where(x => x.Read == false &&  x.UserName == UserName).ToList();
             return list.Count;
         }
 

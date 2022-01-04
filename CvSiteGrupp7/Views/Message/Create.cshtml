@@ -69,16 +69,17 @@
     <script>
         $('#createMessage').click(function () {
             var data = $('#MessageForm').serialize();
-            if (!window.confirm('Vill du skicka ett meddelande ?' + data)) return;
+/*            if (!window.confirm('Vill du skicka ett meddelande ?' + data)) return;*/
             $.ajax({
                 url: '/api/message/create',
                 method: 'POST',
                 data: data,
                 success: function () {
+                    window.alert('Ditt meddelande har skíckats!');
                     window.location.reload();
                 },
                 error: function () {
-                    window.alert('Kunde inte skicka meddelandet' + data);
+                    window.alert('Kunde inte skicka meddelandet');
                 }
             });
         })

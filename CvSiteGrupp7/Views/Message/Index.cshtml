@@ -20,9 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Content)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
         <th></th>
     </tr>
     @foreach (var item in Model)
@@ -50,9 +47,6 @@
                     @Html.DisplayFor(modelItem => item.Content)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
                     @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
                 </td>
             </tr>
@@ -62,7 +56,6 @@
 
 
 </table>
-<div id="result" style="background: yellow;"></div>
 
 @section scripts{
     <script>
@@ -70,11 +63,9 @@
             $('input[type="checkbox"]').click(function () {
                 var messageId = $(this).data('id');
                 if ($(this).is(":checked")) {
-                    $("#result").html("Checkbox is checked." + messageId);
                     $.get('/api/message/read/' + messageId)
                 }
                 else if ($(this).is(":not(:checked)")) {
-                    $("#result").html("Checkbox is unchecked.");
                     $.get('/api/message/unread/' + messageId)
                 }
             });

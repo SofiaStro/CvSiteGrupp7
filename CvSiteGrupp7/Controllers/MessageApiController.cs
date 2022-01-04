@@ -67,8 +67,11 @@ namespace CvSiteGrupp7.Controllers
         [Route("countmessages")]
         public int CountUnreadMessages()
         {
-            int count = messageRepository.UnreadMessages();
-            return count;
+            string userName = User.Identity.Name;
+          
+                int count = messageRepository.UnreadMessages(userName);
+                return count;
+            
         }
 
 

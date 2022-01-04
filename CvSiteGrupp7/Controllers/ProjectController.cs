@@ -16,6 +16,7 @@ namespace CvSiteGrupp7.Controllers
         private UsersInProjectsService UsersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
 
         // GET: Project
+        [Authorize]
         public ActionResult UserIndex()
         {
             var projects = db.projects.Where(row => row.UserName == User.Identity.Name);
@@ -34,12 +35,14 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Project/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Project/Create
+        [Authorize]
         [HttpPost]
         public ActionResult Create(ProjectCreateModel projectModel)
         {
@@ -64,6 +67,7 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Project/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +83,7 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // POST: Project/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Project project)
@@ -95,6 +100,7 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Project/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,6 +117,7 @@ namespace CvSiteGrupp7.Controllers
 
 
         // POST: Project/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)

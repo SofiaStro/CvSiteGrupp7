@@ -52,5 +52,16 @@
 </table>
 
 <div>
-    @Html.ActionLink("Tillbaka till projekt", null, null, null, new { href = Request.UrlReferrer })
+    @{ 
+        var lastUrl = Request.UrlReferrer.ToString();
+        if (lastUrl.Contains("MainIndex"))
+        {
+            @Html.ActionLink("Tillbaka till projekt", "MainIndex", "Project")
+        }
+        if (lastUrl.Contains("UserIndex"))
+        {
+            @Html.ActionLink("Tillbaka till projekt", "UserIndex", "Project")
+        }
+    }
+    @*@Html.ActionLink("Tillbaka till projekt", null, null, null, new { href = Request.UrlReferrer })*@
 </div>

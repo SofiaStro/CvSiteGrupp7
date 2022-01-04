@@ -19,7 +19,7 @@
 
     <div class="col-md-4">
         <h2>Skicka meddelande</h2>
-        <p>@Html.ActionLink("Skicka", "Create", "Message")</p>
+        <p>@Html.ActionLink("Skicka", "Create", "Message", new { userName = Model.UserName }, null)</p>
     </div>
 </div>
 

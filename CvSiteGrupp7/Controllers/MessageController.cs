@@ -15,6 +15,8 @@ namespace CvSiteGrupp7.Controllers
     public class MessageController : Controller
     {
         private MessageDbContext db = new MessageDbContext();
+        private CvDBContext cvdb = new CvDBContext();
+        private CvService cvService = new CvService(System.Web.HttpContext.Current);
 
         // GET: Message/Index
         public ActionResult Index()
@@ -31,9 +33,11 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Message/Create
-        public ActionResult Create()
+        public ActionResult Create(string userName)
         {
-            return View();
+            var model = new MessageModel();
+            model.UserName = userName;
+            return View(model);
         }
 
     

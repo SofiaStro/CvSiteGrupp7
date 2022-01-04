@@ -40,9 +40,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-</body>
-</html>
-@section scripts{
+    @* Lägg till IF-sats för om personen är inloggad *@
     <script>
         setInterval(function () {
             console.log('hej');
@@ -55,8 +53,12 @@
                 error: function () {
                     window.alert('error');
                 }
-                });
-            }, 2000);
+            });
+        }, 2000);
 
     </script>
+</body>
+</html>
+@section scripts{
+   
 }

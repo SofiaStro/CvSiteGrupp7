@@ -134,6 +134,7 @@ namespace CvSiteGrupp7.Controllers
             //{
             //    return HttpNotFound();
             //}
+
             var newCvView = cvService.GetEditImgView(id);
             return View(newCvView);
         }
@@ -150,8 +151,17 @@ namespace CvSiteGrupp7.Controllers
                 //{
                 //    return HttpNotFound();
                 //}
-                cvService.UpdateImg(model);
-                return RedirectToAction("Index");
+                
+                if (model.Image != null) { 
+                    cvService.UpdateImg(model);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Vänligen välj en ny bild.";
+                    var newCvView = cvService.GetEditImgView(model.Id);
+                    return View(newCvView);
+                }
             }
             catch
             {

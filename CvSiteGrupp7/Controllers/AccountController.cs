@@ -155,9 +155,6 @@ namespace CvSiteGrupp7.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
-                var cvController = new CvController();
-                cvController.Create(model.Email);
-
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -168,7 +165,8 @@ namespace CvSiteGrupp7.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    var cvController = new CvController();
+                    cvController.Create(model.Email);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -449,6 +447,22 @@ namespace CvSiteGrupp7.Controllers
                 if(error.EndsWith("is already taken."))
                 {
                     errorMessage = "E-postadress finns redan.";
+                }
+                if(error.EndsWith("letter or digit character."))
+                {
+                    errorMessage = "Lösenordet måste innehålla minst ett specialtecken.";
+                }
+                if (error.EndsWith("('0'-'9')."))
+                {
+                    errorMessage = "Lösenordet måste innehålla minst en siffra (0-9).";
+                }
+                if (error.EndsWith("('A'-'Z')."))
+                {
+                    errorMessage = "Lösenordet måste innehålla minst en stor bokstav (A-Z).";
+                }
+                if (error.EndsWith("('a'-'z')."))
+                {
+                    errorMessage = "Lösenordet måste innehålla minst en liten bokstav (a-z).";
                 }
                 ModelState.AddModelError("", errorMessage);
             }

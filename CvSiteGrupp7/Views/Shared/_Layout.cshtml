@@ -42,3 +42,21 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+@section scripts{
+    <script>
+        setInterval(function () {
+            console.log('hej');
+            $.ajax({
+                url: '/api/message/countmessages',
+                method: 'GET',
+                success: function (result) {
+                    $("#resultCount").html("(Olästa:" + result + ")");
+                },
+                error: function () {
+                    window.alert('error');
+                }
+                });
+            }, 2000);
+
+    </script>
+}

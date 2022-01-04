@@ -5,35 +5,40 @@
 }
 
 @{ if (Model.ProjectName != null)
-   {
+    {
         <div>
             @Html.Partial("_NewestProject")
         </div>
-   }
-   else
-   {
+    }
+    else
+    {
         <div class="jumbotron">
             <h1>INGA PROJEKT FINNS</h1>
         </div>
-   }
+    }
 }
 <div class="row">
     @Html.Partial("_CV")
     @*<div class="col-md-4">
-        <h2>Skicka meddelande</h2>
-        <p>@Html.ActionLink("Skicka", "Create", "Message")</p>
-    </div>*@
+            <h2>Skicka meddelande</h2>
+            <p>@Html.ActionLink("Skicka", "Create", "Message")</p>
+        </div>*@
 </div>
 @section scripts{
-    @*<script>
-        $(document).ready(function () {
-            setInterval(function () {
-                var count;
-                $.get('/api/message/countmessages/', function (result) {
-                    count = result;
-                    $("#resultCount").html("(Olästa:" + count + ")");
-                })
-            }, 3000);
-        })
-    </script>*@
+    <script>
+        setInterval(function () {
+            console.log('hej');
+            $.ajax({
+                url: '/api/message/countmessages',
+                method: 'GET',
+                success: function (result) {
+                    $("#resultCount").html("(Olästa:" + result + ")");
+                },
+                error: function () {
+                    window.alert('error');
+                }
+            });
+        }, 2000);
+
+    </script>
 }

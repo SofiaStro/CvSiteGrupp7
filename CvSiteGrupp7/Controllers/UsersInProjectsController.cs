@@ -30,13 +30,14 @@ namespace CvSiteGrupp7.Controllers
             return View(allCvsInProject);
         }
 
-        // GET: UsersInProjects/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //// GET: UsersInProjects/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         // GET: UsersInProjects/Create
+        [Authorize]
         public ActionResult Create()
         {
             ProjectDbContext projectDb = new ProjectDbContext();
@@ -64,13 +65,21 @@ namespace CvSiteGrupp7.Controllers
 
         // POST: UsersInProjects/CreateS
         [HttpPost]
+        [Authorize]
         public ActionResult Create(string SelectedProjectId)
         {
             try
             { 
-                usersInProjectsService.CreateUserInProject(Int32.Parse(SelectedProjectId), User.Identity.GetUserId(), User.Identity.Name);
+                if(!SelectedProjectId.Equals("")) { 
+                    usersInProjectsService.CreateUserInProject(Int32.Parse(SelectedProjectId), User.Identity.GetUserId(), User.Identity.Name);
 
-                return RedirectToAction("Index", "Cv");
+                    return RedirectToAction("Index", "Cv");
+                }
+                else
+                {
+                    ViewBag.Error = "Vänligen välj ett projekt att ansluta till.";
+                    return Create();
+                }
             }
             catch
             {
@@ -101,6 +110,7 @@ namespace CvSiteGrupp7.Controllers
         //}
 
         // GET: UsersInProjects/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             var newView = usersInProjectsService.GetDelecteUsersInProjectsView(id);
@@ -109,6 +119,7 @@ namespace CvSiteGrupp7.Controllers
 
         // POST: UsersInProjects/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(Project model)
         {
             try

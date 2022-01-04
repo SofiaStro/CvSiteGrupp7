@@ -6,6 +6,10 @@
 
 <h2>Uppdatera bild</h2>
 
+@if(ViewBag.Error != null)
+    {
+        <p style="color:red">@ViewBag.Error</p>
+    }
 
 @using (Html.BeginForm("EditImg", "Cv", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -26,7 +30,7 @@
         </div>
 
         <br />
-        
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="file" name="Image" value="Välj bild" accept="image/*" />

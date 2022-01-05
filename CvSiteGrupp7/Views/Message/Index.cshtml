@@ -24,7 +24,7 @@
     </tr>
     @foreach (var item in Model)
     {
-        if (item.UserName == User.Identity.Name)
+        if (item.Receiver == User.Identity.Name)
         {
             <tr>
                 <td>

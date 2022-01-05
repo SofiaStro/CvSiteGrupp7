@@ -34,7 +34,7 @@ namespace Services
                         SendDate = DateTime.Now,
                         Read = model.Read,
                         Content = model.Content,
-                        UserName = model.UserName
+                        Receiver = model.Receiver
                     };
 
 

@@ -30,3 +30,6 @@ textarea {
 .imgSize {
    width: 100px; height: 130px;
 }
+.errorMsg {
+    color: red;
+}

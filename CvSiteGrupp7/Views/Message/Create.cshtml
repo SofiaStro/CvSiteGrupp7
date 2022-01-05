@@ -15,11 +15,11 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-group">
-        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Receiver, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DisplayFor(model => model.UserName)
-            @Html.HiddenFor(model => model.UserName)
-            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            @Html.DisplayFor(model => model.Receiver)
+            @Html.HiddenFor(model => model.Receiver)
+            @Html.ValidationMessageFor(model => model.Receiver, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -76,9 +76,10 @@
                 success: function () {
                     alert('Ditt meddelande har skickats!');
                     window.location.reload();
-                },
+                }
+                ,
                 error: function () {
-                    window.alert('Kunde inte skicka meddelandet');
+                    window.alert('Kunde inte skicka meddelandet, kolla så att du har fyllt i alla fält!');
                 }
             });
         })

@@ -32,10 +32,10 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Message/Create
-        public ActionResult Create(string userName)
+        public ActionResult Create(string receiver)
         {
             var model = new MessageModel();
-            model.UserName = userName;
+            model.Receiver = receiver;
             return View(model);
         }
 

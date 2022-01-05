@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Shared.Models
 {
@@ -16,11 +11,4 @@ namespace Shared.Models
         [Required]
         public int CvId { get; set; }
     }
-    //public class EditExperienceView
-    //{
-    //    public int Id { get; set; }
-    //    [Required]
-    //    [Display(Name = "Erfarenhet")]
-    //    public string Name { get; set; }
-    //}
 }

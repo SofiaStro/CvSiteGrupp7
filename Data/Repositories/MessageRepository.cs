@@ -13,13 +13,7 @@ namespace Data.Repositories
         {
             _context = context;
         }
-        public MessageRepository()
-        { }
-        public List<Message> GetAllMessages()
-        {
-            return _context.messages
-                .ToList();
-        }
+
         public bool SetRead(int id)
         {
             var message = _context.messages.FirstOrDefault(x => x.Id == id);

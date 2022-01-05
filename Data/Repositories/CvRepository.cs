@@ -2,10 +2,7 @@
 using Data.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
@@ -40,11 +37,13 @@ namespace Data.Repositories
             }
         }
 
+        //Metoden returnerar en lista med tre random genereade CV:n
         public List<CV> insertRandomCvs(List<CV> listOfCv)
         {
             var random = new Random();
             List<CV> listOfThreeRandomCV = new List<CV>();
-            int i1 = random.Next(listOfCv.Count);
+            //Generar ett random nummer som inte får vara större än antalet element i inkommande lista.
+            int i1 = random.Next(listOfCv.Count); 
             int i2;
             int i3;
             do
@@ -57,33 +56,5 @@ namespace Data.Repositories
             listOfThreeRandomCV.Add(listOfCv[i3]);
             return listOfThreeRandomCV;
         }
-
-        //private readonly CvDBContext _context;
-
-        //public CvRepository(CvDBContext context)
-        //{
-        //    _context = context;
-        //}
-
-        //public CV GetCv(int id)
-        //{
-        //    return _context.cvs.FirstOrDefault(x => x.Id == id);
-        //}
-
-        //public CV SaveCv(CV cv)
-        //{
-        //    if (cv.Id != 0)
-        //    {
-        //        _context.Entry(cv).State = EntityState.Modified;
-        //    }
-        //    else
-        //    {
-        //        _context.cvs.Add(cv);
-        //    }
-
-        //    _context.SaveChanges();
-        //    return cv;
-
-        //}
     }
 }

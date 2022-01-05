@@ -15,12 +15,6 @@ namespace Data.Contexts
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        //public virtual ICollection<Project> InvolvedInProject { get; set; }
-        //[ForeignKey("CV")]
-        //public int CVID { get; set; }
-        //public virtual CV MyCV{ get; set; }
-
-        //public virtual ICollection<Message> Messages { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -36,12 +30,6 @@ namespace Data.Contexts
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
-        //public DbSet<Project> projects { get; set; }
-
-        //public DbSet<Message> messages { get; set; }
-
-        //public DbSet<CV> cvs { get; set; }
 
         public static ApplicationDbContext Create()
         {

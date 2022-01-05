@@ -5,8 +5,8 @@
 }
 
 <h2>Skicka meddelande</h2>
-@* Kommentera *@
-
+@* Används för att Formen ska kunna tilldelas ett ID, samt kunna serilaiseras 
+    och skickas vidare till MessageApiController genom JQUERY/AJAX*@
 @using (Html.BeginForm(null, null, new { @id = string.Empty }, FormMethod.Post, new { @id = "MessageForm" }))
 {
     @Html.AntiForgeryToken()

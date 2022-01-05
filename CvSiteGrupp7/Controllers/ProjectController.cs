@@ -12,8 +12,8 @@ namespace CvSiteGrupp7.Controllers
     public class ProjectController : Controller
     {
         private ProjectDbContext db = new ProjectDbContext();
-        private ProjectService ProjectService = new ProjectService(System.Web.HttpContext.Current);
-        private UsersInProjectsService UsersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
+        private ProjectService ProjectService = new ProjectService();
+        private UsersInProjectsService UsersInProjectsService = new UsersInProjectsService();
 
         // GET: Project/UserIndex
         [Authorize]

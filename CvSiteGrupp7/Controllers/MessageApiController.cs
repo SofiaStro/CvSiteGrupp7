@@ -12,7 +12,7 @@ namespace CvSiteGrupp7.Controllers
     [RoutePrefix("api/message")]
     public class MessageApiController : ApiController
     { 
-        MessageService messageService = new MessageService(System.Web.HttpContext.Current);
+        MessageService messageService = new MessageService();
         public MessageRepository messageRepository
         {
             get { return new MessageRepository(Request.GetOwinContext().Get<MessageDbContext>()); }

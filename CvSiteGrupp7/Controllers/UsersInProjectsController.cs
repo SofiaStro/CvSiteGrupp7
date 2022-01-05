@@ -12,7 +12,7 @@ namespace CvSiteGrupp7.Controllers
     public class UsersInProjectsController : Controller
     {
         private UsersInProjectsDbContext db = new UsersInProjectsDbContext();
-        private UsersInProjectsService usersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
+        private UsersInProjectsService usersInProjectsService = new UsersInProjectsService();
         private CvService cvService = new CvService(System.Web.HttpContext.Current);
 
         // GET: UsersInProjects/Index/5

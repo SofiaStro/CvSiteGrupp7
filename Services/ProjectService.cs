@@ -1,22 +1,13 @@
 ﻿using Data.Contexts;
 using Data.Models;
-using Data.Repositories;
 using Shared.Models;
 using System.Linq;
-using System.Web;
 
 namespace Services
 {
     public class ProjectService
     {
         private ProjectDbContext db = new ProjectDbContext();
-        private ProjectRepository projectRepository = new ProjectRepository();
-        private readonly HttpContext _httpcontext;
-        public ProjectService(HttpContext httpcontext)
-        {
-            _httpcontext = httpcontext;
-        }
-
         public Project CreateProject(ProjectCreateModel projectModel, string userName)
         {
             var newProject = new Project()

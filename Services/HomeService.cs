@@ -9,12 +9,7 @@ namespace Services
     {
         private CvRepository cvRepository = new CvRepository();
         private ProjectRepository projectRepository = new ProjectRepository();
-        private readonly HttpContext _httpcontext;
 
-        public HomeService(HttpContext httpcontext)
-        {
-            _httpcontext = httpcontext;
-        }
         public HomeViewModel GetHomeViewModel(bool loggedIn)
         {
             Project newestProject = projectRepository.GetNewestProject();

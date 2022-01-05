@@ -49,12 +49,31 @@ namespace Services
 
         public bool ProjectNameExists(ProjectCreateModel projectModel)
         {
-            return projectRepository.ProjectNameExists(projectModel.Name);
+            var allProjectNames = db.projects.Select(row => row.Name).ToList();
+            bool doesNameExists = false;
+            foreach (var name in allProjectNames)
+            {
+                if (projectModel.Name.Equals(name))
+                {
+                    doesNameExists = true;
+                }
+            }
+            return doesNameExists;
         }
 
-        public bool ProjectNameExists(Project project)
+        public bool ProjectNameExistsDifferentId(Project project)
         {
-            return projectRepository.ProjectNameExists(project.Name);
+            var allProjectsWithDifferentId = db.projects.Where(row => row.Id != project.Id).ToList();
+            var allProjectNames = allProjectsWithDifferentId.Select(row => row.Name).ToList();
+            bool doesNameExists = false;
+            foreach (var name in allProjectNames)
+            {
+                if (project.Name.Equals(name))
+                {
+                    doesNameExists = true;
+                }
+            }
+            return doesNameExists;
         }
     }
 }

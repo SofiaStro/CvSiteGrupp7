@@ -27,21 +27,5 @@ namespace Data.Repositories
             }
             return listOfProjects;
         }
-
-        public bool ProjectNameExists(string newName)
-        {
-            var allProjectNames = db.projects.Select(row => row.Name).ToList();
-            bool doesNameExists = false;
-            foreach (var name in allProjectNames)
-            {
-                if (newName.Equals(name))
-                {
-                    doesNameExists = true;
-                }
-            }
-            return doesNameExists;
-        }
-
-
     }
 }

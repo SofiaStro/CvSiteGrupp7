@@ -90,7 +90,7 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                if (ProjectService.ProjectNameExists(project) == false)
+                if (ProjectService.ProjectNameExistsDifferentId(project) == false)
                 {
                     ProjectService.EditProject(project);
                     return RedirectToAction("UserIndex");

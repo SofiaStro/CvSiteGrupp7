@@ -16,7 +16,7 @@
 
     <div class="col-md-4">
         @{ var imagepath = "/UploadedImages/" + @Model.ImagePath; }
-        <img src="@imagepath" alt="Lägg till bild" style="width: 100px; height: 130px;" />
+        <img src="@imagepath" class="imgSize" alt="Lägg till bild" @*style="width: 100px; height: 130px;"*@ />
         <p>@Html.ActionLink("Uppdatera bild", "EditImg", new { @Model.Id })</p>
     </div>
 

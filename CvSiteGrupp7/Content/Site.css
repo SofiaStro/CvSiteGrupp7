@@ -27,3 +27,6 @@ textarea {
 #resultCount {
     text-align: center; height: 50px; padding-top: 16px; color: #999999;
 }
+.imgSize {
+   width: 100px; height: 130px;
+}

@@ -15,10 +15,9 @@ namespace CvSiteGrupp7.Controllers
     public class MessageController : Controller
     {
         private MessageDbContext db = new MessageDbContext();
-        private CvDBContext cvdb = new CvDBContext();
-        private CvService cvService = new CvService(System.Web.HttpContext.Current);
 
         // GET: Message/Index
+        [Authorize]
         public ActionResult Index()
         {
              var messages = db.messages.ToList();
@@ -40,7 +39,7 @@ namespace CvSiteGrupp7.Controllers
             return View(model);
         }
 
-    
+
         //[HttpPost]
         //public ActionResult Create(MessageModel model)
         //{
@@ -89,6 +88,7 @@ namespace CvSiteGrupp7.Controllers
         //}
 
         // GET: Message/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,6 +104,7 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // POST: Message/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)

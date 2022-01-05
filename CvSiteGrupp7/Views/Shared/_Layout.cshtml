@@ -40,12 +40,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    @* Lägg till IF-sats för om personen är inloggad *@
     @if (User.Identity.IsAuthenticated)
     {
     <script>
-        setInterval(function () {
-            console.log('hej');
+        function unreadMessages() {
             $.ajax({
                 url: '/api/message/countmessages',
                 method: 'GET',
@@ -56,12 +54,14 @@
                     window.alert('error');
                 }
             });
-        }, 2000);
+        }
+
+        setInterval(function unreadmessages() {
+            unreadMessages();
+            return unreadMessages;
+        }(), 2000);
 
     </script>
     }
 </body>
 </html>
-@section scripts{
-   
-}

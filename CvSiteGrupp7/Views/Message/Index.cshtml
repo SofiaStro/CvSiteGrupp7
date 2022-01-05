@@ -5,7 +5,6 @@
 }
 <h2>Inkorg</h2>
 
-@*<div id="resultCount" style="background: yellow;"></div>*@
 <table class="table">
     <tr>
         <th>
@@ -70,35 +69,5 @@
                 }
             });
         });
-    </script>
-    @*<script>
-            $(document).ready(function () {
-                setInterval(function () {
-                    var count;
-                    $.get('/api/message/countmessages/', function (result) {
-                        count = result;
-                        console.log('hej')
-                        $("#resultCount").html("(Olästa:" + count + ")");
-                    })
-                }, 1000);
-            })
-        </script>*@
-    @*<script>
-            function unreadMessages()
-            {
-                $.get('/api/message/countmessages/', function (result) {
-                    count = result;
-                    $("#resultCount").html("(Olästa:" + count + ")");
-                })
-            }
-
-            $(document).ready(function startSetInterval() {
-                setInterval(function unreadmessages() {
-                    unreadMessages();
-                    return unreadMessages;
-                }(), 2000);
-            })
-
-     </script>*@
-
+    </script>   
 }

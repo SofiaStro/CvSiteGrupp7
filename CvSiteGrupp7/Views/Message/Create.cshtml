@@ -5,6 +5,7 @@
 }
 
 <h2>Skicka meddelande</h2>
+@* Kommentera *@
 
 @using (Html.BeginForm(null, null, new { @id = string.Empty }, FormMethod.Post, new { @id = "MessageForm" }))
 {
@@ -63,7 +64,6 @@
     </div>
 </div>
 }
-   @Scripts.Render("~/bundles/jqueryval")
 
 @section Scripts {
     <script>

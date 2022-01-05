@@ -266,7 +266,6 @@
     <Content Include="Views\Message\Delete.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Cv\EditImg.cshtml" />
-    <Content Include="Views\Shared\PartialViewUser.cshtml" />
     <Content Include="Views\Cv\_ListExperience.cshtml" />
     <Content Include="Views\Experience\Create.cshtml" />
     <Content Include="Views\Cv\_ListProject.cshtml" />

@@ -13,7 +13,7 @@
     
     if(ViewBag.Error != null)
     {
-        <p class="errorMsg" @*style="color:red"*@>@ViewBag.Error</p>
+        <p class="errorMsg">@ViewBag.Error</p>
     }
 <div class="form-horizontal">
     <hr />
@@ -54,6 +54,3 @@
     @Html.ActionLink("Tillbaka till Mina Projekt", "UserIndex")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

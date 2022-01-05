@@ -8,7 +8,7 @@
 
 @if(ViewBag.Error != null)
     {
-        <p style="color:red">@ViewBag.Error</p>
+        <p class="errorMsg">@ViewBag.Error</p>
     }
 
 @using (Html.BeginForm())
@@ -39,6 +39,3 @@
     @Html.ActionLink("Tillbaka till mitt CV", "Index", "Cv")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

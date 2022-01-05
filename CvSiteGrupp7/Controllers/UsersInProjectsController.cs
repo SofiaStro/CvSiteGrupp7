@@ -2,11 +2,9 @@
 using Data.Models;
 using Microsoft.AspNet.Identity;
 using Services;
-using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CvSiteGrupp7.Controllers
@@ -17,24 +15,18 @@ namespace CvSiteGrupp7.Controllers
         private UsersInProjectsService usersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
         private CvService cvService = new CvService(System.Web.HttpContext.Current);
 
-        // GET: UsersInProjects
-        public ActionResult Index(int projectId)
+        // GET: UsersInProjects/Index/5
+        public ActionResult Index(int id)
         {
             bool loggedIn = false;
             if (User.Identity.IsAuthenticated)
             {
                 loggedIn = true;
             }
-            var allUserNamesInProject = usersInProjectsService.GetUserNamesInProject(projectId);
+            var allUserNamesInProject = usersInProjectsService.GetUserNamesInProject(id);
             var allCvsInProject = cvService.GetCvWithUserName(allUserNamesInProject, loggedIn);
             return View(allCvsInProject);
         }
-
-        //// GET: UsersInProjects/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
 
         // GET: UsersInProjects/Create
         [Authorize]
@@ -63,15 +55,15 @@ namespace CvSiteGrupp7.Controllers
             return View();
         }
 
-        // POST: UsersInProjects/CreateS
+        // POST: UsersInProjects/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(string SelectedProjectId)
+        public ActionResult Create(string selectedProjectId)
         {
             try
             { 
-                if(!SelectedProjectId.Equals("")) { 
-                    usersInProjectsService.CreateUserInProject(Int32.Parse(SelectedProjectId), User.Identity.GetUserId(), User.Identity.Name);
+                if(!selectedProjectId.Equals("")) { 
+                    usersInProjectsService.CreateUserInProject(Int32.Parse(selectedProjectId), User.Identity.GetUserId(), User.Identity.Name);
 
                     return RedirectToAction("Index", "Cv");
                 }
@@ -87,28 +79,6 @@ namespace CvSiteGrupp7.Controllers
             }
         }
 
-        //// GET: UsersInProjects/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: UsersInProjects/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
         // GET: UsersInProjects/Delete/5
         [Authorize]
         public ActionResult Delete(int id)
@@ -117,7 +87,7 @@ namespace CvSiteGrupp7.Controllers
             return View(newView);
         }
 
-        // POST: UsersInProjects/Delete/5
+        // POST: UsersInProjects/Delete
         [HttpPost]
         [Authorize]
         public ActionResult Delete(Project model)

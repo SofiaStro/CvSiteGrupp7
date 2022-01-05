@@ -2,10 +2,7 @@
 using Data.Models;
 using Services;
 using Shared.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CvSiteGrupp7.Controllers
@@ -13,16 +10,15 @@ namespace CvSiteGrupp7.Controllers
     public class CompetenceController : Controller
     {
         private CompetenceService competenceService = new CompetenceService();
-
         private CvDBContext db = new CvDBContext();
 
-        // GET: Experience/Create
+        // GET: Competence/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Experience/Create
+        // POST: Competence/Create
         [HttpPost]
         public ActionResult Create(CreateCompetenceView model)
         {
@@ -39,14 +35,14 @@ namespace CvSiteGrupp7.Controllers
             }
         }
 
-        // GET: Experience/Edit/5
+        // GET: Competence/Edit/5
         public ActionResult Edit(int id)
         {
             Competence existingCompetence = db.competences.Find(id);
             return View(existingCompetence);
         }
 
-        // POST: Project/Edit/5
+        // POST: Competence/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Competence model)
@@ -62,16 +58,24 @@ namespace CvSiteGrupp7.Controllers
             }
         }
 
-        // GET: Experience/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Competence/Delete/5
+        public ActionResult Delete(int? id)
         {
-            Competence existingCompetence = db.competences.Find(id);
-            return View(existingCompetence);
+            try 
+            {
+                Competence existingCompetence = db.competences.Find(id);
+                return View(existingCompetence);
+            }
+            catch 
+            {
+                return View();
+            }
+         
         }
 
-        // POST: Experience/Delete/5
+        // POST: Competence/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Competence model)
+        public ActionResult Delete(int id)
         {
             try
             {

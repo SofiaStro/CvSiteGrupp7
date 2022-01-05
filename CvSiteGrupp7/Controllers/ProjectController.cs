@@ -15,21 +15,21 @@ namespace CvSiteGrupp7.Controllers
         private ProjectService ProjectService = new ProjectService(System.Web.HttpContext.Current);
         private UsersInProjectsService UsersInProjectsService = new UsersInProjectsService(System.Web.HttpContext.Current);
 
-        // GET: Project
+        // GET: Project/UserIndex
         [Authorize]
         public ActionResult UserIndex()
         {
-            var projects = db.projects.Where(row => row.UserName == User.Identity.Name);
+            var projects = db.projects.Where(rows => rows.UserName == User.Identity.Name);
             return View(projects);
         }
 
-        // GET: Project
+        // GET: Project/MainIndex
         public ActionResult MainIndex(string searchString)
         {
             var projects = from p in db.projects select p;
             if (!String.IsNullOrEmpty(searchString))
             {
-                projects = projects.Where(row => row.Name.Contains(searchString));
+                projects = projects.Where(rows => rows.Name.Contains(searchString));
             }
             return View(projects);
         }
@@ -44,13 +44,13 @@ namespace CvSiteGrupp7.Controllers
         // POST: Project/Create
         [Authorize]
         [HttpPost]
-        public ActionResult Create(ProjectCreateModel projectModel)
+        public ActionResult Create(ProjectCreateModel model)
         {
             try
             {
-                if(ProjectService.ProjectNameExists(projectModel) == false)
+                if(ProjectService.ProjectNameExists(model) == false)
                 {
-                    Project newProject = ProjectService.CreateProject(projectModel, User.Identity.Name);
+                    Project newProject = ProjectService.CreateProject(model, User.Identity.Name);
                     UsersInProjectsService.CreateUserInProject(newProject.Id, User.Identity.GetUserId(), User.Identity.Name);
                     return RedirectToAction("UserIndex");
                 }
@@ -68,17 +68,9 @@ namespace CvSiteGrupp7.Controllers
 
         // GET: Project/Edit/5
         [Authorize]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            }
             Project existingProject = db.projects.Find(id);
-            if (existingProject == null)
-            {
-                return HttpNotFound();
-            }
             return View(existingProject); 
         }
 

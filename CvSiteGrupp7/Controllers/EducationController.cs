@@ -2,10 +2,7 @@
 using Data.Models;
 using Services;
 using Shared.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CvSiteGrupp7.Controllers
@@ -13,16 +10,15 @@ namespace CvSiteGrupp7.Controllers
     public class EducationController : Controller
     {
         private EducationService educationService = new EducationService();
-
         private CvDBContext db = new CvDBContext();
 
-        // GET: Experience/Create
+        // GET: Education/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Experience/Create
+        // POST: Education/Create
         [HttpPost]
         public ActionResult Create(CreateEducationView model)
         {
@@ -39,14 +35,14 @@ namespace CvSiteGrupp7.Controllers
             }
         }
 
-        // GET: Experience/Edit/5
+        // GET: Education/Edit/5
         public ActionResult Edit(int id)
         {
             Education existingEducation = db.educations.Find(id);
             return View(existingEducation);
         }
 
-        // POST: Project/Edit/5
+        // POST: Education/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Education model)
@@ -62,16 +58,23 @@ namespace CvSiteGrupp7.Controllers
             }
         }
 
-        // GET: Experience/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Education/Delete/5
+        public ActionResult Delete(int? id)
         {
-            Education existingEducation = db.educations.Find(id);
-            return View(existingEducation);
+            try 
+            { 
+                Education existingEducation = db.educations.Find(id);
+                return View(existingEducation); 
+            }
+            catch 
+            {
+                return View();
+            }
         }
 
-        // POST: Experience/Delete/5
+        // POST: Education/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Education model)
+        public ActionResult Delete(int id)
         {
             try
             {

@@ -1,12 +1,8 @@
 ﻿using Data.Contexts;
-using Data.Models;
 using Data.Repositories;
 using Microsoft.AspNet.Identity.Owin;
 using Services;
 using Shared.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
@@ -15,12 +11,12 @@ namespace CvSiteGrupp7.Controllers
 {
     [RoutePrefix("api/message")]
     public class MessageApiController : ApiController
-    {
+    { 
+        MessageService messageService = new MessageService(System.Web.HttpContext.Current);
         public MessageRepository messageRepository
         {
             get { return new MessageRepository(Request.GetOwinContext().Get<MessageDbContext>()); }
         }
-        MessageService messageService = new MessageService(System.Web.HttpContext.Current);
 
         [HttpGet]
         [Route("read/{id}")]
@@ -68,9 +64,8 @@ namespace CvSiteGrupp7.Controllers
         public int CountUnreadMessages()
         {
             string receiver = User.Identity.Name;
-          
-                int count = messageRepository.UnreadMessages(receiver);
-                return count;
+            int count = messageRepository.UnreadMessages(receiver);
+            return count;
             
         }
 
@@ -99,9 +94,7 @@ namespace CvSiteGrupp7.Controllers
                 return Ok();
             }
 
-
         }
-
 
     }
 }

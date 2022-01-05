@@ -2,10 +2,7 @@
 using Data.Models;
 using Services;
 using Shared.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CvSiteGrupp7.Controllers
@@ -13,7 +10,6 @@ namespace CvSiteGrupp7.Controllers
     public class ExperienceController : Controller
     {
         private ExperienceService experienceService = new ExperienceService();
-
         private CvDBContext db = new CvDBContext();
 
         // GET: Experience/Create
@@ -46,7 +42,7 @@ namespace CvSiteGrupp7.Controllers
             return View(existingExperience);
         }
 
-        // POST: Project/Edit/5
+        // POST: Experience/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Experience model)
@@ -63,15 +59,23 @@ namespace CvSiteGrupp7.Controllers
         }
 
         // GET: Experience/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            Experience existingExperience = db.experiences.Find(id);
-            return View(existingExperience);
+            try 
+            {  
+                Experience existingExperience = db.experiences.Find(id);
+                return View(existingExperience);
+            }
+            catch
+            {
+                return View();
+            }
+           
         }
 
         // POST: Experience/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Experience model)
+        public ActionResult Delete(int id)
         {
             try
             {

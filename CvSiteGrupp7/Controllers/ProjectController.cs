@@ -90,8 +90,16 @@ namespace CvSiteGrupp7.Controllers
         {
             try
             {
-                ProjectService.EditProject(project);
-                return RedirectToAction("UserIndex");
+                if (ProjectService.ProjectNameExists(project) == false)
+                {
+                    ProjectService.EditProject(project);
+                    return RedirectToAction("UserIndex");
+                }
+                else
+                {
+                    ViewBag.Error = "Ett projekt med detta namn finns redan! Försök igen.";
+                    return View();
+                }
             }
             catch
             {

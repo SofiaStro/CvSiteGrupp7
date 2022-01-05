@@ -34,21 +34,3 @@ else
         <li>@Html.ActionLink("Logga in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
-
-@section scripts{
-    <script>
-        setInterval(function () {
-            $.ajax({
-                url: '/api/message/countmessages',
-                method: 'GET',
-                success: function (result) {
-                    $("#resultCount").html("(Olästa:" + result + ")");
-                },
-                error: function () {
-                    window.alert('error');
-                }
-                });
-            }, 2000);
-       
-    </script>
-}

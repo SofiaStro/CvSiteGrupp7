@@ -69,7 +69,6 @@
     <script>
         $('#createMessage').click(function () {
             var data = $('#MessageForm').serialize();
-/*            if (!window.confirm('Vill du skicka ett meddelande ?' + data)) return;*/
             $.ajax({
                 url: '/api/message/create',
                 method: 'POST',

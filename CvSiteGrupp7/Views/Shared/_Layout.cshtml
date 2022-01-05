@@ -43,6 +43,7 @@
     @if (User.Identity.IsAuthenticated)
     {
     <script>
+        //Hämtar antalet olästa meddelanden för den inloggade personen och visar resultatet i headern. 
         function unreadMessages() {
             $.ajax({
                 url: '/api/message/countmessages',
@@ -55,7 +56,9 @@
                 }
             });
         }
-        //Kommentera
+        /*Sätter ett intervall för hur ofta unreadMessages funktionen
+        ska köras, dessutom körs funktionen samtidigt som intervallet startar för 
+        det inte ska ta 2 sekunder tills notiserna syns */
         setInterval(function unreadmessages() {
             unreadMessages();
             return unreadMessages;

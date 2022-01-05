@@ -1,5 +1,6 @@
 ﻿using Data.Contexts;
 using Data.Models;
+using Data.Repositories;
 using Shared.Models;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace Services
     public class ProjectService
     {
         private ProjectDbContext db = new ProjectDbContext();
+        private ProjectRepository projectRepository = new ProjectRepository();
         private readonly HttpContext _httpcontext;
         public ProjectService(HttpContext httpcontext)
         {
@@ -47,16 +49,12 @@ namespace Services
 
         public bool ProjectNameExists(ProjectCreateModel projectModel)
         {
-            var allProjectNames = db.projects.Select(row => row.Name).ToList();
-            bool doesNameExists = false;
-            foreach (var name in allProjectNames)
-            {
-                if (projectModel.Name.Equals(name))
-                {
-                    doesNameExists = true;
-                }
-            }
-            return doesNameExists;
+            return projectRepository.ProjectNameExists(projectModel.Name);
+        }
+
+        public bool ProjectNameExists(Project project)
+        {
+            return projectRepository.ProjectNameExists(project.Name);
         }
     }
 }

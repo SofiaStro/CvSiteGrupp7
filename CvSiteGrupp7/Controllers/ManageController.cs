@@ -353,7 +353,24 @@ namespace CvSiteGrupp7.Controllers
                 {
                     errorMessage = "Fel nuvarande lösenord";
                 }
+                if (error.EndsWith("letter or digit character."))
+                {
+                    errorMessage = "Lösenordet måste innehålla minst ett specialtecken.";
+                }
+                if (error.EndsWith("('0'-'9')."))
+                {
+                    errorMessage = "Lösenordet måste innehålla minst en siffra (0-9).";
+                }
+                if (error.EndsWith("('A'-'Z')."))
+                {
+                    errorMessage = "Lösenordet måste innehålla minst en stor bokstav (A-Z).";
+                }
+                if (error.EndsWith("('a'-'z')."))
+                {
+                    errorMessage = "Lösenordet måste innehålla minst en liten bokstav (a-z).";
+                }
                 ModelState.AddModelError("", errorMessage);
+
             }
         }
 

@@ -13,9 +13,12 @@
     </div>
 
     <div class="col-md-4">
-        @{ var imagepath = "/UploadedImages/" + @Model.ImagePath; }
-        <img src="@imagepath" class="imgSize" alt="Lägg till bild" />
-    </div>
+        @if (@Model.ImagePath != null)
+         {
+            var imagepath = "/UploadedImages/" + @Model.ImagePath;
+            <img src="@imagepath" class="imgSize" alt="Lägg till bild" />
+         }
+        </div>
 
     <div class="col-md-4">
         <h2>Skicka meddelande</h2>
@@ -54,7 +57,7 @@
 
 <br />
 
-<h2>Mina erfarenheten</h2>
+<h2>Mina erfarenheter</h2>
 
 <div>
     <table class="table">

@@ -1,6 +1,7 @@
 ﻿using Data.Contexts;
 using Data.Models;
 using Shared.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Services
@@ -48,6 +49,29 @@ namespace Services
                 AddedDate = project.AddedDate
             };
             return newView;
+        }
+
+        public List<Project> GetListOfNotInvolvedProjects(string userName)
+        {
+            ProjectDbContext projectDb = new ProjectDbContext();
+
+            var allProjects = projectDb.projects.ToList();
+            var allInvolvedProjects = db.usersInProjects.Where(m => m.UserName.Equals(userName)).ToList();
+
+            var allProjectsID = allProjects.Select(m => m.Id).ToList();
+            var allInvolvedProjectsID = allInvolvedProjects.Select(m => m.ProjectId).ToList();
+
+            var allExcepts = allProjectsID.Except(allInvolvedProjectsID).ToList();
+
+            List<Project> listOfNotInvolvedProjects = new List<Project>();
+
+            foreach (var id in allExcepts)
+            {
+                var project = allProjects.Where(m => m.Id == id).FirstOrDefault();
+                listOfNotInvolvedProjects.Add(project);
+            }
+
+            return listOfNotInvolvedProjects;
         }
     }
 }

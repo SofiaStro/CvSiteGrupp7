@@ -32,23 +32,8 @@ namespace CvSiteGrupp7.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ProjectDbContext projectDb = new ProjectDbContext();
-            
-            var allProjects = projectDb.projects.ToList();
-            var allInvolvedProjects = db.usersInProjects.Where(m => m.UserName.Equals(User.Identity.Name)).ToList();
-
-            var allProjectsID = allProjects.Select(m => m.Id).ToList();
-            var allInvolvedProjectsID = allInvolvedProjects.Select(m => m.ProjectId).ToList();
-
-            var allExcepts = allProjectsID.Except(allInvolvedProjectsID).ToList();
-
-            List<Project> listOfNotInvolvedProjects = new List<Project>();
-
-            foreach (var id in allExcepts)
-            {
-                var project = allProjects.Where(m => m.Id == id).FirstOrDefault();
-                listOfNotInvolvedProjects.Add(project);
-            }
+            var userName = User.Identity.Name;
+            List<Project> listOfNotInvolvedProjects = usersInProjectsService.GetListOfNotInvolvedProjects(userName);
 
             ViewBag.Projects = new SelectList(listOfNotInvolvedProjects, "Id", "Name");
 

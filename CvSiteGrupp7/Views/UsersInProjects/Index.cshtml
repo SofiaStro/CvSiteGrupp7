@@ -54,11 +54,7 @@
 <div>
     @{
         var lastUrl = Request.UrlReferrer.ToString();
-        if (lastUrl.Contains("searchString"))
-        {
-            @Html.ActionLink("Tillbaka till projekt", null, null, null, new { href = Request.UrlReferrer })
-        }
-        else if (lastUrl.Contains("MainIndex"))
+        if (lastUrl.Contains("MainIndex"))
         {
             @Html.ActionLink("Tillbaka till projekt", "MainIndex", "Project")
         }

@@ -25,7 +25,7 @@ namespace Services
         {
             var newCv = new CV()
             {
-                Name = "Okänd",
+                Name = "Anonym",
                 UserName = userName,
                 Private = true
             };
